@@ -1,14 +1,14 @@
 <template>
-    <NavBar></NavBar>
+    <Navbar></Navbar>
     <router-view/>
 </template>
 
 <script>
-import NavBar from '../components/NavBar.vue';
+import Navbar from '../components/DashboardNavbar.vue';
 
 export default {
   components: {
-    NavBar,
+    Navbar,
   },
   created() {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
