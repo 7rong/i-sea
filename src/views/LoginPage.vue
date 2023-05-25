@@ -51,9 +51,9 @@ export default {
       this.$http.post(api, this.user)
         .then((res) => {
           if (res.data.success) {
-            const { token, expired } = res.data.token;
+            const { token, expired } = res.data;
             document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
-            this.$router.push('/dashboard');
+            this.$router.push('/dashboard/products');
           } else {
             alert('請輸入正確的帳號密碼');
           }
