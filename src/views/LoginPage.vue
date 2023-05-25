@@ -50,6 +50,9 @@ export default {
       // console.log(api);
       this.$http.post(api, this.user)
         .then((res) => {
+          const { token, expired } = res.data;
+          console.log(token, expired);
+          document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
           console.log(res);
         });
     },
