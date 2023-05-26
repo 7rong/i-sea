@@ -91,10 +91,10 @@ export default {
         httpMethod = 'put';
       }
       const productComponent = this.$refs.productModal;
-      this.$http[httpMethod](api, { data: this.tempProduct }).then((response) => {
-        console.log(response);
+      this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
         productComponent.hideModal();
         this.getProducts();
+        console.log(res.data.message);
       });
     },
   },
