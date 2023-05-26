@@ -11,7 +11,7 @@
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
           <h5 class="modal-title" id="exampleModalLabel">
-            <span>新增產品</span>
+            <span>{{ tempProduct.modalTitle }}產品</span>
           </h5>
           <button type="button" class="btn-close"
                   data-bs-dismiss="modal" aria-label="Close"></button>
@@ -142,7 +142,9 @@ export default {
   data() {
     return {
       modal: {},
-      tempProduct: {},
+      tempProduct: {
+        modalTitle: '新增',
+      },
     };
   },
   methods: {

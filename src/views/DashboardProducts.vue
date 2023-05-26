@@ -32,7 +32,8 @@
                 <div class="btn-group">
                 <button class="btn btn-outline-primary btn-sm"
                 @click="openModal(false, item)">編輯</button>
-                <button class="btn btn-outline-danger btn-sm">刪除</button>
+                <button class="btn btn-outline-danger btn-sm"
+                @click="openDelModal(item)">刪除</button>
                 </div>
             </td>
             </tr>
@@ -42,10 +43,14 @@
     :product="tempProduct"
     @emit-product="updateProduct"
     ></ProductModal>
+    <DelModal ref="delModal"
+    :delProduct="tempProduct"
+    @emit-del-product="deleteProduct"></DelModal>
 </template>
 
 <script>
 import ProductModal from '../components/ProductModal.vue';
+import DelModal from '../components/DelModal.vue';
 
 export default {
   data() {
@@ -58,6 +63,7 @@ export default {
   },
   components: {
     ProductModal,
+    DelModal,
   },
   methods: {
     getProducts() {
@@ -71,9 +77,11 @@ export default {
     },
     openModal(isNew, item) {
       if (isNew) {
-        this.tempProduct = {};
+        this.tempProduct = {
+          modalTitle: '新增',
+        };
       } else {
-        this.tempProduct = { ...item };
+        this.tempProduct = { ...item, modalTitle: '編輯' };
       }
       this.isNew = isNew;
       const productComp = this.$refs.productModal;
@@ -95,6 +103,20 @@ export default {
         productComponent.hideModal();
         this.getProducts();
         console.log(res.data.message);
+      });
+    },
+    openDelModal(item) {
+      this.tempProduct = { ...item };
+      const delComp = this.$refs.delModal;
+      delComp.showModal();
+    },
+    deleteProduct(item) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
+      const delComp = this.$refs.delModal;
+      this.$http.delete(api).then((res) => {
+        console.log(res.data.message);
+        delComp.hideModal();
+        this.getProducts();
       });
     },
   },
