@@ -27,7 +27,12 @@
               <div class="mb-3">
                 <label for="customFile" class="form-label">或 上傳圖片
                   <i class="fas fa-spinner fa-spin"></i>
-                <input type="file" id="customFile" class="form-control"></label>
+                <input
+                type="file"
+                id="customFile"
+                class="form-control"
+                ref="fileInput"
+                @change="uploadFile"></label>
               </div>
               <img class="img-fluid" alt="">
               <!-- 延伸技巧，多圖 -->
@@ -146,6 +151,17 @@ export default {
     },
     hideModal() {
       this.modal.hide();
+    },
+    uploadFile() {
+      const uploadedFile = this.$refs.fileInput.files[0];
+      const formData = new FormData();
+      formData.append('file-to-upload', uploadedFile);
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
+      this.$http.post(api, formData).then((res) => {
+        if (res.data.success) {
+          this.tempProduct.imgUrl = res.data.imgUrl;
+        }
+      });
     },
   },
   mounted() {
