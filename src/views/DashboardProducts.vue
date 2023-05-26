@@ -45,7 +45,7 @@
     ></ProductModal>
     <DelModal ref="delModal"
     :delProduct="tempProduct"
-    @emit-del-product="deleteProduct"></DelModal>
+    @del-product="deleteProduct"></DelModal>
 </template>
 
 <script>
@@ -110,8 +110,8 @@ export default {
       const delComp = this.$refs.delModal;
       delComp.showModal();
     },
-    deleteProduct(item) {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
+    deleteProduct() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       const delComp = this.$refs.delModal;
       this.$http.delete(api).then((res) => {
         console.log(res.data.message);
