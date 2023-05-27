@@ -54,8 +54,16 @@ export default {
             const { token, expired } = res.data;
             document.cookie = `hexToken=${token}; expires=${new Date(expired)}`;
             this.$router.push('/dashboard/products');
+            this.emitter.emit('push-msg', {
+              style: 'success',
+              title: '登入成功',
+            });
           } else {
-            alert('請輸入正確的帳號密碼');
+            this.emitter.emit('push-msg', {
+              style: 'danger',
+              title: '登入失敗',
+              content: '請輸入正確的帳號密碼',
+            });
           }
         });
     },
