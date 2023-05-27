@@ -6,11 +6,17 @@
 </template>
 
 <script>
+import emitter from '@/methods/emitter';
 import Navbar from '../components/DashboardNavbar.vue';
 
 export default {
   components: {
     Navbar,
+  },
+  provide() {
+    return {
+      emitter,
+    };
   },
   created() {
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
