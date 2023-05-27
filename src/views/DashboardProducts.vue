@@ -183,7 +183,7 @@ export default {
     height: 200px;
     display: inline-block;
     overflow: hidden;
-    background: #ffffff;
+    background: #ffffff33;
   }
   .ldio-w9lf8z91sj {
     width: 100%;
