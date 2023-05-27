@@ -1,27 +1,19 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">I SEA</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarNav" aria-controls="navbarNav"
             aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">產品</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">訂單</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#">優惠券</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="#" @click.prevent="logout">登出</a>
-                </li>
-            </ul>
+            <div class="navbar-nav">
+              <router-link to="/dashboard/products" class="nav-link px-3">產品</router-link>
+              <router-link to="/dashboard/orders" class="nav-link px-3">訂單</router-link>
+              <router-link to="/dashboard/coupons" class="nav-link px-3">優惠券</router-link>
+              <a href="#" @click.prevent="logout" class="nav-link px-3">登出</a>
+            </div>
             </div>
         </div>
     </nav>
