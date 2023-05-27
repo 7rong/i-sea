@@ -44,6 +44,7 @@
           </tr>
       </tbody>
     </table>
+    <PaginationComp :pages="pagination"></PaginationComp>
     <ProductModal ref="productModal"
     :product="tempProduct"
     @emit-product="updateProduct"
@@ -54,8 +55,9 @@
 </template>
 
 <script>
+import PaginationComp from '@/components/PaginationComp.vue';
+import DelModal from '@/components/DelModal.vue';
 import ProductModal from '../components/ProductModal.vue';
-import DelModal from '../components/DelModal.vue';
 
 export default {
   data() {
@@ -70,6 +72,7 @@ export default {
   components: {
     ProductModal,
     DelModal,
+    PaginationComp,
   },
   inject: ['emitter'],
   methods: {
@@ -98,7 +101,6 @@ export default {
     },
     updateProduct(item) {
       this.tempProduct = item;
-      console.log(item);
       // 預設為新增
       let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
       let httpMethod = 'post';
