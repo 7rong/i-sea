@@ -1,17 +1,20 @@
 <template>
     <Navbar></Navbar>
-    <div class="container">
+    <div class="container mt-3 position-relative">
+      <ToastList></ToastList>
       <router-view/>
     </div>
 </template>
 
 <script>
 import emitter from '@/methods/emitter';
+import ToastList from '@/components/ToastList.vue';
 import Navbar from '../components/DashboardNavbar.vue';
 
 export default {
   components: {
     Navbar,
+    ToastList,
   },
   provide() {
     return {
