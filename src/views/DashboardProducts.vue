@@ -24,10 +24,10 @@
           <td>{{ item.category }}</td>
           <td>{{ item.title }}</td>
           <td class="text-right">
-              {{ item.origin_price }}
+              {{ currency(item.origin_price) }}
           </td>
           <td class="text-right">
-              {{ item.price }}
+              {{ currency(item.price) }}
           </td>
           <td>
               <span class="text-success" v-if="item.is_enabled">啟用</span>
@@ -59,6 +59,7 @@
 import PaginationComp from '@/components/PaginationComp.vue';
 import DelModal from '@/components/DelModal.vue';
 import ProductModal from '../components/ProductModal.vue';
+import { currency } from '../methods/filters';
 
 export default {
   data() {
@@ -77,6 +78,7 @@ export default {
   },
   inject: ['emitter'],
   methods: {
+    currency,
     getProducts(page = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`;
       this.isLoading = true;
