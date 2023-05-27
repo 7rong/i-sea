@@ -10,16 +10,16 @@
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="#">產品</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">訂單</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="#">優惠券</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="#" @click.prevent="logout">登出</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
                 </li>
             </ul>
             </div>

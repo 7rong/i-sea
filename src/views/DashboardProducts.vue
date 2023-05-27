@@ -1,8 +1,8 @@
 <template>
   <LoadingComp :active="isLoading">
     <div class="loadingio-spinner-ripple-lmh4mlln0v9"><div class="ldio-w9lf8z91sj">
-  <div></div><div></div>
-  </div></div>
+    <div></div><div></div>
+    </div></div>
   </LoadingComp>
   <div class="text-end">
       <button class="btn btn-primary" type="button"
@@ -75,7 +75,7 @@ export default {
     DelModal,
     PaginationComp,
   },
-  inject: ['emitter'],
+  inject: ['pushMsgState'],
   methods: {
     getProducts(page = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products?page=${page}`;
@@ -114,19 +114,8 @@ export default {
       const productComponent = this.$refs.productModal;
       this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
         productComponent.hideModal();
-        if (res.data.success) {
-          this.getProducts();
-          this.emitter.emit('push-msg', {
-            style: 'success',
-            title: '更新成功',
-          });
-        } else {
-          this.emitter.emit('push-msg', {
-            style: 'danger',
-            title: '更新失敗',
-            content: res.data.message.join('、'),
-          });
-        }
+        this.getProducts();
+        this.pushMsgState(res, '更新');
       });
     },
     openDelModal(item) {
