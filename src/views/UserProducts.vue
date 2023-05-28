@@ -20,11 +20,16 @@
                 現在只要<span class="text-danger">{{ item.price }}</span>元</div>
               <button type="button" class="btn btn-outline-secondary"
               @click="getDetail(item.id)">
-                  查看更多
+                查看更多
               </button>
               <button type="button" class="btn btn-outline-danger"
-                      >
-                加到購物車
+              @click="addCart(item.id)"
+              :disabled="this.status.loadingItemId === item.id">
+                <div class="spinner-border spinner-border-sm text-light" role="status"
+                  v-if="this.status.loadingItemId === item.id">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                <div v-else>加到購物車</div>
               </button>
             </div>
           </div>
@@ -40,8 +45,9 @@ export default {
     return {
       isLoading: false,
       products: [],
-      pagination: {},
-      allProducts: [],
+      status: {
+        loadingItemId: '',
+      },
     };
   },
   methods: {
@@ -58,6 +64,19 @@ export default {
     },
     getDetail(id) {
       this.$router.push(`/user/product/${id}`);
+    },
+    addCart(id, qty = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.status.loadingItemId = id;
+      const cart = {
+        product_id: id,
+        qty,
+      };
+      this.$http.post(api, { data: cart })
+        .then((res) => {
+          this.status.loadingItemId = '';
+          console.log(res);
+        });
     },
   },
   created() {
