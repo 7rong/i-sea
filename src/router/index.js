@@ -39,7 +39,7 @@ const routes = [
     ],
   },
   {
-    path: 'user',
+    path: '/user',
     component: () => import('../views/UserBoard.vue'),
     children: [
       {
