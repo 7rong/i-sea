@@ -8,7 +8,7 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">
-          <div class="navbar-nav">
+          <div class="navbar-nav ms-auto">
             <router-link to="/user/" class="nav-link px-3">首頁</router-link>
             <router-link to="/user/products" class="nav-link px-3">所有產品</router-link>
             <router-link to="/user/coupons" class="nav-link px-3">優惠券</router-link>
