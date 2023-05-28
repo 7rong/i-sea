@@ -18,7 +18,8 @@
               <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
               <div class="h5" v-if="item.price">
                 現在只要<span class="text-danger">{{ item.price }}</span>元</div>
-              <button type="button" class="btn btn-outline-secondary">
+              <button type="button" class="btn btn-outline-secondary"
+              @click="getDetail(item.id)">
                   查看更多
               </button>
               <button type="button" class="btn btn-outline-danger"
@@ -54,6 +55,9 @@ export default {
           this.pagination = res.data.pagination;
         }
       });
+    },
+    getDetail(id) {
+      this.$router.push(`/user/product/${id}`);
     },
   },
   created() {
