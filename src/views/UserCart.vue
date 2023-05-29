@@ -15,7 +15,8 @@
           <tbody>
             <tr v-for="item in carts" :key="item.id">
               <td>
-                <button type="button" class="btn btn-outline-danger btn-sm">
+                <button type="button" class="btn btn-outline-danger btn-sm"
+                @click="delCart(item)">
                   <i class="bi bi-trash3"></i>
                 </button>
               </td>
@@ -106,6 +107,15 @@ export default {
         this.getCart();
         this.state.isLoadingItem = '';
       });
+    },
+    delCart(item) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+      this.$http.delete(api)
+        .then((res) => {
+          console.log(res);
+          this.pushMsgState(res, '刪除品項');
+          this.getCart();
+        });
     },
   },
   created() {
