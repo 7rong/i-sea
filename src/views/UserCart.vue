@@ -1,5 +1,5 @@
 <template>
-  user cart
+  <i class="bi bi-trash3"></i>
 </template>
 
 <script>
