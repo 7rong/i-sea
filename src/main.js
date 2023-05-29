@@ -8,13 +8,14 @@ import VueAxios from 'vue-axios';
 import Loading from './components/LoadingComp.vue';
 import App from './App.vue';
 import router from './router';
-import { currency } from './methods/filters';
+import { currency, date } from './methods/filters';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const app = createApp(App);
 
 app.config.globalProperties.$filters = {
   currency,
+  date,
 };
 app.use(VueAxios, axios);
 app.use(router);

@@ -1,6 +1,5 @@
 <template>
-  <LoadingComp :active="isLoading">
-  </LoadingComp>
+  <LoadingComp :active="isLoading"></LoadingComp>
   <div class="text-end">
       <button class="btn btn-primary" type="button"
       @click="openModal(true)">新增產品</button>

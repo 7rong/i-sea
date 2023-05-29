@@ -1,9 +1,8 @@
 <template>
   <LoadingComp :active="isLoading"></LoadingComp>
   <div>
-    <Loading :active="isLoading"></Loading>
     <div class="text-end mt-4">
-      <button class="btn btn-primary" @click="openCouponModal(true)">
+      <button class="btn btn-primary" @click="openModal(true)">
         建立新的優惠券
       </button>
     </div>
@@ -29,37 +28,62 @@
         <td>
           <div class="btn-group">
             <button class="btn btn-outline-primary btn-sm"
-                    @click="openCouponModal(false, item)"
+              @click="openModal(false, item)"
             >編輯</button>
             <button class="btn btn-outline-danger btn-sm"
-                    @click="openDelCouponModal(item)"
+              @click="openDelModal(item)"
             >刪除</button>
           </div>
         </td>
       </tr>
       </tbody>
     </table>
-    <couponModal :coupon="tempCoupon" ref="couponModal"
+    <couponModal ref="couponModal"
+    :coupon="tempCoupon"
     @update-coupon="updateCoupon"/>
-    <DelModal :item="tempCoupon" ref="delModal" @del-item="delCoupon"/>
   </div>
 </template>
 
 <script>
+import couponModal from '../components/CouponModal.vue';
+
 export default {
   data() {
     return {
       isLoading: false,
+      tempCoupon: {},
+      coupons: [],
     };
   },
+  components: {
+    couponModal,
+  },
+  inject: ['pushMsgState'],
   methods: {
     getCoupons() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons`;
       this.isLoading = true;
       this.$http.get(api).then((res) => {
-        console.log(res);
+        this.coupons = res.data.coupons;
         this.isLoading = false;
       });
+    },
+    openModal(isNew, item) {
+      if (isNew) {
+        this.tempCoupon = { modalTitle: '新增' };
+      } else {
+        this.tempCoupon = { ...item, modalTitle: '編輯' };
+      }
+      this.$refs.couponModal.showModal();
+    },
+    updateCoupon(item) {
+      this.tempCoupon = item;
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`;
+      this.$http.post(api, { data: this.tempCoupon }).then((res) => {
+        this.getCoupons();
+        this.pushMsgState(res, '新增');
+      });
+      this.$refs.couponModal.hideModal();
     },
   },
   created() {

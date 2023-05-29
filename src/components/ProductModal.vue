@@ -10,7 +10,7 @@
     <div class="modal-dialog modal-xl" role="document">
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
-          <h5 class="modal-title" id="exampleModalLabel">
+          <h5 class="modal-title">
             <span>{{ tempProduct.modalTitle }}產品</span>
           </h5>
           <button type="button" class="btn-close"
