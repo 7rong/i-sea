@@ -33,7 +33,9 @@
                 <label for="cart_unit">
                   <div class="input-group input-group-sm">
                     <input type="number" class="form-control" id="cart_unit"
-                    v-model.number="item.qty" min="1">
+                    v-model.number="item.qty" min="1"
+                    @change="updateCart(item)"
+                    :disabled="item.id === this.state.isLoadingItem">
                     <div class="input-group-text">/ {{ item.product.unit }}</div>
                   </div>
                 </label>
@@ -74,20 +76,36 @@ export default {
       total: '',
       final_total: '',
       isLoading: false,
+      state: {
+        isLoadingItem: '',
+      },
     };
   },
+  inject: ['pushMsgState'],
   methods: {
     getCart() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       this.isLoading = true;
       this.$http.get(api)
         .then((res) => {
-          console.log(res);
           this.carts = res.data.data.carts;
           this.total = res.data.data.total;
           this.final_total = res.data.data.final_total;
           this.isLoading = false;
         });
+    },
+    updateCart(item) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
+      const newCart = {
+        product_id: item.product_id,
+        qty: item.qty,
+      };
+      this.state.isLoadingItem = item.id;
+      this.$http.put(api, { data: newCart }).then((res) => {
+        this.pushMsgState(res, '更新購物車');
+        this.getCart();
+        this.state.isLoadingItem = '';
+      });
     },
   },
   created() {
