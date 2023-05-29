@@ -1,9 +1,94 @@
 <template>
-  <i class="bi bi-trash3"></i>
+  <LoadingComp :active="isLoading"></LoadingComp>
+  <div class="row">
+    <div class="col-md-9">
+        <table class="table align-middle">
+          <thead class="sticky-top">
+            <tr>
+              <th></th>
+              <th style="width: 150px;"></th>
+              <th>品名</th>
+              <th style="width: 130px">數量</th>
+              <th>單價</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in carts" :key="item.id">
+              <td>
+                <button type="button" class="btn btn-outline-danger btn-sm">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </td>
+              <td>
+                <div style="background-size: cover; background-position: center; padding: 30% 0;"
+                :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div>
+              </td>
+              <td>
+                {{ item.product.title }}
+                <div class="text-success">
+                  已套用優惠券
+                </div>
+              </td>
+              <td>
+                <label for="cart_unit">
+                  <div class="input-group input-group-sm">
+                    <input type="number" class="form-control" id="cart_unit">
+                    <div class="input-group-text">/ {{ item.product.unit }}</div>
+                  </div>
+                </label>
+              </td>
+              <td class="text-end">
+                <small class="text-success">折扣價：</small>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+    </div>
+    <div class="col">
+      <h4>訂單明細</h4>
+      <hr>
+      <span>原價</span>
+      <span>{{ total }}</span>
+      <hr>
+      <strong><span>總計</span>{{ final_total }}</strong>
+      <label for="cart_coupon">
+        <div class="input-group mb-3 input-group-sm">
+            <input type="text" class="form-control" placeholder="請輸入優惠碼" id="cart_coupon">
+            <button class="btn btn-outline-secondary" type="button">
+              套用優惠碼
+            </button>
+        </div>
+      </label>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-
+  data() {
+    return {
+      carts: [],
+      total: '',
+      final_total: '',
+      isLoading: false,
+    };
+  },
+  methods: {
+    getCart() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
+      this.isLoading = true;
+      this.$http.get(api)
+        .then((res) => {
+          console.log(res);
+          this.carts = res.data.data.carts;
+          this.total = res.data.data.total;
+          this.final_total = res.data.data.final_total;
+          this.isLoading = false;
+        });
+    },
+  },
+  created() {
+    this.getCart();
+  },
 };
 </script>
