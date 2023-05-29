@@ -32,13 +32,17 @@
               <td>
                 <label for="cart_unit">
                   <div class="input-group input-group-sm">
-                    <input type="number" class="form-control" id="cart_unit">
+                    <input type="number" class="form-control" id="cart_unit"
+                    v-model.number="item.qty" min="1">
                     <div class="input-group-text">/ {{ item.product.unit }}</div>
                   </div>
                 </label>
               </td>
               <td class="text-end">
-                <small class="text-success">折扣價：</small>
+                <del>原價：${{ $filters.currency(item.product.origin_price) }}</del><br>
+                <small class="text-success">
+                  現在只要：${{ $filters.currency(item.product.price) }}
+                </small>
               </td>
             </tr>
           </tbody>
@@ -47,10 +51,9 @@
     <div class="col">
       <h4>訂單明細</h4>
       <hr>
-      <span>原價</span>
-      <span>{{ total }}</span>
+      <p>原價 <span>${{ $filters.currency(total) }}</span></p>
       <hr>
-      <strong><span>總計</span>{{ final_total }}</strong>
+      <strong><span>總計</span> ${{ $filters.currency(final_total) }}</strong>
       <label for="cart_coupon">
         <div class="input-group mb-3 input-group-sm">
             <input type="text" class="form-control" placeholder="請輸入優惠碼" id="cart_coupon">

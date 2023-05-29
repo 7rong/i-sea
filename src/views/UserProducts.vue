@@ -14,10 +14,16 @@
             :style="{backgroundImage: `url(${item.imageUrl})`}"></div>
             <div class="card-body">
               <p class="card-text">{{ item.description }}</p>
-              <div class="h5" v-if="!item.price">{{ item.origin_price }} 元</div>
-              <del class="h6" v-if="item.price">原價 {{ item.origin_price }} 元</del>
+              <div class="h5" v-if="!item.price">
+                {{ $filters.currency(item.origin_price) }} 元
+              </div>
+              <del class="h6" v-if="item.price">
+                原價 {{ $filters.currency(item.origin_price) }} 元
+              </del>
               <div class="h5" v-if="item.price">
-                現在只要<span class="text-danger">{{ item.price }}</span>元</div>
+                現在只要
+                <span class="text-danger">{{ $filters.currency(item.price) }}</span>
+                元</div>
               <button type="button" class="btn btn-outline-secondary"
               @click="getDetail(item.id)">
                 查看更多
