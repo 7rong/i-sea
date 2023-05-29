@@ -47,8 +47,8 @@
     @emit-product="updateProduct"
     ></ProductModal>
     <DelModal ref="delModal"
-    :delProduct="tempProduct"
-    @del-product="deleteProduct"></DelModal>
+    :delItem="tempProduct"
+    @del-item="deleteProduct"></DelModal>
 </template>
 
 <script>

@@ -61,7 +61,7 @@ export default {
     return {
       tempCoupon: {
       },
-      due_date: [],
+      due_date: '',
     };
   },
   props: {
@@ -74,11 +74,12 @@ export default {
   watch: {
     coupon() {
       this.tempCoupon = this.coupon;
+      const date = new Date(this.tempCoupon.due_date * 1000).toLocaleDateString('en-CA');
+      this.due_date = date;
     },
     due_date() {
       const dateTime = new Date(this.due_date);
       const timestamp = Math.floor(dateTime / 1000);
-      // console.log(dateTime, timestamp);
       this.tempCoupon.due_date = timestamp;
     },
   },

@@ -6,14 +6,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">刪除：{{delProduct.title}}</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">刪除：{{delItem.title}}</h5>
           <button type="button" class="btn-close"
           data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <p class="fs-5 mt-3 text-center">
             是否要刪除
-          「 {{ delProduct.category }} / {{ delProduct.title }}」？
+          「{{ delItem.title }}」？
           </p>
           <br>
           <p class="text-end mb-0">＊請注意刪除產品無法復原＊</p>
@@ -21,7 +21,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
           <button type="button" class="btn btn-danger"
-          @click="$emit('del-product')">確認刪除</button>
+          @click="$emit('del-item')">確認刪除</button>
         </div>
       </div>
     </div>
@@ -33,7 +33,7 @@ import modalMixin from '@/mixins/modalMixin';
 
 export default {
   props: {
-    delProduct: {},
+    delItem: {},
   },
   data() {
     return {

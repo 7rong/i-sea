@@ -23,7 +23,7 @@
         <td>{{ $filters.date(item.due_date) }}</td>
         <td>
           <span v-if="item.is_enabled === 1" class="text-success">啟用</span>
-          <span v-else class="text-muted">未起用</span>
+          <span v-else class="text-muted">未啟用</span>
         </td>
         <td>
           <div class="btn-group">
@@ -38,14 +38,18 @@
       </tr>
       </tbody>
     </table>
-    <couponModal ref="couponModal"
+    <CouponModal ref="couponModal"
     :coupon="tempCoupon"
     @update-coupon="updateCoupon"/>
+    <DelModal ref="delModal"
+    :delItem="tempCoupon"
+    @del-item="deleteCoupon"></DelModal>
   </div>
 </template>
 
 <script>
-import couponModal from '../components/CouponModal.vue';
+import DelModal from '../components/DelModal.vue';
+import CouponModal from '../components/CouponModal.vue';
 
 export default {
   data() {
@@ -56,7 +60,8 @@ export default {
     };
   },
   components: {
-    couponModal,
+    CouponModal,
+    DelModal,
   },
   inject: ['pushMsgState'],
   methods: {
@@ -70,20 +75,44 @@ export default {
     },
     openModal(isNew, item) {
       if (isNew) {
+        this.isNew = isNew;
         this.tempCoupon = { modalTitle: '新增' };
       } else {
+        this.isNew = isNew;
         this.tempCoupon = { ...item, modalTitle: '編輯' };
       }
       this.$refs.couponModal.showModal();
     },
     updateCoupon(item) {
       this.tempCoupon = item;
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`;
-      this.$http.post(api, { data: this.tempCoupon }).then((res) => {
+      let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`;
+      let method = 'post';
+
+      if (!this.isNew) {
+        api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${item.id}`;
+        method = 'put';
+      }
+      this.$http[method](api, { data: this.tempCoupon }).then((res) => {
         this.getCoupons();
-        this.pushMsgState(res, '新增');
+        this.$refs.couponModal.hideModal();
+        if (this.isNew) {
+          this.pushMsgState(res, '新增');
+        } else {
+          this.pushMsgState(res, '編輯');
+        }
       });
-      this.$refs.couponModal.hideModal();
+    },
+    openDelModal(item) {
+      this.tempCoupon = { ...item };
+      this.$refs.delModal.showModal();
+    },
+    deleteCoupon() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`;
+      this.$http.delete(api).then((res) => {
+        this.getCoupons();
+        this.$refs.delModal.hideModal();
+        this.pushMsgState(res, '刪除');
+      });
     },
   },
   created() {
