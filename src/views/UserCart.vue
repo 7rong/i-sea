@@ -50,6 +50,16 @@
             </tr>
           </tbody>
         </table>
+        <button class="btn btn-outline-secondary" type="button"
+        @click="deleteAll"
+        v-if="this.carts.length !== 0">
+          清空購物車
+        </button>
+        <button class="btn btn-outline-secondary" type="button"
+        @click="goProducts"
+        v-else>
+          選購行程
+        </button>
     </div>
     <div class="col">
       <h4>訂單明細</h4>
@@ -116,6 +126,16 @@ export default {
           this.pushMsgState(res, '刪除品項');
           this.getCart();
         });
+    },
+    deleteAll() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`;
+      this.$http.delete(api).then((res) => {
+        console.log(res);
+        this.getCart();
+      });
+    },
+    goProducts() {
+      this.$router.push('/user/products');
     },
   },
   created() {
