@@ -6,14 +6,16 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="staticBackdropLabel">刪除：{{delItem.title}}</h5>
+          <h5 class="modal-title" id="staticBackdropLabel">刪除項目</h5>
           <button type="button" class="btn-close"
           data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <p class="fs-5 mt-3 text-center">
-            是否要刪除
-          「{{ delItem.title }}」？
+            是否要刪除 <br/>
+            「
+            <span v-if="delItem.title">{{ delItem.title }}</span>
+            <span v-else>訂單編號： {{ delItem.id }}</span>」？
           </p>
           <br>
           <p class="text-end mb-0">＊請注意刪除產品無法復原＊</p>

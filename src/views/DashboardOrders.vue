@@ -25,13 +25,12 @@
               </li>
             </ul>
           </td>
-          <td class="text-right">{{ item.total }}</td>
+          <td class="text-right">{{ $filters.currency(item.total) }}</td>
           <td>
             <div class="form-check form-switch">
               <label class="form-check-label" :for="`paidSwitch${item.id}`">
                 <input class="form-check-input" type="checkbox" :id="`paidSwitch${item.id}`"
-                  v-model="item.is_paid"
-                  @change="updatePaid(item)">
+                  v-model="item.is_paid">
                 <span v-if="item.is_paid">已付款</span>
                 <span v-else>未付款</span>
               </label>
@@ -40,39 +39,70 @@
           <td>
             <div class="btn-group">
               <button class="btn btn-outline-primary btn-sm"
-                      @click="openModal(false, item)">檢視</button>
+              @click="openOrderModal(item)">檢視</button>
               <button class="btn btn-outline-danger btn-sm"
-                      @click="openDelOrderModal(item)"
-              >刪除</button>
+              @click="openDelModal(item)">刪除</button>
             </div>
           </td>
         </tr>
       </template>
     </tbody>
   </table>
-  <!-- <OrderModal :order="tempOrder"
-              ref="orderModal" @update-paid="updatePaid"></OrderModal>
-  <DelModal :item="tempOrder" ref="delModal" @del-item="delOrder"></DelModal>
-  <Pagination :pages="pagination" @emit-pages="getOrders"></Pagination> -->
+  <OrderModal :order="tempOrder" ref="orderModal"></OrderModal>
+  <DelModal :delItem="tempOrder" ref="delModal" @del-item="delOrder"></DelModal>
+  <Pagination :pages="pagination" @emit-page="getOrders"></Pagination>
 </template>
 
 <script>
+import Pagination from '@/components/PaginationComp.vue';
+import OrderModal from '@/components/OrderModal.vue';
+import DelModal from '@/components/DelModal.vue';
+
 export default {
   data() {
     return {
       isLoading: false,
       orders: [],
       tempOrder: {},
+      pagination: {},
+      currentPage: 1,
     };
   },
-  getOrders() {
-    const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders`;
-    this.$http.get(api).then((res) => {
-      console.log(res);
-      this.orders = res.data.orders;
-    });
+  components: {
+    Pagination,
+    OrderModal,
+    DelModal,
   },
-  crested() {
+  inject: ['pushMsgState'],
+  methods: {
+    getOrders(currentPage = 1) {
+      this.currentPage = currentPage;
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders?page=${currentPage}`;
+      this.isLoading = true;
+      this.$http.get(api).then((res) => {
+        this.orders = res.data.orders;
+        this.pagination = res.data.pagination;
+        this.isLoading = false;
+      });
+    },
+    openOrderModal(item) {
+      this.tempOrder = { ...item };
+      this.$refs.orderModal.showModal();
+    },
+    openDelModal(item) {
+      this.tempOrder = { ...item };
+      this.$refs.delModal.showModal();
+    },
+    delOrder() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
+      this.$http.delete(api).then((res) => {
+        this.pushMsgState(res, '刪除');
+        this.getOrders();
+        this.$refs.delModal.hideModal();
+      });
+    },
+  },
+  created() {
     this.getOrders();
   },
 };

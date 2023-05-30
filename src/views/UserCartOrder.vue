@@ -3,6 +3,7 @@
     <div class="col-6">
       <v-form v-slot="{ errors }" @submit="createOrder">
         <div class="mb-3">
+          <!-- <label for="email" class="form-label">Email</label> -->
           <v-field id="email"
             name="email"
             type="email"
