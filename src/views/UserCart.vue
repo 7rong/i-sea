@@ -69,8 +69,10 @@
       <strong><span>總計</span> ${{ $filters.currency(final_total) }}</strong>
       <label for="cart_coupon">
         <div class="input-group mb-3 input-group-sm">
-            <input type="text" class="form-control" placeholder="請輸入優惠碼" id="cart_coupon">
-            <button class="btn btn-outline-secondary" type="button">
+            <input type="text" class="form-control" placeholder="請輸入優惠碼" id="cart_coupon"
+            v-model="coupon_code">
+            <button class="btn btn-outline-secondary" type="button"
+            @click="addCouponCode">
               套用優惠碼
             </button>
         </div>
@@ -87,6 +89,7 @@ export default {
       total: '',
       final_total: '',
       isLoading: false,
+      coupon_code: '',
       state: {
         isLoadingItem: '',
       },
@@ -136,6 +139,16 @@ export default {
     },
     goProducts() {
       this.$router.push('/user/products');
+    },
+    addCouponCode() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
+      const coupon = {
+        code: this.coupon_code,
+      };
+      this.$http.post(api, { data: coupon }).then((res) => {
+        console.log(res);
+        this.getCart();
+      });
     },
   },
   created() {
