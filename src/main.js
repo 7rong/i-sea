@@ -7,7 +7,7 @@ import {
   Field, Form, ErrorMessage, defineRule, configure,
 } from 'vee-validate';
 // 匯入 vee-validate 相關規則
-import { required, email, min } from '@vee-validate/rules';
+import AllRules from '@vee-validate/rules';
 // 匯入多國語系的功能
 import { localize, setLocale } from '@vee-validate/i18n';
 // 匯入繁體中文語系檔案
@@ -24,9 +24,9 @@ import { currency, date } from './methods/filters';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 // 定義驗證規則
-defineRule('required', required);
-defineRule('email', email);
-defineRule('min', min);
+Object.keys(AllRules).forEach((rule) => {
+  defineRule(rule, AllRules[rule]);
+});
 
 // 設定 vee-validate 全域規則
 configure({

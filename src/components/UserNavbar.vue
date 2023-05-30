@@ -12,7 +12,7 @@
             <router-link to="/user/" class="nav-link px-3">首頁</router-link>
             <router-link to="/user/products" class="nav-link px-3">所有產品</router-link>
             <router-link to="/user/coupons" class="nav-link px-3">優惠券</router-link>
-            <router-link to="/user/cart" class="nav-link px-3">購物車</router-link>
+            <router-link to="/user/cart/products" class="nav-link px-3">購物車</router-link>
           </div>
           </div>
       </div>

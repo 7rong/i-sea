@@ -53,14 +53,24 @@ const routes = [
       {
         path: 'cart',
         component: () => import('../views/UserCart.vue'),
+        children: [
+          {
+            path: 'products',
+            component: () => import('../views/UserCartProducts.vue'),
+          },
+          {
+            path: 'order',
+            component: () => import('../views/UserCartOrder.vue'),
+          },
+          {
+            path: 'checkout/:orderId',
+            component: () => import('../views/UserCartCheckout.vue'),
+          },
+        ],
       },
       {
         path: 'coupons',
         component: () => import('../views/UserCoupons.vue'),
-      },
-      {
-        path: 'order',
-        component: () => import('../views/UserOrder.vue'),
       },
     ],
   },
