@@ -77,6 +77,11 @@
             </button>
         </div>
       </label>
+      <hr>
+      <button type="button" class="btn btn-outline-secondary"
+        @click="goOrder()">
+        確認訂單
+      </button>
     </div>
   </div>
 </template>
@@ -151,6 +156,9 @@ export default {
         this.hasDiscord = true;
         this.getCart();
       });
+    },
+    goOrder() {
+      this.$router.push('/user/order');
     },
   },
   created() {
