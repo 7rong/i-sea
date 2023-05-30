@@ -26,9 +26,6 @@
               </td>
               <td>
                 {{ item.product.title }}
-                <div class="text-success">
-                  已套用優惠券
-                </div>
               </td>
               <td>
                 <label for="cart_unit">
@@ -42,7 +39,7 @@
                 </label>
               </td>
               <td class="text-end">
-                <del>原價：${{ $filters.currency(item.product.origin_price) }}</del><br>
+                <del>${{ $filters.currency(item.product.origin_price) }}</del><br>
                 <small class="text-success">
                   現在只要：${{ $filters.currency(item.product.price) }}
                 </small>
@@ -67,6 +64,9 @@
       <p>原價 <span>${{ $filters.currency(total) }}</span></p>
       <hr>
       <strong><span>總計</span> ${{ $filters.currency(final_total) }}</strong>
+      <div class="text-success" v-if="hasDiscord">
+        已套用優惠券：{{ coupon_code }}
+      </div>
       <label for="cart_coupon">
         <div class="input-group mb-3 input-group-sm">
             <input type="text" class="form-control" placeholder="請輸入優惠碼" id="cart_coupon"
@@ -90,6 +90,7 @@ export default {
       final_total: '',
       isLoading: false,
       coupon_code: '',
+      hasDiscord: false,
       state: {
         isLoadingItem: '',
       },
@@ -147,6 +148,7 @@ export default {
       };
       this.$http.post(api, { data: coupon }).then((res) => {
         console.log(res);
+        this.hasDiscord = true;
         this.getCart();
       });
     },
