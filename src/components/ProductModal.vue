@@ -22,7 +22,8 @@
               <div class="mb-3">
                 <label for="image" class="form-label">輸入圖片網址
                 <input type="text" class="form-control" id="image"
-                        placeholder="請輸入圖片連結"></label>
+                        placeholder="請輸入圖片連結"
+                        v-model="tempProduct.imgUrl"></label>
               </div>
               <div class="mb-3">
                 <label for="customFile" class="form-label">或 上傳圖片
@@ -156,7 +157,7 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/upload`;
       this.$http.post(api, formData).then((res) => {
         if (res.data.success) {
-          this.tempProduct.imgUrl = res.data.imgUrl;
+          this.tempProduct.imgUrl = res.data.imageUrl;
         }
       });
     },
