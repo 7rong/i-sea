@@ -36,6 +36,9 @@
           </div>
         </td>
       </tr>
+      <tr v-if="!coupons.length">
+        <td colspan="5" class="text-center py-3">目前尚無優惠券</td>
+      </tr>
       </tbody>
     </table>
     <CouponModal ref="couponModal"

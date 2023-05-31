@@ -45,8 +45,8 @@
             </td>
           </tr>
         </template>
-        <tr>
-          <td colspan="6" v-if="!orders.length" class="text-center py-3">目前暫無訂單</td>
+        <tr v-if="!orders.length">
+          <td colspan="6" class="text-center py-3">目前尚無訂單</td>
         </tr>
     </tbody>
   </table>

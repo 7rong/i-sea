@@ -33,11 +33,11 @@
             @click="openDelModal(item)">刪除</button>
             </div>
         </td>
-        </tr>
+      </tr>
+      <tr v-if="!articles.length">
+        <td colspan="6" class="py-3 text-center">目前尚無文章</td>
+      </tr>
     </tbody>
-    <tr v-if="!articles.length">
-      <td colspan="6" class="py-3 text-center">目前尚無文章</td>
-    </tr>
   </table>
     <PaginationComp :pages="pagination"
     @emit-page="getArticles" v-if="articles.length"></PaginationComp>

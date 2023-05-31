@@ -17,31 +17,34 @@
       </thead>
       <tbody>
           <tr v-for="item in products" :key="item.id">
-          <td>{{ item.category }}</td>
-          <td>{{ item.title }}</td>
-          <td class="text-right">
-              {{ $filters.currency(item.origin_price) }}
-          </td>
-          <td class="text-right">
-              {{ $filters.currency(item.price) }}
-          </td>
-          <td>
-              <span class="text-success" v-if="item.is_enabled">啟用</span>
-              <span class="text-muted" v-else>未啟用</span>
-          </td>
-          <td>
-              <div class="btn-group">
-              <button class="btn btn-outline-primary btn-sm"
-              @click="openModal(false, item)">編輯</button>
-              <button class="btn btn-outline-danger btn-sm"
-              @click="openDelModal(item)">刪除</button>
-              </div>
-          </td>
+            <td>{{ item.category }}</td>
+            <td>{{ item.title }}</td>
+            <td class="text-right">
+                {{ $filters.currency(item.origin_price) }}
+            </td>
+            <td class="text-right">
+                {{ $filters.currency(item.price) }}
+            </td>
+            <td>
+                <span class="text-success" v-if="item.is_enabled">啟用</span>
+                <span class="text-muted" v-else>未啟用</span>
+            </td>
+            <td>
+                <div class="btn-group">
+                <button class="btn btn-outline-primary btn-sm"
+                @click="openModal(false, item)">編輯</button>
+                <button class="btn btn-outline-danger btn-sm"
+                @click="openDelModal(item)">刪除</button>
+                </div>
+            </td>
+          </tr>
+          <tr v-if="!products.length">
+            <td colspan="6" class="text-center py-3">目前尚無商品</td>
           </tr>
       </tbody>
     </table>
     <PaginationComp :pages="pagination"
-    @emit-page="getProducts"></PaginationComp>
+    @emit-page="getProducts" v-if="!products.length"></PaginationComp>
     <ProductModal ref="productModal"
     :product="tempProduct"
     @emit-product="updateProduct"
