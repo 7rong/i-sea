@@ -158,7 +158,7 @@ export default {
       });
     },
     goOrder() {
-      this.$router.push('/user/order');
+      this.$router.push('/user/cart/order');
     },
   },
   created() {
