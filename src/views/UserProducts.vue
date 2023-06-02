@@ -69,7 +69,7 @@ export default {
       });
     },
     getDetail(id) {
-      this.$router.push(`/user/product/${id}`);
+      this.$router.push(`/product/${id}`);
     },
     addCart(id, qty = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;

@@ -82,7 +82,6 @@ export default {
           this.isLoading = false;
           this.status.loadingItemId = id;
           this.pushMsgState(res, '加入購物車');
-          console.log(res);
         });
     },
   },
