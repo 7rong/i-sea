@@ -33,6 +33,10 @@ const routes = [
     component: () => import('../views/UserBoard.vue'),
     children: [
       {
+        path: 'home',
+        component: () => import('../views/UserHome.vue'),
+      },
+      {
         path: 'products',
         component: () => import('../views/UserProducts.vue'),
       },

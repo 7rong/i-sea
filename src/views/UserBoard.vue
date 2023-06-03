@@ -1,9 +1,10 @@
 <template>
   <Navbar></Navbar>
-    <div class="container mt-3 position-relative">
-      <ToastList></ToastList>
-      <router-view/>
-    </div>
+  <div class="position-relative">
+    <ToastList class="container mt-3"></ToastList>
+    <router-view/>
+  </div>
+  <Footer></Footer>
 </template>
 
 <script>
@@ -11,6 +12,7 @@ import emitter from '@/methods/emitter';
 import pushMsgState from '@/methods/pushMsgState';
 import ToastList from '@/components/ToastList.vue';
 import Navbar from '../components/UserNavbar.vue';
+import Footer from '../components/UserFooter.vue';
 
 export default {
   data() {
@@ -20,6 +22,7 @@ export default {
   components: {
     Navbar,
     ToastList,
+    Footer,
   },
   provide() {
     return {
