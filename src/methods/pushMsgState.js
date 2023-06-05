@@ -4,7 +4,7 @@ const pushMsgState = function (res, title = '更新') {
   if (res.data.success) {
     emitter.emit('push-msg', {
       style: 'success',
-      title: `${title}成功`,
+      title: `成功${title}`,
     });
   } else {
     const msg = typeof res.data.message === 'string'

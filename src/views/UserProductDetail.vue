@@ -1,45 +1,127 @@
 <template>
   <LoadingComp :active="isLoading"></LoadingComp>
-  <div class="container">
-    <nav aria-label="breadcrumb">
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><router-link to="/user/cart">購物車</router-link></li>
-        <li class="breadcrumb-item active" aria-current="page">{{ product.title }}</li>
-      </ol>
-    </nav>
+  <!-- 輪播 -->
+  <img :src="product.imgUrl" class="d-block w-100" alt="主圖"
+  v-if="!product.images" style="height: 500px; object-fit: cover;">
+  <div id="product-img" class="carousel slide" data-bs-ride="carousel" v-else>
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="3000">
+        <img :src="product.imgUrl" class="d-block w-100" alt="主圖"
+        style="object-fit: cover; height: 500px;">
+      </div>
+      <div class="carousel-item" data-bs-interval="3000"
+      v-for="(img,key) in product.images" :key="'圖片'+key">
+        <img :src="img" class="d-block w-100" alt="'圖片'+key"
+        style="object-fit: cover; height: 500px;">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button"
+    data-bs-target="#product-img" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button"
+    data-bs-target="#product-img" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <div class="container-fluid pb-3 pt-5 cus-bg-patterns">
     <div class="row justify-content-center">
-      <article class="col-8">
-        <h2>{{ product.title }}</h2>
-        <div>{{ product.content }}</div>
-        <div>{{ product.description }}</div>
-        <img :src="product.imageUrl" alt="" class="img-fluid mb-3">
+      <article class="col-md-7 text-secondary">
+        <h2 class="mb-1">{{ product.title }}</h2>
+        <small class="text-muted">
+          <i class="bi bi-geo-alt-fill"></i>
+          {{ product.location }}</small>
+        <div class="pb-5 mt-3">{{ product.description }}</div>
+        <!-- date start -->
+        <div class="row g-0 pb-5">
+          <div class="col" v-for="date in product.date" :key="date">
+            <button type="button" class="btn btn-outline-secondary
+            w-100 rounded-0 border-start-0 border-end-0"
+            @click="this.date = date"
+            :class="{ active: this.date === date}">
+              {{ date }}
+            </button>
+          </div>
+        </div>
+        <div style="white-space: pre-line" class="pb-5">
+          {{ product.content }}</div>
+        <p class="border-top border-secondary pt-3 text-primary fw-bold mb-1">取消政策</p>
+        <ul class="text-primary">
+          <li>所選日期 60 天（含）之前取消，收取手續費 0%</li>
+          <li>所選日期 30-60 天之間取消，收取手續費 50%</li>
+          <li>所選日期 0-30 天之間取消，收取手續費 100%</li>
+        </ul>
       </article>
-      <div class="col-4">
-        <div class="h5" v-if="!product.price">
-          {{ $filters.currency(product.origin_price) }} 元
+      <div class="col-md-3 position-relative">
+        <div class="card text-center sticky-md-top mb-3" style="top:10%">
+          <div class="card-body">
+            <h3 class="card-text h6 mb-0"
+            v-if="product.price === product.origin_price">
+              TWD <span class="text-primary h5">
+              {{ $filters.currency(product.origin_price) }}
+              </span> 元
+            </h3>
+            <del class="fs-6 text-muted ms-2"
+            v-if="product.price !== product.origin_price">
+              原價 {{ $filters.currency(product.origin_price) }} 元
+            </del>
+            <h3 class="card-text h6 mb-0" v-if="product.price !== product.origin_price">
+              TWD<span class="text-danger h4">{{ $filters.currency(product.price) }}</span>
+              元
+            </h3>
+            <div class="d-flex justify-content-between align-items-center flex-md-column mt-3">
+              <label for="product_qty" class="form-label mb-0 mb-md-2 go-cart-btn">
+                <div class="input-group my-auto">
+                  <input type="number" class="form-control" min="1"
+                  aria-describedby="number" id="product_qty"
+                  v-model="product.qty">
+                  <span class="input-group-text" id="number">/ {{ product.unit }}</span>
+                </div>
+              </label>
+              <button type="button" class="btn btn-outline-danger go-cart-btn"
+                @click.prevent="addCart(product.id, this.date, product.qty)"
+                :disabled="this.status.loadingItemId === product.id"
+                v-if="this.status.loadingItemId !== product.id">
+                <span class="d-none pe-2 d-md-inline-block">加入購物車</span>
+                <i class="bi bi-cart"></i>
+              </button>
+              <button type="button" class="btn btn-outline-secondary go-cart-btn"
+                v-else>
+                <span class="d-none pe-2 d-md-inline-block">前往購物車</span>
+                <i class="bi bi-cart-check ps-2"></i>
+              </button>
+            </div>
+          </div>
         </div>
-        <del class="h6" v-if="product.price">
-          原價 {{ $filters.currency(product.origin_price) }} 元
-        </del>
-        <div class="h5" v-if="product.price">
-          現在只要 {{ $filters.currency(product.price) }} 元
+      </div>
+    </div>
+  </div>
+  <div class="cus-bg-lighter">
+    <div class="container py-3">
+      <h3 class="text-primary h5 mb-3 ms-1">你可能喜歡</h3>
+      <div class="row row-cols-md-3 row-cols-1 gy-3">
+        <div class="col"
+        v-for="item in similarProducts" :key="item.id">
+          <div class="card h-100">
+            <div :style="{'background-image': `url(${item.imgUrl})`}"
+            class="bg-style rounded-top" style="height: 150px;"></div>
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div class="mb-3">
+                <h5 class="card-title text-primary">{{item.title}}</h5>
+                <small class="text-muted">
+                 <i class="bi bi-geo-alt-fill"></i>
+                  {{ item.location }}</small>
+                <p class="card-text text-secondary">{{item.description}}</p>
+              </div>
+              <a href="#" class="btn btn-outline-primary w-100"
+              @click.prevent="getDetail(item.id)">
+                詳細行程
+                </a>
+            </div>
+          </div>
         </div>
-        <hr>
-        <label for="product_qty" class="form-label">
-          <input type="number" id="product_qty"
-          class="form-control"
-          v-model="product.qty">
-        </label>
-        <button type="button" class="btn btn-outline-danger"
-          @click.prevent="addCart(product.id, product.qty)"
-          :disabled="this.status.loadingItemId === product.id"
-          v-if="this.status.loadingItemId !== product.id">
-          加入購物車
-        </button>
-        <button type="button" class="btn btn-outline-secondary"
-          v-else>
-          前往購物車
-        </button>
       </div>
     </div>
   </div>
@@ -51,7 +133,9 @@ export default {
     return {
       isLoading: false,
       id: '',
+      date: '',
       product: {},
+      products: [],
       status: {
         loadingItemId: '',
       },
@@ -70,24 +154,63 @@ export default {
         }
       });
     },
-    addCart(id, qty = 1) {
+    addCart(id, date, qty = 1) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
       const cart = {
         product_id: id,
         qty,
+        date,
       };
-      this.isLoading = true;
-      this.$http.post(api, { data: cart })
-        .then((res) => {
-          this.isLoading = false;
-          this.status.loadingItemId = id;
-          this.pushMsgState(res, '加入購物車');
-        });
+      if (date) {
+        this.isLoading = true;
+        this.$http.post(api, { data: cart })
+          .then((res) => {
+            this.isLoading = false;
+            this.status.loadingItemId = id;
+            this.pushMsgState(res, '加入購物車');
+          });
+      } else {
+        this.pushMsgState({
+          data: { success: false, message: ['請選擇日期'] },
+        }, '加入購物車');
+      }
+    },
+    getProducts() {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products`;
+      this.$http.get(api).then((res) => {
+        if (res.data.success) {
+          this.products = res.data.products;
+        }
+      });
+    },
+    getDetail(id) {
+      this.$router.push(`/product/${id}`);
+      this.id = id;
+      this.getProduct();
+    },
+  },
+  computed: {
+    similarProducts() {
+      let Arr = this.products.filter(
+        (item) => item.category.match(this.product.category) && item.id !== this.id,
+      );
+      const newArr = [];
+      if (Arr > 3) {
+        for (let i = 0; i < 3; i += 1) {
+          const index = Math.floor(Math.random() * Arr.length);
+          const item = Arr[index];
+          Arr.splice(index, 1);
+          newArr.push(item);
+        }
+        Arr = newArr;
+      }
+      return Arr;
     },
   },
   created() {
     this.id = this.$route.params.productId;
     this.getProduct();
+    this.getProducts();
     this.status.loadingItemId = '';
   },
 };

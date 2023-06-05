@@ -1,0 +1,118 @@
+$intro-one-day: 'https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80';
+$intro-abroad: 'https://images.unsplash.com/photo-1562742686-0b38a29473ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80';
+$intro-domestic:'https://images.unsplash.com/photo-1573551089778-46a7abc39d9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80';
+$home-article:'https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80';
+
+// 品牌理念
+.circle-s{
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ffffff4D;
+  left: 26%;
+  top:18%;
+}
+.circle-l{
+  width: 350px;
+  height: 350px;
+  border: 1px solid #ffffff4D;
+  right: 40%;
+  top:10%
+}
+.purpose{
+  top:55%;
+  left:60%;
+  width:75%;
+  @media (min-width:768px){
+    width:40%;
+  }
+}
+.svg-top {
+  bottom:90%;
+  @media (min-width:768px){
+    bottom:80%;
+  }
+}
+// 行程介紹
+.svg-bot {
+  bottom: -45%;
+}
+.between-svg{
+  background: $secondary;
+  height: 510px;
+  width: 100%;
+}
+.intro-list-container{
+  width: 100%;
+  top: 45%;
+}
+.intro-list{
+  flex-direction: column;
+  @media (min-width:768px){
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+.intro-style{
+  height: 120px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  cursor: pointer;
+  text-shadow: 1px 1px 5px $secondary;
+  p{
+    display: none;
+  }
+  @media (min-width:768px){
+    height: 400px;
+    width: 34%;
+    transition: all .5s;
+    p{
+      display: block;
+    }
+    &:hover{
+      width: 66%;
+    }
+  }
+}
+.intro-one-day {
+  background-image: url($intro-one-day);
+}
+.intro-abroad{
+  background-image: url($intro-abroad);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  @media (min-width:768px){
+    border-left: $secondary solid 10px;
+    border-right: $secondary solid 10px;
+    margin: 0;
+  }
+}
+.intro-domestic{
+  background-image: url($intro-domestic);
+}
+.intro-icon{
+  animation:move 3s infinite;
+}
+@keyframes move{
+  from{
+    top:0%;
+    }
+    to{
+    top:5%;
+    }
+}
+.home-article{
+  height: 300px;
+  background-image: url($home-article);
+  cursor: pointer;
+}
+.collapse-q:hover{
+  color: $info;
+}
+.arrow-active{
+  display: inline-block;
+  color: $info;
+  transform: rotate(90deg);
+  transition: transform .5s;
+}

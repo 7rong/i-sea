@@ -1,7 +1,7 @@
 <template>
-  <Navbar></Navbar>
-  <div class="position-relative">
-    <ToastList class="container mt-3"></ToastList>
+  <Navbar style="z-index:1100;"></Navbar>
+  <div class="position-relative scroll-top">
+    <ToastList></ToastList>
     <router-view/>
   </div>
   <Footer></Footer>
@@ -29,6 +29,12 @@ export default {
       emitter,
       pushMsgState,
     };
+  },
+  updated() {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   },
 };
 </script>

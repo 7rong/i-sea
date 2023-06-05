@@ -44,7 +44,7 @@
       </tbody>
     </table>
     <PaginationComp :pages="pagination"
-    @emit-page="getProducts" v-if="!products.length"></PaginationComp>
+    @emit-page="getProducts" v-if="products.length"></PaginationComp>
     <ProductModal ref="productModal"
     :product="tempProduct"
     @emit-product="updateProduct"
@@ -91,6 +91,8 @@ export default {
       if (isNew) {
         this.tempProduct = {
           modalTitle: '新增',
+          date: [],
+          images: [],
         };
       } else {
         this.tempProduct = { ...item, modalTitle: '編輯' };

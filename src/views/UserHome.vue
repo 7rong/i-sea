@@ -1,6 +1,6 @@
 <template>
   <div class="cus-bg-patterns">
-    <div class="home-banner d-flex justify-content-center text-white flex-column">
+    <div class="home-banner bg-style d-flex justify-content-center text-white flex-column">
       <h2 class="ms-4 display-5 fw-bold">出走吧，感受真正的自由</h2>
       <p class="ms-4">You only live once！</p>
     </div>
@@ -105,7 +105,7 @@
       </div>
     </section>
     <!-- 推薦文章 -->
-    <section class="article bg-style d-flex align-items-end">
+    <section class="home-article bg-style d-flex align-items-end">
       <div class="text-white pb-5 ps-3">
         <h3>夢幻大翅鯨｜東加王國</h3>
         <p>我們有機會在這裡看到整大群的大翅鯨風暴，這是潛水人... <span class="text-decoration-underline">繼續閱讀</span></p>
@@ -197,138 +197,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-.home-banner {
-  height: 700px;
-  object-fit: fill;
-  background-image: url(https://images.unsplash.com/photo-1682687982167-d7fb3ed8541d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.cus-bg-patterns {
-  background-image: url(https://www.toptal.com/designers/subtlepatterns/uploads/seigaiha.png);
-}
-.cus-bg-color{
-  background-color: #40536B;
-}
-// 品牌理念
-.circle-s{
-  width: 150px;
-  height: 150px;
-  border: 1px solid #ffffff4D;
-  left: 26%;
-  top:18%;
-}
-.circle-l{
-  width: 350px;
-  height: 350px;
-  border: 1px solid #ffffff4D;
-  right: 40%;
-  top:10%
-}
-.purpose{
-  top:55%;
-  left:60%;
-  width:75%;
-  @media (min-width:768px){
-    width:40%;
-  }
-}
-.svg-top {
-  bottom:90%;
-  @media (min-width:768px){
-    bottom:80%;
-  }
-}
-// 行程介紹
-.svg-bot {
-  bottom: -45%;
-}
-.between-svg{
-  background: #40536B;
-  height: 510px;
-  width: 100%;
-}
-.intro-list-container{
-  width: 100%;
-  top: 45%;
-}
-.intro-list{
-  flex-direction: column;
-  @media (min-width:768px){
-    flex-direction: row;
-    justify-content: space-between;
-  }
-}
-.intro-style{
-  height: 120px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  cursor: pointer;
-  text-shadow: 1px 1px 5px #40536B;
-  p{
-    display: none;
-  }
-  @media (min-width:768px){
-    height: 400px;
-    width: 34%;
-    transition: all .5s;
-    p{
-      display: block;
-    }
-    &:hover{
-      width: 66%;
-    }
-  }
-}
-.bg-style{
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-}
-.intro-one-day {
-  background-image: url(https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80);
-}
-.intro-abroad{
-  background-image: url(https://images.unsplash.com/photo-1562742686-0b38a29473ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80);
-  margin-top: 10px;
-  margin-bottom: 10px;
-  @media (min-width:768px){
-    border-left: #40536B solid 10px;
-    border-right: #40536B solid 10px;
-    margin: 0;
-  }
-}
-.intro-domestic{
-  background-image: url(https://images.unsplash.com/photo-1573551089778-46a7abc39d9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80);
-}
-.intro-icon{
-  animation:move 3s infinite;
-}
-@keyframes move{
-  from{
-    top:0%;
-    }
-    to{
-    top:5%;
-    }
-}
-.article{
-  height: 300px;
-  background-image: url(https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80);
-  cursor: pointer;
-}
-.collapse-q:hover{
-  color: #8DD0E5;
-}
-.arrow-active{
-  display: inline-block;
-  color: #8DD0E5;
-  transform: rotate(90deg);
-  transition: transform .5s;
-}
-</style>

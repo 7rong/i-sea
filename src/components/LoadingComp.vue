@@ -43,11 +43,11 @@ export default {
     border-radius: 50%;
     animation: ldio-w9lf8z91sj 1s cubic-bezier(0,0.2,0.8,1) infinite;
   }.ldio-w9lf8z91sj div:nth-child(1) {
-    border-color: #e90c59;
+    border-color: #E87131;
     animation-delay: 0s;
   }
   .ldio-w9lf8z91sj div:nth-child(2) {
-    border-color: #46dff0;
+    border-color: #8DD0E5;
     animation-delay: -0.5s;
   }
   .loadingio-spinner-ripple-lmh4mlln0v9 {
@@ -55,7 +55,7 @@ export default {
     height: 200px;
     display: inline-block;
     overflow: hidden;
-    background: #ffffff33;
+    background: transparent;
   }
   .ldio-w9lf8z91sj {
     width: 100%;
