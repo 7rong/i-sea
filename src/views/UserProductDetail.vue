@@ -194,6 +194,7 @@ export default {
           .then((res) => {
             this.status.loadingItemId = '';
             this.addCartId = id;
+            this.emitter.emit('update-cart', id);
             this.pushMsgState(res, '加入購物車');
           });
       } else {
@@ -228,7 +229,6 @@ export default {
         }, '加入我的最愛');
       }
       favorite.setFavorite(this.favoriteIdList);
-      this.emitter.emit('update-favorite', this.favoriteIdList);
     },
   },
   computed: {

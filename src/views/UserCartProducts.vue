@@ -45,7 +45,7 @@
           <tbody>
             <tr v-for="item in carts" :key="item.id">
               <td>
-                <button type="button" class="btn btn-outline-danger btn-sm"
+                <button type="button" class="btn btn-outline-danger btn-sm link-hover-white"
                 @click="delCart(item)">
                   <i class="bi bi-trash3"></i>
                 </button>
@@ -149,7 +149,7 @@ export default {
       },
     };
   },
-  inject: ['pushMsgState'],
+  inject: ['pushMsgState', 'emitter'],
   methods: {
     getCart() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
@@ -180,6 +180,7 @@ export default {
       this.$http.delete(api)
         .then((res) => {
           console.log(res);
+          this.emitter.emit('update-cart', item.id);
           this.pushMsgState(res, '刪除品項');
           this.getCart();
         });

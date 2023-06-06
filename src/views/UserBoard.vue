@@ -1,10 +1,14 @@
 <template>
-  <Navbar style="z-index:1100;"></Navbar>
-  <div class="position-relative scroll-top">
-    <ToastList></ToastList>
-    <router-view/>
+  <div class="position-relative scroll-top cus-bg-patterns
+  d-flex flex-column justify-content-between"
+  style="min-height: 100vh;">
+    <div>
+      <Navbar style="z-index:1100;" class="fixed-top"></Navbar>
+      <ToastList></ToastList>
+      <router-view></router-view>
+    </div>
+    <Footer class="mt-auto"></Footer>
   </div>
-  <Footer></Footer>
 </template>
 
 <script>

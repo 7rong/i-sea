@@ -127,7 +127,6 @@ export default {
     };
   },
   inject: [
-    'emitter',
     'pushMsgState',
   ],
   methods: {
@@ -180,20 +179,6 @@ export default {
         }, '加入我的最愛');
       }
       favorite.setFavorite(this.favoriteIdList);
-      this.emitter.emit('update-favorite', this.favoriteIdList);
-    },
-    addCart(id, qty = 1) {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`;
-      this.status.loadingItemId = id;
-      const cart = {
-        product_id: id,
-        qty,
-      };
-      this.$http.post(api, { data: cart })
-        .then((res) => {
-          this.status.loadingItemId = '';
-          this.pushMsgState(res, '加入購物車');
-        });
     },
   },
   created() {

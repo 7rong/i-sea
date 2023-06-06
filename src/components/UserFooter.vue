@@ -10,7 +10,7 @@
       class="btn btn-outline-light btn-sm border-top-0 border-bottom-0 rounded-0 mt-3 px-3">
       管理者後台</button>
       <small class="mb-0 mt-3 pb-2 d-block">
-        Copyright © 2023 made by ChiRong | 個人作品無任何商業用途
+        Copyright © 2023 made by ChiRong | 個人作品無商業用途
       </small>
     </div>
   </div>
