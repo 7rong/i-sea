@@ -1,8 +1,8 @@
 <template>
   <LoadingComp :active="isLoading"></LoadingComp>
-  <!-- 輪播 -->
   <img :src="product.imgUrl" class="d-block w-100" alt="主圖"
   v-if="!product.images" style="height: 500px; object-fit: cover;">
+  <!-- 輪播 -->
   <div id="product-img" class="carousel slide" data-bs-ride="carousel" v-else>
     <div class="carousel-inner">
       <div class="carousel-item active" data-bs-interval="3000">
@@ -29,7 +29,17 @@
   <div class="container-fluid pb-3 pt-5 cus-bg-patterns">
     <div class="row justify-content-center">
       <article class="col-md-7 text-secondary">
-        <h2 class="mb-1">{{ product.title }}</h2>
+        <div class="d-flex justify-content-between">
+          <h2 class="mb-1">{{ product.title }}</h2>
+          <button type="button"
+            class="btn btn-outline-primary rounded-circle fs-4
+            fav-btn"
+            :class="{ active: favoriteIdList.includes(product.id) }"
+            @click.prevent.stop="toggleFavorite(product)"
+          >
+            <i class="bi bi-suit-heart" />
+          </button>
+        </div>
         <small class="text-muted">
           <i class="bi bi-geo-alt-fill"></i>
           {{ product.location }}</small>
@@ -152,6 +162,7 @@ export default {
       status: {
         loadingItemId: '',
       },
+      favoriteIdList: favorite.getFavorite() || [],
     };
   },
   inject: [

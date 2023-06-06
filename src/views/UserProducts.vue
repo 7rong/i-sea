@@ -104,15 +104,6 @@
                     >
                       <i class="bi bi-suit-heart" />
                     </button>
-                    <!-- <button type="button" class="btn btn-outline-primary"
-                    @click="addCart(item.id)"
-                    :disabled="this.status.loadingItemId === item.id">
-                      <div class="spinner-border spinner-border-sm text-light" role="status"
-                        v-if="this.status.loadingItemId === item.id">
-                        <span class="visually-hidden">Loading...</span>
-                      </div>
-                      <div v-else><i class="bi bi-cart"></i></div>
-                    </button> -->
                 </div>
               </div>
             </div>
