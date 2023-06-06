@@ -37,7 +37,7 @@
         <!-- date start -->
         <div class="row g-0 pb-5">
           <div class="col" v-for="date in product.date" :key="date">
-            <button type="button" class="btn btn-outline-secondary
+            <button type="button" class="btn btn-outline-secondary h-100
             w-100 rounded-0 border-start-0 border-end-0"
             @click="this.dateChosen = date"
             :class="{ active: this.dateChosen === date}">
@@ -71,7 +71,7 @@
               TWD<span class="text-danger h4">{{ $filters.currency(product.price) }}</span>
               元
             </h3>
-            <div class="d-flex justify-content-between align-items-center flex-md-column mt-3">
+            <div class="d-flex justify-content-around align-items-center flex-md-column mt-3">
               <label for="product_qty" class="form-label mb-0 mb-md-2 go-cart-btn">
                 <div class="input-group my-auto">
                   <input type="number" class="form-control" min="1"
@@ -82,17 +82,24 @@
               </label>
               <button type="button" class="btn btn-outline-danger go-cart-btn link-hover-white"
                 @click.prevent="addCart(product.id, this.dateChosen, product.qty)"
-                :disabled="this.status.loadingItemId === product.id"
-                v-if="this.status.loadingItemId !== product.id">
+                :disabled="this.addCartId === product.id"
+                v-if="this.addCartId !== product.id &&
+                this.status.loadingItemId !== product.id">
                 <span class="d-none pe-2 d-md-inline-block">加入購物車</span>
                 <i class="bi bi-cart"></i>
+              </button>
+              <button type="button" class="btn btn-outline-light go-cart-btn"
+              v-else-if="this.status.loadingItemId === product.id">
+                <div class="spinner-border spinner-border-sm text-white" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
               </button>
               <button type="button" class="btn btn-outline-secondary go-cart-btn"
               @click.prevent="goCart"
                 v-else>
                 <router-link to="/cart/products" class="link-primary link-hover-white">
-                  <span class="d-none pe-2 d-md-inline-block">前往購物車</span>
-                  <i class="bi bi-cart-check ps-2"></i>
+                  <span class="d-none pe-4 d-md-inline-block">前往購物車</span>
+                  <i class="bi bi-cart-check "></i>
                 </router-link>
               </button>
             </div>
@@ -131,6 +138,8 @@
 </template>
 
 <script>
+import favorite from '@/methods/favorite';
+
 export default {
   data() {
     return {
@@ -139,12 +148,16 @@ export default {
       dateChosen: '',
       product: {},
       products: [],
+      addCartId: '',
       status: {
         loadingItemId: '',
       },
     };
   },
-  inject: ['pushMsgState'],
+  inject: [
+    'pushMsgState',
+    'emitter',
+  ],
   methods: {
     getProduct() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`;
@@ -165,11 +178,11 @@ export default {
         dateChosen: date,
       };
       if (date) {
-        this.isLoading = true;
+        this.status.loadingItemId = id;
         this.$http.post(api, { data: cart })
           .then((res) => {
-            this.isLoading = false;
-            this.status.loadingItemId = id;
+            this.status.loadingItemId = '';
+            this.addCartId = id;
             this.pushMsgState(res, '加入購物車');
           });
       } else {
@@ -190,6 +203,21 @@ export default {
       this.$router.push(`/product/${id}`);
       this.id = id;
       this.getProduct();
+    },
+    toggleFavorite(item) {
+      if (this.favoriteIdList.includes(item.id)) {
+        this.favoriteIdList.splice(this.favoriteIdList.indexOf(item.id), 1);
+        this.pushMsgState({
+          data: { success: true },
+        }, '移除我的最愛');
+      } else {
+        this.favoriteIdList.push(item.id);
+        this.pushMsgState({
+          data: { success: true },
+        }, '加入我的最愛');
+      }
+      favorite.setFavorite(this.favoriteIdList);
+      this.emitter.emit('update-favorite', this.favoriteIdList);
     },
   },
   computed: {

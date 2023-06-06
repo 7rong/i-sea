@@ -121,11 +121,6 @@
             </tr>
           </tfoot>
         </table>
-        <!-- <button class="btn btn-outline-secondary" type="button"
-        @click="deleteAll"
-        v-if="this.carts.length !== 0">
-          清空購物車
-        </button> -->
         <div v-else class="text-center py-3">
           <p class="fw-bold h5 text-muted mb-3">目前無行程，快來跟我們一起下潛吧！</p>
           <button class="btn btn-outline-secondary btn-sm" type="button"
@@ -188,13 +183,6 @@ export default {
           this.pushMsgState(res, '刪除品項');
           this.getCart();
         });
-    },
-    deleteAll() {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/carts`;
-      this.$http.delete(api).then((res) => {
-        console.log(res);
-        this.getCart();
-      });
     },
     goProducts() {
       this.$router.push('/products');
