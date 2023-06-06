@@ -16,9 +16,9 @@
           </div>
           <div class="position-absolute top-0 start-50
           translate-middle rounded-pill text-center
-          bg-primary border border-2 border-primary"
+          bg-muted border border-3 border-primary"
           style="width: 3rem; height:3rem;">
-            <i class="bi bi-pencil-square fs-3 text-white"
+            <i class="bi bi-pencil-square fs-3 text-primary"
             style="line-height: 3rem;"></i>
           </div>
           <div class="position-absolute top-0 start-100

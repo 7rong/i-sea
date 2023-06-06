@@ -10,9 +10,9 @@
           </div>
           <div class="position-absolute top-0 start-0
           translate-middle rounded-pill text-center
-          bg-primary border border-2 border-primary"
+          bg-muted border border-3 border-primary"
           style="width: 3rem; height:3rem;">
-            <i class="bi bi-cart-check fs-3 text-white"
+            <i class="bi bi-cart-check fs-3 text-primary"
             style="line-height: 3rem;"></i>
           </div>
           <div class="position-absolute top-0 start-50
@@ -54,8 +54,8 @@
                 <div style="background-size: cover; background-position: center; padding: 30% 0;"
                 :style="{backgroundImage: `url(${item.product.imgUrl})`}"></div>
               </td>
-              <td>
-                <p class="h6 text-secondary">
+              <td class="position-relative">
+                <p class="text-secondary h6">
                   {{ item.product.title }}
                 </p>
                 <small class="text-light">{{ item.dateChosen }}</small>
