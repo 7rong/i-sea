@@ -1,7 +1,6 @@
 <template>
-  <router-view></router-view>
-  <div>
-    test
+  <div class="container-fluid cus-bg-patterns">
+    <router-view></router-view>
   </div>
 </template>
 

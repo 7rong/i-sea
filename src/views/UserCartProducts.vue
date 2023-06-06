@@ -1,15 +1,45 @@
 <template>
   <LoadingComp :active="isLoading"></LoadingComp>
-  <div class="row">
-    <div class="col-md-9">
-        <table class="table align-middle">
+  <div class="container pt-3 pb-5">
+    <div class="row gy-3 mt-3">
+      <div class="col-md-8 mx-auto">
+        <div class="position-relative m-4">
+          <div class="progress" style="height: 3px;">
+            <div class="progress-bar" role="progressbar" style="width: 0%;"
+            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <div class="position-absolute top-0 start-0
+          translate-middle rounded-pill text-center
+          bg-primary border border-2 border-primary"
+          style="width: 3rem; height:3rem;">
+            <i class="bi bi-cart-check fs-3 text-white"
+            style="line-height: 3rem;"></i>
+          </div>
+          <div class="position-absolute top-0 start-50
+          translate-middle rounded-pill text-center
+          bg-muted border border-2 border-muted"
+          style="width: 3rem; height:3rem;">
+            <i class="bi bi-pencil-square fs-3 text-muted"
+            style="line-height: 3rem;"></i>
+          </div>
+          <div class="position-absolute top-0 start-100
+          translate-middle rounded-pill text-center
+          bg-muted border border-2 border-muted"
+          style="width: 3rem; height:3rem;">
+            <i class="bi bi-cash-coin fs-3 text-muted"
+            style="line-height: 3rem;"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10 mx-auto border py-3 border-1 rounded-3 mt-5 bg-white">
+        <table class="table align-middle" v-if="carts.length">
           <thead class="sticky-top">
             <tr>
-              <th></th>
-              <th style="width: 150px;"></th>
-              <th>品名</th>
-              <th style="width: 130px">數量</th>
-              <th>單價</th>
+              <th style="width: 60px"></th>
+              <th style="width: 150px;" class="d-md-table-cell d-none"></th>
+              <th>行程</th>
+              <th style="width: 80px">人數</th>
+              <th class="text-end">單價</th>
             </tr>
           </thead>
           <tbody>
@@ -20,68 +50,91 @@
                   <i class="bi bi-trash3"></i>
                 </button>
               </td>
-              <td>
+              <td class="d-md-table-cell d-none">
                 <div style="background-size: cover; background-position: center; padding: 30% 0;"
-                :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div>
+                :style="{backgroundImage: `url(${item.product.imgUrl})`}"></div>
               </td>
               <td>
-                {{ item.product.title }}
+                <p class="h6 text-secondary">
+                  {{ item.product.title }}
+                </p>
+                <small class="text-light">{{ item.dateChosen }}</small>
               </td>
               <td>
                 <label for="cart_unit">
-                  <div class="input-group input-group-sm">
-                    <input type="number" class="form-control" id="cart_unit"
+                <input type="number"
+                class="form-control border-0"
+                id="cart_unit"
                     v-model.number="item.qty" min="1"
                     @change="updateCart(item)"
                     :disabled="item.id === this.state.isLoadingItem">
-                    <div class="input-group-text">/ {{ item.product.unit }}</div>
+                  </label>
+              </td>
+              <td class="text-end">
+                <p class="mb-0 fs-6" v-if="item.product.price === item.product.origin_price">
+                  TWD <span class="text-primary h6">
+                    {{ $filters.currency(item.product.origin_price) }}
+                  </span>
+                </p>
+                <del class="text-muted mt-1 mb-0 fs-6"
+                v-if="item.product.price !== item.product.origin_price">
+                  {{ $filters.currency(item.product.origin_price) }}元
+                </del>
+                <p class="mb-0 fs-6" v-if="item.product.price !== item.product.origin_price">
+                  TWD
+                  <span class="text-danger h6">{{ $filters.currency(item.product.price) }}</span>
+                  </p>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="5" class="text-end">
+                <del class="text-muted me-3 fs-6" v-if="hasDiscord">折扣前
+                  <span> {{ $filters.currency(total) }}元</span></del>
+                <strong v-if="hasDiscord">TWD <span class="h4 text-danger">
+                  {{ $filters.currency(final_total) }}</span></strong>
+                <strong v-if="!hasDiscord">TWD <span class="h4">
+                  {{ $filters.currency(final_total) }}</span></strong>
+                 <br>
+                <label for="cart_coupon">
+                  <div class="input-group input-group-sm mt-2">
+                      <input type="text" class="form-control border-bottom"
+                      placeholder="請輸入優惠碼" id="cart_coupon"
+                      v-model="coupon_code">
+                      <button class="btn btn-outline-secondary" type="button"
+                      @click="addCouponCode">
+                        套用
+                      </button>
                   </div>
                 </label>
               </td>
-              <td class="text-end">
-                <del>${{ $filters.currency(item.product.origin_price) }}</del><br>
-                <small class="text-success">
-                  現在只要：${{ $filters.currency(item.product.price) }}
-                </small>
-              </td>
             </tr>
           </tbody>
+          <tfoot>
+            <tr class="text-center">
+              <td colspan="5" class="border-0">
+                <button type="button"
+                class="btn btn-secondary mt-3 w-100"
+                  @click="goOrder()">
+                  確認訂單
+                </button>
+              </td>
+            </tr>
+          </tfoot>
         </table>
-        <button class="btn btn-outline-secondary" type="button"
+        <!-- <button class="btn btn-outline-secondary" type="button"
         @click="deleteAll"
         v-if="this.carts.length !== 0">
           清空購物車
-        </button>
-        <button class="btn btn-outline-secondary" type="button"
-        @click="goProducts"
-        v-else>
-          選購行程
-        </button>
-    </div>
-    <div class="col">
-      <h4>訂單明細</h4>
-      <hr>
-      <p>原價 <span>${{ $filters.currency(total) }}</span></p>
-      <hr>
-      <strong><span>總計</span> ${{ $filters.currency(final_total) }}</strong>
-      <div class="text-success" v-if="hasDiscord">
-        已套用優惠券：{{ coupon_code }}
-      </div>
-      <label for="cart_coupon">
-        <div class="input-group mb-3 input-group-sm">
-            <input type="text" class="form-control" placeholder="請輸入優惠碼" id="cart_coupon"
-            v-model="coupon_code">
-            <button class="btn btn-outline-secondary" type="button"
-            @click="addCouponCode">
-              套用優惠碼
-            </button>
+        </button> -->
+        <div v-else class="text-center py-3">
+          <p class="fw-bold h5 text-muted mb-3">目前無行程，快來跟我們一起下潛吧！</p>
+          <button class="btn btn-outline-secondary btn-sm" type="button"
+          @click="goProducts">
+            前往選購
+          </button>
         </div>
-      </label>
-      <hr>
-      <button type="button" class="btn btn-outline-secondary"
-        @click="goOrder()">
-        確認訂單
-      </button>
+        <!-- 金額 -->
+      </div>
     </div>
   </div>
 </template>
@@ -144,7 +197,7 @@ export default {
       });
     },
     goProducts() {
-      this.$router.push('/user/products');
+      this.$router.push('/products');
     },
     addCouponCode() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
@@ -158,7 +211,7 @@ export default {
       });
     },
     goOrder() {
-      this.$router.push('/user/cart/order');
+      this.$router.push('/cart/order');
     },
   },
   created() {

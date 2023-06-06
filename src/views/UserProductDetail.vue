@@ -39,8 +39,8 @@
           <div class="col" v-for="date in product.date" :key="date">
             <button type="button" class="btn btn-outline-secondary
             w-100 rounded-0 border-start-0 border-end-0"
-            @click="this.date = date"
-            :class="{ active: this.date === date}">
+            @click="this.dateChosen = date"
+            :class="{ active: this.dateChosen === date}">
               {{ date }}
             </button>
           </div>
@@ -80,17 +80,20 @@
                   <span class="input-group-text" id="number">/ {{ product.unit }}</span>
                 </div>
               </label>
-              <button type="button" class="btn btn-outline-danger go-cart-btn"
-                @click.prevent="addCart(product.id, this.date, product.qty)"
+              <button type="button" class="btn btn-outline-danger go-cart-btn link-hover-white"
+                @click.prevent="addCart(product.id, this.dateChosen, product.qty)"
                 :disabled="this.status.loadingItemId === product.id"
                 v-if="this.status.loadingItemId !== product.id">
                 <span class="d-none pe-2 d-md-inline-block">加入購物車</span>
                 <i class="bi bi-cart"></i>
               </button>
               <button type="button" class="btn btn-outline-secondary go-cart-btn"
+              @click.prevent="goCart"
                 v-else>
-                <span class="d-none pe-2 d-md-inline-block">前往購物車</span>
-                <i class="bi bi-cart-check ps-2"></i>
+                <router-link to="/cart/products" class="link-primary link-hover-white">
+                  <span class="d-none pe-2 d-md-inline-block">前往購物車</span>
+                  <i class="bi bi-cart-check ps-2"></i>
+                </router-link>
               </button>
             </div>
           </div>
@@ -133,7 +136,7 @@ export default {
     return {
       isLoading: false,
       id: '',
-      date: '',
+      dateChosen: '',
       product: {},
       products: [],
       status: {
@@ -159,7 +162,7 @@ export default {
       const cart = {
         product_id: id,
         qty,
-        date,
+        dateChosen: date,
       };
       if (date) {
         this.isLoading = true;

@@ -79,7 +79,7 @@
                       <div class="h6 mb-0" v-if="item.price === item.origin_price">
                         TWD <span class="text-primary h5">
                           {{ $filters.currency(item.origin_price) }}
-                        </span> 元
+                        </span>
                       </div>
                       <del class="h6 text-muted mt-1 me-2 mb-0"
                       v-if="item.price !== item.origin_price">
@@ -88,7 +88,7 @@
                       <div class="h6 mb-0" v-if="item.price !== item.origin_price">
                         TWD
                         <span class="text-danger h5">{{ $filters.currency(item.price) }}</span>
-                        元</div>
+                        </div>
                       </div>
                     </div>
                     <a href="#" class="stretched-link"
