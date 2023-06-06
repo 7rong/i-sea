@@ -1,5 +1,6 @@
 $home-banner: 'https://images.unsplash.com/photo-1682687982167-d7fb3ed8541d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80';
 $products-banner: 'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80';
+$faq-banner: 'https://images.unsplash.com/photo-1503177847378-d2048487fa46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80';
 
 .home-banner {
   height: 700px;
@@ -9,4 +10,8 @@ $products-banner: 'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?
 .products-banner{
   height: 300px;
   background-image: url($products-banner);
+}
+.faq-banner{
+  height: 300px;
+  background-image: url($faq-banner);
 }

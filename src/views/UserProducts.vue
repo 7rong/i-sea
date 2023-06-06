@@ -20,31 +20,26 @@
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '所有商品'}"
-            ref="categoryItem"
             @click.prevent="filterProducts('所有商品')">所有商品</a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '國外潛旅'}"
-            ref="categoryItem"
             @click.prevent="filterProducts('國外潛旅')">國外潛旅</a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '國內潛旅'}"
-            ref="categoryItem"
             @click.prevent="filterProducts('國內潛旅')">國內潛旅</a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '一日玩水'}"
-            ref="categoryItem"
             @click.prevent="filterProducts('一日玩水')">一日玩水</a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '我的最愛'}"
-            ref="categoryItem"
             @click.prevent="filterProducts('我的最愛')">
               我的最愛</a>
           </li>

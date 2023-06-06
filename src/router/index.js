@@ -63,8 +63,8 @@ const routes = [
         ],
       },
       {
-        path: 'coupons',
-        component: () => import('../views/UserCoupons.vue'),
+        path: 'faq',
+        component: () => import('../views/UserFAQ.vue'),
       },
     ],
   },

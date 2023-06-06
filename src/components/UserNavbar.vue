@@ -11,7 +11,7 @@
           <div class="navbar-nav ms-auto">
             <router-link to="/home" class="nav-link px-3">首頁</router-link>
             <router-link to="/products" class="nav-link px-3">所有產品</router-link>
-            <router-link to="/coupons" class="nav-link px-3">優惠券</router-link>
+            <router-link to="/faq" class="nav-link px-3">常見問題</router-link>
             <router-link to="/cart/products" class="nav-link px-3">購物車</router-link>
           </div>
           </div>
