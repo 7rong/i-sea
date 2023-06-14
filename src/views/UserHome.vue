@@ -109,7 +109,7 @@
       <div class="coupon-bg bg-style d-flex justify-content-start align-items-center">
         <div class="text-white text-start p-5">
           <p class="display-3 fw-bold">歡慶一週年</p>
-          <p class="fw-bold">輸入優惠碼" {{couponCode}} "享八折</p>
+          <p class="fw-bold">輸入優惠碼" {{coupon_code}} "享八折</p>
           <button type="button" class="btn btn-outline-danger link-hover-white rounded-pill"
           @click="copyCoupon">複製優惠碼</button>
         </div>
@@ -122,7 +122,7 @@
 export default {
   data() {
     return {
-      couponCode: 'happy1',
+      coupon_code: 'happy1',
     };
   },
   inject: [
@@ -130,11 +130,11 @@ export default {
   ],
   methods: {
     copyCoupon() {
-      navigator.clipboard.writeText(this.couponCode)
+      navigator.clipboard.writeText(this.coupon_code)
         .then(() => {
           this.pushMsgState({
             data: { success: true },
-            content: `已複製優惠碼「${this.couponCode}」`,
+            content: `已複製優惠碼「${this.coupon_code}」`,
           }, '複製');
         });
     },

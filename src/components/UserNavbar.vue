@@ -18,7 +18,7 @@
         <!-- 連結 -->
         <div class="collapse navbar-collapse
         justify-content-between" id="navbarNav" ref="navbarCollapse">
-          <div class="navbar-nav">
+          <div class="navbar-nav fw-bold" style="text-shadow: .5px .5px 1px #00000033;">
             <router-link to="/home" class="nav-link px-3"
             @click="toggleCollapse">首頁</router-link>
             <router-link to="/products" class="nav-link px-3"
@@ -26,7 +26,7 @@
             <router-link to="/faq" class="nav-link px-3"
             @click="toggleCollapse">常見問題</router-link>
           </div>
-          <div class="navbar-nav">
+          <div class="navbar-nav" style="text-shadow: .5px .5px 1px #00000033;">
             <router-link @click="toggleCollapse"
             to="/cart/products" class="nav-link px-3">
               <span class="d-md-none">購物車</span>

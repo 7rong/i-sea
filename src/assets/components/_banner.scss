@@ -1,6 +1,7 @@
 $home-banner: 'https://images.unsplash.com/photo-1682687982167-d7fb3ed8541d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80';
 $products-banner: 'https://images.unsplash.com/photo-1511593358241-7eea1f3c84e5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80';
 $faq-banner: 'https://images.unsplash.com/photo-1502209524164-acea936639a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
+$cart-banner: 'https://images.unsplash.com/photo-1510018572596-e40e2619b412?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
 
 .home-banner {
   height: 750px;
@@ -15,4 +16,8 @@ $faq-banner: 'https://images.unsplash.com/photo-1502209524164-acea936639a2?ixlib
 .faq-banner{
   height: 400px;
   background-image: url($faq-banner);
+}
+.cart-banner{
+  height: 250px;
+  background-image: url($cart-banner);
 }
