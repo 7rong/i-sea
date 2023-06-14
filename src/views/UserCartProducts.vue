@@ -1,7 +1,7 @@
 <template>
   <LoadingComp :active="isLoading"></LoadingComp>
-  <div class="container pt-3 pb-5">
-    <div class="row gy-3 mt-3">
+  <div class="container pt-5 pb-5">
+    <div class="row gy-3 mt-5">
       <div class="col-md-8 mx-auto">
         <div class="position-relative m-4">
           <div class="progress" style="height: 3px;">

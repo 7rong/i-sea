@@ -65,7 +65,7 @@
         </ul>
       </article>
       <div class="col-md-3 position-relative">
-        <div class="card text-center sticky-md-top mb-3" style="top:10%">
+        <div class="card text-center sticky-md-top mb-3" style="top:13%">
           <div class="card-body">
             <h3 class="card-text h6 mb-0"
             v-if="product.price === product.origin_price">
