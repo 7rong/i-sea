@@ -22,10 +22,6 @@ const routes = [
         path: 'orders',
         component: () => import('../views/backend/DashboardOrders.vue'),
       },
-      {
-        path: 'article',
-        component: () => import('../views/backend/DashboardArticle.vue'),
-      },
     ],
   },
   {
