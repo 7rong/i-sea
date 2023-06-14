@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark"
-  :class="{'bg-primary':navbarColor}" style="transition: all .5s;">
+  :class="{'bg-primary':navbarColor, 'shadow':navbarColor}" style="transition: all .5s;">
       <div class="container-fluid">
         <h1 class="font-cherry text-white nav-brand">
           <router-link to="/home" class="px-3 nav-link">ISEA</router-link>

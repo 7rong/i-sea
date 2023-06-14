@@ -27,21 +27,21 @@
       <div class="position-absolute intro-list-container translate-middle start-50">
         <div class="d-flex text-white intro-list">
           <div class="intro-one-day bg-style intro-style">
-            <div class="px-3" >
+            <div class="px-3 intro-txt" >
               <h3 class="pb-2">一日玩水</h3>
-              <p class="border-top border-white pt-2">Lorem, ipsum dolor </p>
+              <p class="border-top border-white pt-2">你累積了許多飛行</p>
             </div>
           </div>
           <div class="intro-abroad bg-style intro-style">
-            <div class="px-3">
+            <div class="px-3 intro-txt">
               <h3 class="pb-2">國外潛旅</h3>
-              <p class="border-top border-white pt-2">Lorem, ipsum dolor sit </p>
+              <p class="border-top border-white pt-2">你蒐集了地圖上每一次的風和日麗</p>
             </div>
           </div>
           <div class="intro-domestic bg-style intro-style">
-            <div class="px-3">
+            <div class="px-3 intro-txt">
               <h3 class="pb-2">國內潛旅</h3>
-              <p class="border-top border-white pt-2">Lorem, adipisicing elit. Praesentium</p>
+              <p class="border-top border-white pt-2">你擁抱熱情的島嶼</p>
             </div>
           </div>
         </div>
@@ -104,12 +104,34 @@
         </div>
       </div>
     </section>
-    <!-- 推薦文章 -->
-    <section class="home-article bg-style d-flex align-items-end">
-      <div class="text-white pb-5 ps-3">
-        <h3>夢幻大翅鯨｜東加王國</h3>
-        <p>我們有機會在這裡看到整大群的大翅鯨風暴，這是潛水人... <span class="text-decoration-underline">繼續閱讀</span></p>
+    <!-- 優惠券 -->
+    <section>
+      <div class="coupon-bg bg-style d-flex justify-content-start align-items-center">
+        <div class="text-white text-start p-5">
+          <p class="display-3 fw-bold">歡慶一週年</p>
+          <p class="fw-bold">輸入優惠碼" happy1 "享八折</p>
+          <button type="button" class="btn btn-outline-danger link-hover-white rounded-pill"
+          @click="copyCoupon">複製優惠碼</button>
+        </div>
       </div>
     </section>
   </div>
 </template>
+
+<script>
+export default {
+  inject: [
+    'pushMsgState',
+  ],
+  methods: {
+    copyCoupon() {
+      navigator.clipboard.writeText('happy1')
+        .then(() => {
+          this.pushMsgState({
+            data: { success: true },
+          }, '複製優惠碼');
+        });
+    },
+  },
+};
+</script>

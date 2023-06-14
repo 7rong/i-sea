@@ -1,7 +1,7 @@
 $intro-one-day: 'https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80';
 $intro-abroad: 'https://images.unsplash.com/photo-1562742686-0b38a29473ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1473&q=80';
 $intro-domestic:'https://images.unsplash.com/photo-1573551089778-46a7abc39d9f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80';
-$home-article:'https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80';
+$coupon-bg: 'https://images.unsplash.com/photo-1637904219134-9075cab500f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80';
 
 // 品牌理念
 .circle-s{
@@ -55,23 +55,30 @@ $home-article:'https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixli
 .intro-style{
   height: 120px;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: end;
-  cursor: pointer;
   text-shadow: 1px 1px 5px $secondary;
-  p{
-    display: none;
+  position: relative;
+  overflow: hidden;
+  .intro-txt{
+    width: 100%;
+    position: absolute;
+    bottom:-10%;
+    transition: all .5s;
+    p{
+      opacity: 0;
+    }
   }
   @media (min-width:768px){
     height: 400px;
     width: 34%;
     transition: all .5s;
-    p{
-      display: block;
-    }
     &:hover{
       width: 66%;
+      .intro-txt{
+        bottom:0%;
+        p{
+          opacity: 1;
+        }
+      }
     }
   }
 }
@@ -102,11 +109,6 @@ $home-article:'https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixli
     top:5%;
     }
 }
-.home-article{
-  height: 300px;
-  background-image: url($home-article);
-  cursor: pointer;
-}
 .collapse-q:hover{
   color: $info;
 }
@@ -115,4 +117,9 @@ $home-article:'https://images.unsplash.com/photo-1617925109341-2b99305cdee2?ixli
   color: $info;
   transform: rotate(90deg);
   transition: transform .5s;
+}
+.coupon-bg{
+  height: 350px;
+  background-image: url($coupon-bg);
+  background-attachment: fixed;
 }
