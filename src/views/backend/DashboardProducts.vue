@@ -7,29 +7,29 @@
   <table class="table mt-4">
       <thead>
           <tr>
-          <th width="120">分類</th>
-          <th>產品名稱</th>
-          <th width="120">原價</th>
-          <th width="120">售價</th>
-          <th width="100">是否啟用</th>
-          <th width="200">編輯</th>
+            <th width="90">分類</th>
+            <th>產品名稱</th>
+            <th width="100" class="d-none d-md-table-cell">原價</th>
+            <th width="100" class="d-none d-md-table-cell">售價</th>
+            <th width="80">是否啟用</th>
+            <th width="110">編輯</th>
           </tr>
       </thead>
       <tbody>
           <tr v-for="item in products" :key="item.id">
             <td>{{ item.category }}</td>
             <td>{{ item.title }}</td>
-            <td class="text-right">
+            <td class="d-none d-md-table-cell">
                 {{ $filters.currency(item.origin_price) }}
             </td>
-            <td class="text-right">
+            <td class="d-none d-md-table-cell">
                 {{ $filters.currency(item.price) }}
             </td>
             <td>
                 <span class="text-success" v-if="item.is_enabled">啟用</span>
                 <span class="text-muted" v-else>未啟用</span>
             </td>
-            <td>
+            <td class="text-end">
                 <div class="btn-group">
                 <button class="btn btn-outline-primary btn-sm"
                 @click="openModal(false, item)">編輯</button>
@@ -116,7 +116,9 @@ export default {
       this.$http[httpMethod](api, { data: this.tempProduct }).then((res) => {
         productComponent.hideModal();
         this.getProducts();
-        this.pushMsgState(res, '更新');
+        const data = res;
+        data.content = `已儲存商品「${item.title}」`;
+        this.pushMsgState(data, '更新');
       });
     },
     openDelModal(item) {

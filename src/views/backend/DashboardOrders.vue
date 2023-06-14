@@ -30,8 +30,10 @@
                 <label class="form-check-label" :for="`paidSwitch${item.id}`">
                   <input class="form-check-input" type="checkbox" :id="`paidSwitch${item.id}`"
                     v-model="item.is_paid">
-                  <span v-if="item.is_paid">已付款</span>
-                  <span v-else>未付款</span>
+                  <div class="d-none d-md-block">
+                    <span v-if="item.is_paid">已付款</span>
+                    <span v-else>未付款</span>
+                  </div>
                 </label>
               </div>
             </td>
@@ -98,7 +100,9 @@ export default {
     delOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`;
       this.$http.delete(api).then((res) => {
-        this.pushMsgState(res, '刪除');
+        const data = res;
+        data.content = `已移除訂單「${this.tempOrder.id}」`;
+        this.pushMsgState(data, '刪除');
         this.getOrders();
         this.$refs.delModal.hideModal();
       });

@@ -138,10 +138,10 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary"
+          <button type="button" class="btn btn-outline-light"
                   data-bs-dismiss="modal">取消
           </button>
-          <button type="button" class="btn btn-outline-info"
+          <button type="button" class="btn btn-outline-primary"
           @click="$emit('emit-product',tempProduct)">確認</button>
         </div>
       </div>

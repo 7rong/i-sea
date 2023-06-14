@@ -101,9 +101,13 @@ export default {
         this.getCoupons();
         this.$refs.couponModal.hideModal();
         if (this.isNew) {
-          this.pushMsgState(res, '新增');
+          const data = res;
+          data.content = `已將「${item.title}」加入優惠券`;
+          this.pushMsgState(data, '新增');
         } else {
-          this.pushMsgState(res, '編輯');
+          const data = res;
+          data.content = `已儲存「${item.title}」內容變更`;
+          this.pushMsgState(data, '編輯');
         }
       });
     },
@@ -116,7 +120,9 @@ export default {
       this.$http.delete(api).then((res) => {
         this.getCoupons();
         this.$refs.delModal.hideModal();
-        this.pushMsgState(res, '刪除');
+        const data = res;
+        data.content = `已移除優惠券「${this.tempCoupon.title}」`;
+        this.pushMsgState(data, '刪除');
       });
     },
   },
