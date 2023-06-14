@@ -15,8 +15,8 @@
 import emitter from '@/methods/emitter';
 import pushMsgState from '@/methods/pushMsgState';
 import ToastList from '@/components/ToastList.vue';
-import Navbar from '../components/UserNavbar.vue';
-import Footer from '../components/UserFooter.vue';
+import Navbar from '../../components/UserNavbar.vue';
+import Footer from '../../components/UserFooter.vue';
 
 export default {
   data() {

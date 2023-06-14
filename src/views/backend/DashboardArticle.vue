@@ -53,7 +53,7 @@
 <script>
 import PaginationComp from '@/components/PaginationComp.vue';
 import DelModal from '@/components/DelModal.vue';
-import ArticleModal from '../components/ArticleModal.vue';
+import ArticleModal from '../../components/ArticleModal.vue';
 
 export default {
   data() {

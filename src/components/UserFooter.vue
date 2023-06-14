@@ -7,7 +7,8 @@
         <li><i class="bi bi-twitter px-3 footer-icon"></i></li>
       </ul>
       <button type="button"
-      class="btn btn-outline-light btn-sm border-top-0 border-bottom-0 rounded-0 mt-3 px-3">
+      class="btn btn-outline-light btn-sm border-top-0 border-bottom-0 rounded-0 mt-3 px-3"
+      @click="goLogin">
       管理者後台</button>
       <small class="mb-0 mt-3 pb-2 d-block">
         Copyright © 2023 made by ChiRong | 個人作品無商業用途
@@ -15,6 +16,16 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  methods: {
+    goLogin() {
+      this.$router.push('/login');
+    },
+  },
+};
+</script>
 
 <style scoped lang="scss">
 .cus-bg-color{

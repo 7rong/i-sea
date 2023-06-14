@@ -8,63 +8,63 @@ const routes = [
   },
   {
     path: '/dashboard',
-    component: () => import('../views/DashboardPage.vue'),
+    component: () => import('../views/backend/DashboardPage.vue'),
     children: [
       {
         path: 'products',
-        component: () => import('../views/DashboardProducts.vue'),
+        component: () => import('../views/backend/DashboardProducts.vue'),
       },
       {
         path: 'coupons',
-        component: () => import('../views/DashboardCoupons.vue'),
+        component: () => import('../views/backend/DashboardCoupons.vue'),
       },
       {
         path: 'orders',
-        component: () => import('../views/DashboardOrders.vue'),
+        component: () => import('../views/backend/DashboardOrders.vue'),
       },
       {
         path: 'article',
-        component: () => import('../views/DashboardArticle.vue'),
+        component: () => import('../views/backend/DashboardArticle.vue'),
       },
     ],
   },
   {
     path: '/',
-    component: () => import('../views/UserBoard.vue'),
+    component: () => import('../views/frontend/UserBoard.vue'),
     children: [
       {
         path: 'home',
-        component: () => import('../views/UserHome.vue'),
+        component: () => import('../views/frontend/UserHome.vue'),
       },
       {
         path: 'products',
-        component: () => import('../views/UserProducts.vue'),
+        component: () => import('../views/frontend/UserProducts.vue'),
       },
       {
         path: 'product/:productId',
-        component: () => import('../views/UserProductDetail.vue'),
+        component: () => import('../views/frontend/UserProductDetail.vue'),
       },
       {
         path: 'cart',
-        component: () => import('../views/UserCart.vue'),
+        component: () => import('../views/frontend/UserCart.vue'),
         children: [
           {
             path: 'products',
-            component: () => import('../views/UserCartProducts.vue'),
+            component: () => import('../views/frontend/UserCartProducts.vue'),
           },
           {
             path: 'order',
-            component: () => import('../views/UserCartOrder.vue'),
+            component: () => import('../views/frontend/UserCartOrder.vue'),
           },
           {
             path: 'checkout/:orderId',
-            component: () => import('../views/UserCartCheckout.vue'),
+            component: () => import('../views/frontend/UserCartCheckout.vue'),
           },
         ],
       },
       {
         path: 'faq',
-        component: () => import('../views/UserFAQ.vue'),
+        component: () => import('../views/frontend/UserFAQ.vue'),
       },
     ],
   },
