@@ -170,7 +170,9 @@ export default {
       };
       this.state.isLoadingItem = item.id;
       this.$http.put(api, { data: newCart }).then((res) => {
-        this.pushMsgState(res, '更新購物車');
+        const data = res;
+        data.content = `已將人數改為「${item.qty}」`;
+        this.pushMsgState(data, '更新購物車');
         this.getCart();
         this.state.isLoadingItem = '';
       });
@@ -181,7 +183,9 @@ export default {
         .then((res) => {
           console.log(res);
           this.emitter.emit('update-cart', item.id);
-          this.pushMsgState(res, '刪除品項');
+          const data = res;
+          data.content = `已將「${item.product.title}」移除購物車`;
+          this.pushMsgState(data, '刪除品項');
           this.getCart();
         });
     },

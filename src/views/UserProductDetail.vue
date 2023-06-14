@@ -195,7 +195,9 @@ export default {
             this.status.loadingItemId = '';
             this.addCartId = id;
             this.emitter.emit('update-cart', id);
-            this.pushMsgState(res, '加入購物車');
+            const data = res;
+            data.content = `將「${this.product.title}」加入購物車`;
+            this.pushMsgState(data, '加入');
           });
       } else {
         this.pushMsgState({
@@ -221,12 +223,14 @@ export default {
         this.favoriteIdList.splice(this.favoriteIdList.indexOf(item.id), 1);
         this.pushMsgState({
           data: { success: true },
-        }, '移除我的最愛');
+          content: `將「${this.product.title}」移除我的最愛`,
+        }, '移除');
       } else {
         this.favoriteIdList.push(item.id);
         this.pushMsgState({
           data: { success: true },
-        }, '加入我的最愛');
+          content: `將「${this.product.title}」加入我的最愛`,
+        }, '加入');
       }
       favorite.setFavorite(this.favoriteIdList);
     },

@@ -171,12 +171,14 @@ export default {
         this.favoriteIdList.splice(this.favoriteIdList.indexOf(item.id), 1);
         this.pushMsgState({
           data: { success: true },
-        }, '移除我的最愛');
+          content: `將「${this.product.title}」移除我的最愛`,
+        }, '移除');
       } else {
         this.favoriteIdList.push(item.id);
         this.pushMsgState({
           data: { success: true },
-        }, '加入我的最愛');
+          content: `將「${this.product.title}」加入我的最愛`,
+        }, '加入');
       }
       favorite.setFavorite(this.favoriteIdList);
     },
