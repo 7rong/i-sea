@@ -45,6 +45,8 @@
             </div>
           </div>
         </div>
+        <a href="#/products"
+          class="btn btn-outline-info mt-3 d-block mx-auto" style="width: 120px;">帶我出去玩</a>
       </div>
       <i class="bi bi-chevron-double-down position-absolute
       translate-middle start-50 intro-icons fs-1 text-info intro-icon"></i>
