@@ -215,6 +215,7 @@ export default {
     },
     getDetail(id) {
       this.$router.push(`/product/${id}`);
+      this.dateChosen = '';
       this.id = id;
       this.getProduct();
     },
