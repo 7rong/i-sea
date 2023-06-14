@@ -1180,7 +1180,7 @@ $dropdown-dark-header-color:        $gray-500 !default;
 // scss-docs-end dropdown-dark-variables
 
 
-// Pagination
+// Pagination //custom
 
 // scss-docs-start pagination-variables
 $pagination-padding-y:              .375rem !default;
@@ -1192,24 +1192,24 @@ $pagination-padding-x-lg:           1.5rem !default;
 
 $pagination-font-size:              $font-size-base !default;
 
-$pagination-color:                  var(--#{$prefix}link-color) !default;
-$pagination-bg:                     $white !default;
+$pagination-color:                  $secondary; //var(--#{$prefix}link-color) !default;
+$pagination-bg:                     $white !default; 
 $pagination-border-radius:          $border-radius !default;
-$pagination-border-width:           $border-width !default;
+$pagination-border-width:           0; //$border-width !default;
 $pagination-margin-start:           ($pagination-border-width * -1) !default;
 $pagination-border-color:           $gray-300 !default;
 
-$pagination-focus-color:            var(--#{$prefix}link-hover-color) !default;
-$pagination-focus-bg:               $gray-200 !default;
-$pagination-focus-box-shadow:       $input-btn-focus-box-shadow !default;
+$pagination-focus-color:            $info; //var(--#{$prefix}link-hover-color) !default;
+$pagination-focus-bg:               transparent; //$gray-200 !default;
+$pagination-focus-box-shadow:       0; //$input-btn-focus-box-shadow !default;
 $pagination-focus-outline:          0 !default;
 
-$pagination-hover-color:            var(--#{$prefix}link-hover-color) !default;
-$pagination-hover-bg:               $gray-200 !default;
+$pagination-hover-color:            $info; //var(--#{$prefix}link-hover-color) !default;
+$pagination-hover-bg:               transparent; //$gray-200 !default;
 $pagination-hover-border-color:     $gray-300 !default;
 
-$pagination-active-color:           $component-active-color !default;
-$pagination-active-bg:              $component-active-bg !default;
+$pagination-active-color:           $info; //$component-active-color !default;
+$pagination-active-bg:              transparent; //$component-active-bg !default;
 $pagination-active-border-color:    $pagination-active-bg !default;
 
 $pagination-disabled-color:         $gray-600 !default;
