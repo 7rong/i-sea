@@ -108,7 +108,7 @@
     </section>
     <!-- 優惠券 -->
     <section>
-      <div class="coupon-bg bg-style d-flex justify-content-start align-items-center">
+      <div class="coupon-bg d-flex justify-content-start align-items-center">
         <div class="text-white text-start p-5">
           <p class="display-3 fw-bold">歡慶一週年</p>
           <p class="fw-bold">輸入優惠碼" {{coupon_code}} "享八折</p>

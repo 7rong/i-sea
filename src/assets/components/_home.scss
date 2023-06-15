@@ -123,4 +123,13 @@ $coupon-bg: 'https://images.unsplash.com/photo-1637904219134-9075cab500f6?ixlib=
   background-image: url($coupon-bg);
   background-attachment: fixed;
   filter:saturate(0.8);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 100px;
+  @media (min-width: 768px){
+    background-position: center 200px;
+  }
+  @media (min-width: 992px) {
+    background-position: center;
+  }
 }
