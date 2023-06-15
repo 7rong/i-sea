@@ -19,29 +19,29 @@
         <ul class="list-unstyled d-flex justify-content-around flex-lg-column">
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
-            :class="{ active: this.categoryItem === '所有商品'}"
-            @click.prevent="filterProducts('所有商品')">所有商品</a>
+            :class="{ active: this.categoryItem === '所有行程'}"
+            @click.prevent="filterProducts('所有行程')">所有<br class="d-md-none">行程</a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '國外潛旅'}"
-            @click.prevent="filterProducts('國外潛旅')">國外潛旅</a>
+            @click.prevent="filterProducts('國外潛旅')">國外<br class="d-md-none">潛旅</a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '國內潛旅'}"
-            @click.prevent="filterProducts('國內潛旅')">國內潛旅</a>
+            @click.prevent="filterProducts('國內潛旅')">國內<br class="d-md-none">潛旅</a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '一日玩水'}"
-            @click.prevent="filterProducts('一日玩水')">一日玩水</a>
+            @click.prevent="filterProducts('一日玩水')">一日<br class="d-md-none">玩水</a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '我的最愛'}"
             @click.prevent="filterProducts('我的最愛')">
-              我的最愛</a>
+              我的<br class="d-md-none">最愛</a>
           </li>
         </ul>
       </div>
@@ -122,7 +122,7 @@ export default {
         loadingItemId: '',
       },
       favoriteIdList: favorite.getFavorite() || [],
-      categoryItem: '所有商品',
+      categoryItem: '所有行程',
       cacheSearch: '',
     };
   },
@@ -143,7 +143,7 @@ export default {
     },
     filterProducts(category) {
       this.categoryItem = category;
-      if (category === '所有商品') {
+      if (category === '所有行程') {
         this.productsFilter = this.products;
       } else if (category === '我的最愛') {
         const newArr = this.products.filter((item) => this.favoriteIdList.includes(item.id));
@@ -172,7 +172,9 @@ export default {
           data: { success: true },
           content: `將「${item.title}」移除我的最愛`,
         }, '移除');
-        this.filterProducts('我的最愛');
+        if (this.categoryItem === '我的最愛') {
+          this.filterProducts('我的最愛');
+        }
       } else {
         this.favoriteIdList.push(item.id);
         this.pushMsgState({

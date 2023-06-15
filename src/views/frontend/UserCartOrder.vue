@@ -119,12 +119,14 @@ export default {
       },
     };
   },
+  inject: ['emitter'],
   methods: {
     createOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
       const order = this.form;
       this.$http.post(api, { data: order }).then((res) => {
-        const id = res.orderId;
+        this.emitter.emit('update-cart');
+        const id = res.data.orderId;
         this.$router.push(`/cart/checkout/${id}`);
       });
     },

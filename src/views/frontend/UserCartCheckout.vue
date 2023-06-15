@@ -139,7 +139,6 @@ export default {
     payOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
       this.$http.post(api).then((res) => {
-        console.log(res);
         if (res.data.success) {
           this.getOrder();
         }

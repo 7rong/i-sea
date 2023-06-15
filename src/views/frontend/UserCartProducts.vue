@@ -181,7 +181,6 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
       this.$http.delete(api)
         .then((res) => {
-          console.log(res);
           this.emitter.emit('update-cart', item.id);
           const data = res;
           data.content = `已將「${item.product.title}」移除購物車`;
