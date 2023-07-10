@@ -1,16 +1,16 @@
 <template>
-    <Navbar></Navbar>
-    <div class="container mt-3 position-relative">
-      <ToastList></ToastList>
-      <router-view/>
-    </div>
+  <Navbar/>
+  <div class="container mt-3 position-relative">
+    <ToastList/>
+    <router-view/>
+  </div>
 </template>
 
 <script>
 import emitter from '@/methods/emitter';
 import pushMsgState from '@/methods/pushMsgState';
 import ToastList from '@/components/ToastList.vue';
-import Navbar from '../../components/DashboardNavbar.vue';
+import Navbar from '@/components/DashboardNavbar.vue';
 
 export default {
   components: {

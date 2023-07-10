@@ -1,5 +1,5 @@
 <template>
-  <LoadingComp :active="isLoading"></LoadingComp>
+  <LoadingComp :active="isLoading"/>
   <div class="container pt-3 pb-5">
     <div class="row gy-3 mt-3">
       <div class="col-md-8 mx-auto">
@@ -32,7 +32,7 @@
         </div>
       </div>
       <div class="col-md-10 mx-auto border py-3 border-1 rounded-3 mt-5 bg-white">
-        <table class="table align-middle" v-if="carts.length">
+        <table class="table align-middle mb-0" v-if="carts.length">
           <thead class="sticky-top">
             <tr>
               <th style="width: 60px"></th>
@@ -62,13 +62,13 @@
               </td>
               <td>
                 <label for="cart_unit">
-                <input type="number"
-                class="form-control border-0"
-                id="cart_unit"
-                    v-model.number="item.qty" min="1"
-                    @change="updateCart(item)"
-                    :disabled="item.id === this.state.isLoadingItem">
-                  </label>
+                  <input type="number"
+                  class="form-control border-0"
+                  id="cart_unit"
+                  v-model.number="item.qty" min="1"
+                  @change="updateCart(item)"
+                  :disabled="item.id === this.state.isLoadingItem">
+                </label>
               </td>
               <td class="text-end">
                 <p class="mb-0 fs-6" v-if="item.product.price === item.product.origin_price">
@@ -90,11 +90,10 @@
               <td colspan="5" class="text-end">
                 <del class="text-muted me-3 fs-6" v-if="hasDiscord">折扣前
                   <span> {{ $filters.currency(total) }}元</span></del>
-                <strong v-if="hasDiscord">TWD <span class="h4 text-danger">
-                  {{ $filters.currency(final_total) }}</span></strong>
-                <strong v-if="!hasDiscord">TWD <span class="h4">
-                  {{ $filters.currency(final_total) }}</span></strong>
-                 <br>
+                <p v-if="hasDiscord" class="m-0">TWD <span class="h4 text-danger">
+                  {{ $filters.currency(final_total) }}</span></p>
+                <p v-if="!hasDiscord" class="m-0">TWD <span class="h4">
+                  {{ $filters.currency(final_total) }}</span></p>
                 <label for="cart_coupon">
                   <div class="input-group input-group-sm mt-2">
                       <input type="text" class="form-control border-bottom"
@@ -112,11 +111,9 @@
           <tfoot>
             <tr class="text-center">
               <td colspan="5" class="border-0">
-                <button type="button"
-                class="btn btn-secondary mt-3 w-100"
-                  @click="goOrder()">
+                <router-link to="/cart/order" class="btn btn-secondary mt-3 w-100">
                   確認訂單
-                </button>
+                </router-link>
               </td>
             </tr>
           </tfoot>
@@ -126,12 +123,10 @@
             <span v-if="cartCatch">購物車載入錯誤，請稍後再試</span>
             <span v-else>目前無行程，快來跟我們一起下潛吧！</span>
           </p>
-          <button class="btn btn-outline-secondary btn-sm" type="button"
-          @click="goProducts">
+          <router-link to="/products" class="btn btn-outline-secondary btn-sm">
             前往選購
-          </button>
+          </router-link>
         </div>
-        <!-- 金額 -->
       </div>
     </div>
   </div>
@@ -214,9 +209,6 @@ export default {
           this.pushMsgState(data, '刪除品項');
         });
     },
-    goProducts() {
-      this.$router.push('/products');
-    },
     addCouponCode() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`;
       const coupon = {
@@ -244,9 +236,6 @@ export default {
           data.data.message = '系統錯誤，請稍後再試';
           this.pushMsgState(data, '使用優惠券');
         });
-    },
-    goOrder() {
-      this.$router.push('/cart/order');
     },
   },
   created() {

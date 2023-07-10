@@ -2,12 +2,6 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 
 const routes = [
   {
-    path: '/:pathMatch(.*)*',
-    redirect: {
-      name: 'home',
-    },
-  },
-  {
     path: '/login',
     name: 'login',
     component: () => import('../views/backend/LoginPage.vue'),
@@ -70,6 +64,12 @@ const routes = [
         component: () => import('../views/frontend/UserFAQ.vue'),
       },
     ],
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: {
+      name: 'home',
+    },
   },
 ];
 

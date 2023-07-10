@@ -5,8 +5,7 @@
     tabindex="-1"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
-    ref="modal"
-  >
+    ref="modal">
     <div class="modal-dialog modal-xl modal-dialog-scrollable" role="document">
       <div class="modal-content border-0">
         <div class="modal-header bg-primary text-white">
@@ -14,26 +13,28 @@
             <span>{{ tempProduct.modalTitle }}產品</span>
           </h5>
           <button type="button" class="btn-close btn-close-white"
-                  data-bs-dismiss="modal" aria-label="Close"></button>
+          data-bs-dismiss="modal" aria-label="Close"/>
         </div>
         <div class="modal-body">
           <div class="row">
             <div class="col-sm-4">
               <div class="mb-1">
                 <label for="image" class="form-label">輸入主要圖片網址
-                <input type="text" class="form-control" id="image"
-                        placeholder="請輸入圖片連結"
-                        v-model="tempProduct.imgUrl"></label>
+                  <input type="text" class="form-control" id="image"
+                  placeholder="請輸入圖片連結"
+                  v-model="tempProduct.imgUrl">
+                </label>
               </div>
               <div class="mb-3">
                 <label for="customFile" class="form-label">或 上傳圖片
-                  <i class="fas fa-spinner fa-spin"></i>
-                <input
-                type="file"
-                id="customFile"
-                class="form-control"
-                ref="fileInput"
-                @change="uploadFile"></label>
+                  <i class="fas fa-spinner fa-spin"/>
+                  <input
+                  type="file"
+                  id="customFile"
+                  class="form-control"
+                  ref="fileInput"
+                  @change="uploadFile">
+                </label>
               </div>
               <!-- 多圖 -->
               <hr>
@@ -126,10 +127,10 @@
                 <div class="form-check">
                   <label class="form-check-label" for="is_enabled">
                     <input class="form-check-input" type="checkbox"
-                          :true-value="1"
-                          :false-value="0"
-                          id="is_enabled"
-                          v-model="tempProduct.is_enabled">
+                    :true-value="1"
+                    :false-value="0"
+                    id="is_enabled"
+                    v-model="tempProduct.is_enabled">
                     是否啟用
                   </label>
                 </div>
@@ -139,8 +140,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-light"
-                  data-bs-dismiss="modal">取消
-          </button>
+          data-bs-dismiss="modal">取消</button>
           <button type="button" class="btn btn-outline-primary"
           @click="$emit('emit-product',tempProduct)">確認</button>
         </div>

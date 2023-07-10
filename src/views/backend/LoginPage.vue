@@ -9,23 +9,21 @@
           <div class="mb-2">
           <label for="input-email" class="sr-only">電子郵件</label>
           <input
-              type="email"
-              id="inputE-email"
-              class="form-control"
-              placeholder="service@isea.com"
-              required
-              v-model="user.username"
-          />
+          type="email"
+          id="inputE-email"
+          class="form-control"
+          placeholder="service@isea.com"
+          required
+          v-model="user.username"/>
           </div>
           <div class="mb-2">
           <label for="input-password" class="sr-only">密碼</label>
           <input
-              type="password"
-              id="input-password"
-              class="form-control"
-              required
-              v-model="user.password"
-          />
+          type="password"
+          id="input-password"
+          class="form-control"
+          required
+          v-model="user.password"/>
           </div>
           <div class="mt-4 d-flex justify-content-between align-items-end">
             <a href="#/home" class="d-block">回首頁</a>

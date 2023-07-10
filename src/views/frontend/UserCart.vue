@@ -3,6 +3,6 @@
     <h2 class="text-white border border-3 border-white px-4 py-2">購物車</h2>
   </div>
   <div class="container-fluid">
-    <router-view></router-view>
+    <router-view/>
   </div>
 </template>

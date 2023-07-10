@@ -1,5 +1,5 @@
 <template>
-  <LoadingComp :active="isLoading"></LoadingComp>
+  <LoadingComp :active="isLoading"/>
   <div class="container py-3">
     <div class="row gy-3 mt-3">
       <div class="col-md-8 mx-auto">
@@ -13,14 +13,14 @@
           bg-primary border border-2 border-primary"
           style="width: 3rem; height:3rem;">
             <i class="bi bi-cart-check fs-3 text-white"
-            style="line-height: 3rem;"></i>
+            style="line-height: 3rem;"/>
           </div>
           <div class="position-absolute top-0 start-50
           translate-middle rounded-pill text-center
           bg-primary border border-2 border-primary"
           style="width: 3rem; height:3rem;">
             <i class="bi bi-pencil-square fs-3 text-white"
-            style="line-height: 3rem;"></i>
+            style="line-height: 3rem;"/>
           </div>
           <div class="position-absolute top-0 start-100
           translate-middle rounded-pill text-center
@@ -28,7 +28,7 @@
           v-if="order.is_paid === false"
           style="width: 3rem; height:3rem;">
             <i class="bi bi-cash-coin fs-3 text-muted"
-            style="line-height: 3rem;"></i>
+            style="line-height: 3rem;"/>
           </div>
           <div class="position-absolute top-0 start-100
           translate-middle rounded-pill text-center
@@ -36,7 +36,7 @@
           v-else
           style="width: 3rem; height:3rem;">
             <i class="bi bi-cash-coin fs-3 text-white"
-            style="line-height: 3rem;"></i>
+            style="line-height: 3rem;"/>
           </div>
         </div>
       </div>
@@ -105,7 +105,7 @@
             <tfoot>
               <tr class="text-center">
                 <td colspan="2" class="border-0 p-0" >
-                  <button class="btn btn-secondary mt-4 w-100"
+                  <button type="button" class="btn btn-secondary mt-4 w-100"
                   v-if="order.is_paid === false"
                   >確認付款去</button>
                 </td>

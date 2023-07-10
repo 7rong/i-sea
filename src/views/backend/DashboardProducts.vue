@@ -1,63 +1,62 @@
 <template>
-  <LoadingComp :active="isLoading"></LoadingComp>
+  <LoadingComp :active="isLoading"/>
   <div class="text-end">
-      <button class="btn btn-primary" type="button"
-      @click="openModal(true)">新增產品</button>
+    <button class="btn btn-primary" type="button"
+    @click="openModal(true)">新增產品</button>
   </div>
   <table class="table mt-4">
-      <thead>
-          <tr>
-            <th width="90">分類</th>
-            <th>產品名稱</th>
-            <th width="100" class="d-none d-md-table-cell">原價</th>
-            <th width="100" class="d-none d-md-table-cell">售價</th>
-            <th width="80">是否啟用</th>
-            <th width="110">編輯</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr v-for="item in products" :key="item.id">
-            <td>{{ item.category }}</td>
-            <td>{{ item.title }}</td>
-            <td class="d-none d-md-table-cell">
-                {{ $filters.currency(item.origin_price) }}
-            </td>
-            <td class="d-none d-md-table-cell">
-                {{ $filters.currency(item.price) }}
-            </td>
-            <td>
-                <span class="text-success" v-if="item.is_enabled">啟用</span>
-                <span class="text-muted" v-else>未啟用</span>
-            </td>
-            <td class="text-end">
-                <div class="btn-group">
-                <button class="btn btn-outline-primary btn-sm"
-                @click="openModal(false, item)">編輯</button>
-                <button class="btn btn-outline-danger btn-sm"
-                @click="openDelModal(item)">刪除</button>
-                </div>
-            </td>
-          </tr>
-          <tr v-if="!products.length">
-            <td colspan="6" class="text-center py-3">目前尚無商品</td>
-          </tr>
-      </tbody>
-    </table>
-    <PaginationComp :pages="pagination"
-    @emit-page="getProducts" v-if="products.length"></PaginationComp>
-    <ProductModal ref="productModal"
-    :product="tempProduct"
-    @emit-product="updateProduct"
-    ></ProductModal>
-    <DelModal ref="delModal"
-    :delItem="tempProduct"
-    @del-item="deleteProduct"></DelModal>
+    <thead>
+      <tr>
+        <th width="90">分類</th>
+        <th>產品名稱</th>
+        <th width="100" class="d-none d-md-table-cell">原價</th>
+        <th width="100" class="d-none d-md-table-cell">售價</th>
+        <th width="80">是否啟用</th>
+        <th width="110">編輯</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="item in products" :key="item.id">
+        <td>{{ item.category }}</td>
+        <td>{{ item.title }}</td>
+        <td class="d-none d-md-table-cell">
+          {{ $filters.currency(item.origin_price) }}
+        </td>
+        <td class="d-none d-md-table-cell">
+          {{ $filters.currency(item.price) }}
+        </td>
+        <td>
+          <span class="text-success" v-if="item.is_enabled">啟用</span>
+          <span class="text-muted" v-else>未啟用</span>
+        </td>
+        <td class="text-end">
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-primary btn-sm"
+            @click="openModal(false, item)">編輯</button>
+            <button type="button" class="btn btn-outline-danger btn-sm"
+            @click="openDelModal(item)">刪除</button>
+          </div>
+        </td>
+      </tr>
+      <tr v-if="!products.length">
+        <td colspan="6" class="text-center py-3">目前尚無商品</td>
+      </tr>
+    </tbody>
+  </table>
+  <PaginationComp :pages="pagination"
+  @emit-page="getProducts" v-if="products.length"/>
+  <ProductModal ref="productModal"
+  :product="tempProduct"
+  @emit-product="updateProduct"/>
+  <DelModal ref="delModal"
+  :delItem="tempProduct"
+  @del-item="deleteProduct"/>
 </template>
 
 <script>
 import PaginationComp from '@/components/PaginationComp.vue';
 import DelModal from '@/components/DelModal.vue';
-import ProductModal from '../../components/ProductModal.vue';
+import ProductModal from '@/components/ProductModal.vue';
 
 export default {
   data() {

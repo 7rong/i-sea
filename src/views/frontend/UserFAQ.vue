@@ -16,10 +16,8 @@
             要會自由潛水才能報名旅遊嗎？
           </a>
           <div class="collapse text-light ps-4 show" id="collapseQ1">
-            <div>
-              潛旅團報名必須擁有自由潛水證照，或者上過正式自由潛水課程。 <br>
-              體驗課則無限制。
-            </div>
+            <p class="m-0">潛旅團報名必須擁有自由潛水證照，或者上過正式自由潛水課程。</p>
+            <p class="m-0">體驗課則無限制。</p>
           </div>
         </div>
         <div class="border-bottom border-1 border-light pb-2 pt-3">
@@ -47,10 +45,8 @@
             自由潛水和水肺潛水有何不同？
           </a>
           <div class="collapse text-light ps-4" id="collapseQ3">
-            <div>
-              「自由潛水」課程，著重於了解自己身體的狀態，並將它發揮到最好。這門課程教你的是「如何控制自己的身體」。<br>
-              「水肺潛水」課程，就像是上汽車駕訓班，它教你的是「如何操控你的裝備」，學習如何「駕駛」你的裝備，在水中遨遊。
-            </div>
+            <p class="m-0">「自由潛水」課程，著重於了解自己身體的狀態，並將它發揮到最好。這門課程教你的是「如何控制自己的身體」。</p>
+            <p class="m-0">「水肺潛水」課程，就像是上汽車駕訓班，它教你的是「如何操控你的裝備」，學習如何「駕駛」你的裝備，在水中遨遊。</p>
           </div>
         </div>
         <div class="border-bottom border-1 border-light pb-2 pt-3">

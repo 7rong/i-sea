@@ -1,7 +1,7 @@
 <template>
   <div class="toast-container pe-3 toast-pos">
     <ToastMsg v-for="(message, key) in messages" :key="key"
-    :msg="message"></ToastMsg>
+    :msg="message"/>
   </div>
 </template>
 

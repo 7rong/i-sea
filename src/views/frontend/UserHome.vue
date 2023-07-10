@@ -9,13 +9,11 @@
       <svg width="100%" id="svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150 position-absolute  svg-top"><path d="M 0,500 C 0,500 0,166 0,166 C 155.06666666666666,187.46666666666667 310.1333333333333,208.93333333333334 473,207 C 635.8666666666667,205.06666666666666 806.5333333333333,179.73333333333335 969,169 C 1131.4666666666667,158.26666666666665 1285.7333333333333,162.13333333333333 1440,166 C 1440,166 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#40536b" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-0"></path><path d="M 0,500 C 0,500 0,333 0,333 C 195.7333333333333,329.5333333333333 391.4666666666666,326.06666666666666 556,315 C 720.5333333333334,303.93333333333334 853.8666666666666,285.26666666666665 996,287 C 1138.1333333333334,288.73333333333335 1289.0666666666666,310.8666666666667 1440,333 C 1440,333 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#40536b" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-1"></path></svg>
       <div class="p-1 position-absolute text-white translate-middle purpose">
         <h3 class="py-3">想一頭潛入海裡，我懂</h3>
-        <p class="mb-0 pb-5">
-        曾經的我也是，嚮往潛入海中，和可愛的海豚快樂悠遊，<br/>
-        但我沒有潛伴啊！也不知道該怎麼出國潛水啊！<br/>
-        經過無數日子的摸索，於2022年成立ISEA<br/>
-        現在的你，不用怕！！！<br/>
-        跟著我們一起一無反顧地潛入這片大海吧！
-        </p>
+        <p class="m-0">曾經的我也是，嚮往潛入海中，和可愛的海豚快樂悠遊，</p>
+        <p class="m-0">但我沒有潛伴啊！也不知道該怎麼出國潛水啊！</p>
+        <p class="m-0">經過無數日子的摸索，於2022年成立ISEA</p>
+        <p class="m-0">現在的你，不用怕！！！</p>
+        <p class="m-0 pb-5">跟著我們一起一無反顧地潛入這片大海吧！</p>
       </div>
       <div class="circle-s position-absolute rounded-circle"></div>
       <div class="circle-l position-absolute rounded-circle"></div>
@@ -111,7 +109,7 @@
       <div class="coupon-bg d-flex justify-content-start align-items-center">
         <div class="text-white text-start p-5">
           <p class="display-3 fw-bold">歡慶一週年</p>
-          <p class="fw-bold">輸入優惠碼" {{coupon_code}} "享八折</p>
+          <p class="fw-bold">輸入優惠碼" {{ coupon_code }} "享八折</p>
           <button type="button" class="btn btn-outline-danger link-hover-white rounded-pill"
           @click="copyCoupon">複製優惠碼</button>
         </div>

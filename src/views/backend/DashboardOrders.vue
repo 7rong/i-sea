@@ -1,5 +1,5 @@
 <template>
-  <LoadingComp :active="isLoading"></LoadingComp>
+  <LoadingComp :active="isLoading"/>
   <table class="table mt-4">
     <thead>
     <tr>
@@ -12,49 +12,49 @@
     </tr>
     </thead>
     <tbody>
-        <template v-for="(item, key) in orders" :key="key">
-          <tr :class="{'text-secondary': !item.is_paid}">
-            <td>{{ $filters.date(item.create_at) }}</td>
-            <td><span v-text="item.user.email" v-if="item.user"></span></td>
-            <td>
-              <ul class="list-unstyled">
-                <li v-for="(product, i) in item.products" :key="i">
-                  {{ product.product.title }} 數量：{{ product.qty }}
-                  {{ product.product.unit }}
-                </li>
-              </ul>
-            </td>
-            <td class="text-right">{{ $filters.currency(item.total) }}</td>
-            <td>
-              <div class="form-check form-switch">
-                <label class="form-check-label" :for="`paidSwitch${item.id}`">
-                  <input class="form-check-input" type="checkbox" :id="`paidSwitch${item.id}`"
-                    v-model="item.is_paid">
-                  <div class="d-none d-md-block">
-                    <span v-if="item.is_paid">已付款</span>
-                    <span v-else>未付款</span>
-                  </div>
-                </label>
-              </div>
-            </td>
-            <td>
-              <div class="btn-group">
-                <button class="btn btn-outline-primary btn-sm"
-                @click="openOrderModal(item)">檢視</button>
-                <button class="btn btn-outline-danger btn-sm"
-                @click="openDelModal(item)">刪除</button>
-              </div>
-            </td>
-          </tr>
-        </template>
-        <tr v-if="!orders.length">
-          <td colspan="6" class="text-center py-3">目前尚無訂單</td>
+      <template v-for="item in orders" :key="item.create_at">
+        <tr :class="{'text-secondary': !item.is_paid}">
+          <td>{{ $filters.date(item.create_at) }}</td>
+          <td><span v-text="item.user.email" v-if="item.user"></span></td>
+          <td>
+            <ul class="list-unstyled">
+              <li v-for="item in item.products" :key="item.id">
+                {{ product.product.title }} 數量：{{ product.qty }}
+                {{ product.product.unit }}
+              </li>
+            </ul>
+          </td>
+          <td class="text-right">{{ $filters.currency(item.total) }}</td>
+          <td>
+            <div class="form-check form-switch">
+              <label class="form-check-label" :for="`paidSwitch${item.id}`">
+                <input class="form-check-input" type="checkbox" :id="`paidSwitch${item.id}`"
+                  v-model="item.is_paid">
+                <div class="d-none d-md-block">
+                  <span v-if="item.is_paid">已付款</span>
+                  <span v-else>未付款</span>
+                </div>
+              </label>
+            </div>
+          </td>
+          <td>
+            <div class="btn-group">
+              <button type="button" class="btn btn-outline-primary btn-sm"
+              @click="openOrderModal(item)">檢視</button>
+              <button type="button" class="btn btn-outline-danger btn-sm"
+              @click="openDelModal(item)">刪除</button>
+            </div>
+          </td>
         </tr>
+      </template>
+      <tr v-if="!orders.length">
+        <td colspan="6" class="text-center py-3">目前尚無訂單</td>
+      </tr>
     </tbody>
   </table>
-  <OrderModal :order="tempOrder" ref="orderModal"></OrderModal>
-  <DelModal :delItem="tempOrder" ref="delModal" @del-item="delOrder"></DelModal>
-  <Pagination v-if="orders.length" :pages="pagination" @emit-page="getOrders"></Pagination>
+  <OrderModal :order="tempOrder" ref="orderModal"/>
+  <DelModal :delItem="tempOrder" ref="delModal" @del-item="delOrder"/>
+  <Pagination v-if="orders.length" :pages="pagination" @emit-page="getOrders"/>
 </template>
 
 <script>

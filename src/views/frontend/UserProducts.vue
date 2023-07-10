@@ -1,5 +1,5 @@
 <template>
-  <LoadingComp :active="isLoading"></LoadingComp>
+  <LoadingComp :active="isLoading"/>
   <div class="products-banner bg-style d-flex justify-content-center align-items-center">
     <h2 class="text-white border border-3 border-white px-4 py-2">{{ categoryItem }}</h2>
   </div>
@@ -20,28 +20,28 @@
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '所有行程'}"
-            @click.prevent="filterProducts('所有行程')">所有<br class="d-md-none">行程</a>
+            @click.prevent="filterProducts('所有行程')">所有<p class="d-md-inline">行程</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '國外潛旅'}"
-            @click.prevent="filterProducts('國外潛旅')">國外<br class="d-md-none">潛旅</a>
+            @click.prevent="filterProducts('國外潛旅')">國外<p class="d-md-inline">潛旅</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '國內潛旅'}"
-            @click.prevent="filterProducts('國內潛旅')">國內<br class="d-md-none">潛旅</a>
+            @click.prevent="filterProducts('國內潛旅')">國內<p class="d-md-inline">潛旅</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '一日玩水'}"
-            @click.prevent="filterProducts('一日玩水')">一日<br class="d-md-none">玩水</a>
+            @click.prevent="filterProducts('一日玩水')">一日<p class="d-md-inline">玩水</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: this.categoryItem === '我的最愛'}"
             @click.prevent="filterProducts('我的最愛')">
-              我的<br class="d-md-none">最愛</a>
+              我的<p class="d-md-inline">最愛</p></a>
           </li>
         </ul>
       </div>
@@ -86,17 +86,15 @@
                         </div>
                       </div>
                     </div>
-                    <a href="#" class="stretched-link"
-                    @click.prevent="getDetail(item.id)">
+                    <router-link :to="`/product/${item.id}`" class="stretched-link">
                       <span class="visually-hidden product-hover"
-                     >查看更多</span></a>
+                     >查看更多</span></router-link>
                     <!-- favorite -->
                     <button type="button"
                       class="btn btn-outline-primary rounded-circle fs-4
                       position-absolute fav-btn"
                       :class="{ active: favoriteIdList.includes(item.id) }"
-                      @click.prevent.stop="toggleFavorite(item)"
-                    >
+                      @click.prevent.stop="toggleFavorite(item)">
                       <i class="bi bi-suit-heart" />
                     </button>
                 </div>
@@ -169,9 +167,6 @@ export default {
       });
       this.productsFilter = newArr;
       this.cacheSearch = '';
-    },
-    getDetail(id) {
-      this.$router.push(`/product/${id}`);
     },
     toggleFavorite(item) {
       if (this.favoriteIdList.includes(item.id)) {

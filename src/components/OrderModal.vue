@@ -8,7 +8,7 @@
             <span>訂單細節</span>
           </h5>
           <button type="button" class="btn-close"
-                  data-bs-dismiss="modal" aria-label="Close"></button>
+          data-bs-dismiss="modal" aria-label="Close"/>
         </div>
         <div class="modal-body">
           <div class="row">

@@ -1,5 +1,5 @@
 <template>
-  <LoadingComp :active="isLoading"></LoadingComp>
+  <LoadingComp :active="isLoading"/>
   <p v-if="productCatch" style="line-height: 50vh;" class="text-center text-muted fw-bold">
     商品載入錯誤，請稍後重試</p>
   <div v-else>
@@ -13,8 +13,8 @@
           style="object-fit: cover; height: 500px;">
         </div>
         <div class="carousel-item" data-bs-interval="3000"
-        v-for="(img,key) in product.images" :key="'圖片'+key">
-          <img :src="img" class="d-block w-100" alt="'圖片'+key"
+        v-for="img in product.images" :key="img">
+          <img :src="img" class="d-block w-100" alt="圖片"
           style="object-fit: cover; height: 500px;">
         </div>
       </div>
@@ -38,8 +38,7 @@
               class="btn btn-outline-primary rounded-circle fs-4
               fav-btn"
               :class="{ active: favoriteIdList.includes(product.id) }"
-              @click.prevent.stop="toggleFavorite(product)"
-            >
+              @click.prevent.stop="toggleFavorite(product)">
               <i class="bi bi-suit-heart" />
             </button>
           </div>
@@ -53,7 +52,7 @@
               <button type="button" class="btn btn-outline-secondary h-100
               w-100 rounded-0 border-start-0 border-end-0"
               @click="this.dateChosen = date"
-              :class="{ active: this.dateChosen === date}">
+              :class="{ active: this.dateChosen === date }">
                 {{ date }}
               </button>
             </div>
@@ -132,16 +131,16 @@
               class="bg-style rounded-top" style="height: 150px;"></div>
               <div class="card-body d-flex flex-column justify-content-between">
                 <div class="mb-3">
-                  <h5 class="card-title text-primary">{{item.title}}</h5>
+                  <h5 class="card-title text-primary">{{ item.title }}</h5>
                   <small class="text-muted">
                   <i class="bi bi-geo-alt-fill"></i>
                     {{ item.location }}</small>
-                  <p class="card-text text-secondary">{{item.description}}</p>
+                  <p class="card-text text-secondary">{{ item.description }}</p>
                 </div>
-                <a href="#" class="btn btn-outline-primary w-100"
-                @click.prevent="getDetail(item.id)">
+                <router-link :to="`/product/${item.id}`" class="btn btn-outline-primary w-100"
+                @click="getDetail(item.id)">
                   詳細行程
-                  </a>
+                </router-link>
               </div>
             </div>
           </div>
@@ -240,7 +239,6 @@ export default {
         });
     },
     getDetail(id) {
-      this.$router.push(`/product/${id}`);
       this.dateChosen = '';
       this.id = id;
       this.getProduct();

@@ -1,6 +1,6 @@
 import emitter from '@/methods/emitter';
 
-const pushMsgState = function (res, title = '更新') {
+const pushMsgState = ((res, title = '更新') => {
   if (res.data.success) {
     emitter.emit('push-msg', {
       style: 'success',
@@ -15,5 +15,5 @@ const pushMsgState = function (res, title = '更新') {
       content: msg.join('、'),
     });
   }
-};
+});
 export default pushMsgState;

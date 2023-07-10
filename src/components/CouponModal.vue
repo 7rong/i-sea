@@ -1,23 +1,25 @@
 <template>
   <div class="modal fade" id="couponModal" tabindex="-1" role="dialog"
-       aria-labelledby="exampleModalLabel" aria-hidden="true" ref="modal">
+  aria-labelledby="exampleModalLabel" aria-hidden="true" ref="modal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header bg-primary">
           <h5 class="modal-title text-white">{{ tempCoupon.modalTitle }}優惠券</h5>
           <button type="button" class="btn-close"
-                  data-bs-dismiss="modal" aria-label="Close"></button>
+          data-bs-dismiss="modal" aria-label="Close"/>
         </div>
         <div class="modal-body">
           <div class="mb-3">
             <label for="title">標題
-            <input type="text" class="form-control" id="title" v-model="tempCoupon.title"
-                   placeholder="請輸入標題"></label>
+              <input type="text" class="form-control" id="title" v-model="tempCoupon.title"
+              placeholder="請輸入標題">
+            </label>
           </div>
           <div class="mb-3">
             <label for="coupon_code">優惠碼
-            <input type="text" class="form-control" id="coupon_code" v-model="tempCoupon.code"
-                   placeholder="請輸入優惠碼"></label>
+              <input type="text" class="form-control" id="coupon_code" v-model="tempCoupon.code"
+              placeholder="請輸入優惠碼">
+            </label>
           </div>
           <div class="mb-3">
             <label for="due_date">到期日
@@ -44,7 +46,7 @@
         <div class="modal-footer">
           <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">取消</button>
           <button type="button" class="btn btn-outline-primary"
-                  @click="$emit('update-coupon', tempCoupon)">確定
+          @click="$emit('update-coupon', tempCoupon)">確定
           </button>
         </div>
       </div>

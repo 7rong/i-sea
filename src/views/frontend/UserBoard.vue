@@ -3,11 +3,11 @@
   d-flex flex-column justify-content-between"
   style="min-height: 100vh;">
     <div>
-      <Navbar style="z-index:1100;" class="fixed-top"></Navbar>
-      <ToastList></ToastList>
-      <router-view></router-view>
+      <Navbar style="z-index:1100;" class="fixed-top"/>
+      <ToastList/>
+      <router-view/>
     </div>
-    <Footer class="mt-auto"></Footer>
+    <Footer class="mt-auto"/>
   </div>
 </template>
 
@@ -15,8 +15,8 @@
 import emitter from '@/methods/emitter';
 import pushMsgState from '@/methods/pushMsgState';
 import ToastList from '@/components/ToastList.vue';
-import Navbar from '../../components/UserNavbar.vue';
-import Footer from '../../components/UserFooter.vue';
+import Navbar from '@/components/UserNavbar.vue';
+import Footer from '@/components/UserFooter.vue';
 
 export default {
   data() {
