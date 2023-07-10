@@ -40,7 +40,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-10 mx-auto border p-4 border-1 rounded-3 mt-5 bg-white">
+      <div v-if="orderCatch" class="col-md-10 mx-auto border p-4 border-1 rounded-3 mt-5 bg-white">
+        <p class="text-center text-muted fw-bold m-0">載入訂單錯誤，請稍後再試</p>
+      </div>
+      <div v-else class="col-md-10 mx-auto border p-4 border-1 rounded-3 mt-5 bg-white">
         <form @submit.prevent="payOrder">
           <table class="table align-middle">
             <thead>
@@ -125,24 +128,43 @@ export default {
       },
       orderId: '',
       isLoading: false,
+      orderCatch: false,
     };
   },
+  inject: [
+    'pushMsgState',
+  ],
   methods: {
     getOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`;
       this.isLoading = true;
-      this.$http.get(api).then((res) => {
-        this.order = res.data.order;
-        this.isLoading = false;
-      });
+      this.$http.get(api)
+        .then((res) => {
+          this.order = res.data.order;
+          this.isLoading = false;
+        })
+        .catch((err) => {
+          this.isLoading = false;
+          this.orderCatch = true;
+          console.log(err);
+        });
     },
     payOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`;
-      this.$http.post(api).then((res) => {
-        if (res.data.success) {
-          this.getOrder();
-        }
-      });
+      this.$http.post(api)
+        .then((res) => {
+          if (res.data.success) {
+            this.getOrder();
+          }
+        })
+        .catch((err) => {
+          const data = {
+            data: {},
+          };
+          data.data.success = err.response.data.success;
+          data.data.message = '系統錯誤，請稍後再試';
+          this.pushMsgState(data, '結帳');
+        });
     },
   },
   created() {

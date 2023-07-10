@@ -122,7 +122,10 @@
           </tfoot>
         </table>
         <div v-else class="text-center py-3">
-          <p class="fw-bold h5 text-muted mb-3">目前無行程，快來跟我們一起下潛吧！</p>
+          <p class="fw-bold h5 text-muted mb-3">
+            <span v-if="cartCatch">購物車載入錯誤，請稍後再試</span>
+            <span v-else>目前無行程，快來跟我們一起下潛吧！</span>
+          </p>
           <button class="btn btn-outline-secondary btn-sm" type="button"
           @click="goProducts">
             前往選購
@@ -147,6 +150,7 @@ export default {
       state: {
         isLoadingItem: '',
       },
+      cartCatch: false,
     };
   },
   inject: ['pushMsgState', 'emitter'],
@@ -160,6 +164,11 @@ export default {
           this.total = res.data.data.total;
           this.final_total = res.data.data.final_total;
           this.isLoading = false;
+        })
+        .catch((err) => {
+          this.isLoading = false;
+          this.cartCatch = true;
+          console.log(err);
         });
     },
     updateCart(item) {
@@ -169,13 +178,22 @@ export default {
         qty: item.qty,
       };
       this.state.isLoadingItem = item.id;
-      this.$http.put(api, { data: newCart }).then((res) => {
-        const data = res;
-        data.content = `已將人數改為「${item.qty}」`;
-        this.pushMsgState(data, '更新購物車');
-        this.getCart();
-        this.state.isLoadingItem = '';
-      });
+      this.$http.put(api, { data: newCart })
+        .then((res) => {
+          const data = res;
+          data.content = `已將人數改為「${item.qty}」`;
+          this.pushMsgState(data, '更新購物車');
+          this.getCart();
+          this.state.isLoadingItem = '';
+        })
+        .catch((err) => {
+          const data = {
+            data: {},
+          };
+          data.data.success = err.response.data.success;
+          data.data.message = '系統錯誤，請稍後再試';
+          this.pushMsgState(data, '更新購物車');
+        });
     },
     delCart(item) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`;
@@ -186,6 +204,14 @@ export default {
           data.content = `已將「${item.product.title}」移除購物車`;
           this.pushMsgState(data, '刪除品項');
           this.getCart();
+        })
+        .catch((err) => {
+          const data = {
+            data: {},
+          };
+          data.data.success = err.response.data.success;
+          data.data.message = '系統錯誤，請稍後再試';
+          this.pushMsgState(data, '刪除品項');
         });
     },
     goProducts() {
@@ -196,11 +222,28 @@ export default {
       const coupon = {
         code: this.coupon_code,
       };
-      this.$http.post(api, { data: coupon }).then((res) => {
-        console.log(res);
-        this.hasDiscord = true;
-        this.getCart();
-      });
+      this.$http.post(api, { data: coupon })
+        .then((res) => {
+          if (!res.data.success) {
+            const data = {
+              data: {},
+            };
+            data.data.success = res.data.success;
+            data.data.message = res.data.message;
+            this.pushMsgState(data, '使用優惠券');
+          } else {
+            this.hasDiscord = true;
+            this.getCart();
+          }
+        })
+        .catch((err) => {
+          const data = {
+            data: {},
+          };
+          data.data.success = err.response.data.success;
+          data.data.message = '系統錯誤，請稍後再試';
+          this.pushMsgState(data, '使用優惠券');
+        });
     },
     goOrder() {
       this.$router.push('/cart/order');

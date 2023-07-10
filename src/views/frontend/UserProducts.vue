@@ -103,6 +103,7 @@
               </div>
             </div>
           </div>
+          <p v-if="this.productsCatch" class="text-center p-5 text-muted fw-bold">行程載入錯誤，請稍後重試</p>
         </div>
       </div>
     </div>
@@ -124,6 +125,7 @@ export default {
       favoriteIdList: favorite.getFavorite() || [],
       categoryItem: '所有行程',
       cacheSearch: '',
+      productsCatch: false,
     };
   },
   inject: [
@@ -133,13 +135,19 @@ export default {
     getProducts() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`;
       this.isLoading = true;
-      this.$http.get(api).then((res) => {
-        this.isLoading = false;
-        if (res.data.success) {
-          this.products = res.data.products;
-          this.productsFilter = res.data.products;
-        }
-      });
+      this.$http.get(api)
+        .then((res) => {
+          this.isLoading = false;
+          if (res.data.success) {
+            this.products = res.data.products;
+            this.productsFilter = res.data.products;
+          }
+        })
+        .catch((err) => {
+          this.isLoading = false;
+          this.productsCatch = true;
+          console.log(err);
+        });
     },
     filterProducts(category) {
       this.categoryItem = category;

@@ -119,16 +119,25 @@ export default {
       },
     };
   },
-  inject: ['emitter'],
+  inject: ['emitter', 'pushMsgState'],
   methods: {
     createOrder() {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`;
       const order = this.form;
-      this.$http.post(api, { data: order }).then((res) => {
-        this.emitter.emit('update-cart');
-        const id = res.data.orderId;
-        this.$router.push(`/cart/checkout/${id}`);
-      });
+      this.$http.post(api, { data: order })
+        .then((res) => {
+          this.emitter.emit('update-cart');
+          const id = res.data.orderId;
+          this.$router.push(`/cart/checkout/${id}`);
+        })
+        .catch((err) => {
+          const data = {
+            data: {},
+          };
+          data.data.success = err.response.data.success;
+          data.data.message = '系統錯誤，請稍後再試';
+          this.pushMsgState(data, '建立訂單');
+        });
     },
     isPhone(value) {
       const phoneNumber = /^(09)[0-9]{8}$/;
