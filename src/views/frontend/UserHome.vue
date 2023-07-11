@@ -4,7 +4,8 @@
     flex-column align-items-center">
       <p class="ms-4">You only live once！</p>
       <h2 class="ms-4 display-5 fw-bold">出走吧，感受真正的自由</h2>
-      <router-link to="/products" class="btn-cus-hover mt-4">
+      <router-link to="/products" class="btn-cus-hover mt-4"
+      @click="updateFilter('所有行程')">
         <p>馬上出遊！</p>
       </router-link>
     </div>
@@ -50,7 +51,8 @@
             </div>
           </router-link>
         </div>
-        <router-link to="/products" class="btn-cus-hover d-block mt-3 mx-auto">
+        <router-link to="/products" class="btn-cus-hover d-block mt-3 mx-auto"
+        @click="updateFilter('所有行程')">
           <p>帶我出去玩</p>
         </router-link>
       </div>
