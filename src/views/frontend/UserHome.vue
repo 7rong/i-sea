@@ -28,24 +28,27 @@
       <div class="position-absolute between-svg top-0"></div>
       <div class="position-absolute intro-list-container translate-middle start-50">
         <div class="d-flex text-white intro-list">
-          <div class="intro-one-day bg-style intro-style">
-            <div class="px-3 intro-txt" >
+          <router-link to="/products" class="intro-one-day bg-style intro-style"
+          @click="updateFilter('一日玩水')">
+            <div class="px-3 intro-txt text-white" >
               <h3 class="pb-2">一日玩水</h3>
               <p class="border-top border-white pt-2">你累積了許多飛行</p>
             </div>
-          </div>
-          <div class="intro-abroad bg-style intro-style">
-            <div class="px-3 intro-txt">
+          </router-link>
+          <router-link to="/products" class="intro-abroad bg-style intro-style"
+          @click="updateFilter('國外潛旅')">
+            <div class="px-3 intro-txt text-white" >
               <h3 class="pb-2">國外潛旅</h3>
               <p class="border-top border-white pt-2">你蒐集了地圖上每一次的風和日麗</p>
             </div>
-          </div>
-          <div class="intro-domestic bg-style intro-style">
-            <div class="px-3 intro-txt">
+          </router-link>
+          <router-link to="/products" class="intro-domestic bg-style intro-style"
+          @click="updateFilter('國內潛旅')">
+            <div class="px-3 intro-txt text-white" >
               <h3 class="pb-2">國內潛旅</h3>
               <p class="border-top border-white pt-2">你擁抱熱情的島嶼</p>
             </div>
-          </div>
+          </router-link>
         </div>
         <router-link to="/products" class="btn-cus-hover d-block mt-3 mx-auto">
           <p>帶我出去玩</p>
@@ -127,6 +130,7 @@ export default {
   },
   inject: [
     'pushMsgState',
+    'emitter',
   ],
   methods: {
     copyCoupon() {
@@ -137,6 +141,9 @@ export default {
             content: `已複製優惠碼「${this.coupon_code}」`,
           }, '複製');
         });
+    },
+    updateFilter(category) {
+      localStorage.setItem('categoryItem', category);
     },
   },
 };

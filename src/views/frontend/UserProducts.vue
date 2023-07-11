@@ -124,13 +124,14 @@ export default {
         loadingItemId: '',
       },
       favoriteIdList: favorite.getFavorite() || [],
-      categoryItem: '所有行程',
+      categoryItem: localStorage.getItem('categoryItem'),
       cacheSearch: '',
       productsCatch: false,
     };
   },
   inject: [
     'pushMsgState',
+    'emitter',
   ],
   methods: {
     getProducts() {
@@ -141,7 +142,8 @@ export default {
           this.isLoading = false;
           if (res.data.success) {
             this.products = res.data.products;
-            this.productsFilter = res.data.products;
+            const category = this.categoryItem;
+            this.filterProducts(category);
           }
         })
         .catch((err) => {
@@ -189,6 +191,7 @@ export default {
         }, '加入');
       }
       favorite.setFavorite(this.favoriteIdList);
+      this.emitter.emit('update-favorite');
     },
   },
   created() {

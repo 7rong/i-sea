@@ -25,16 +25,41 @@
           @click="toggleCollapse">常見問題</router-link>
         </div>
         <div class="navbar-nav" style="text-shadow: .5px .5px 1px #00000033;">
-          <router-link @click="toggleCollapse"
-          to="/cart/products" class="nav-link px-3">
-            <div class="d-md-none position-relative">
-              <span>購物車</span>
+          <router-link @click="toggleCollapse(); updateFilter();"
+          to="/products" class="nav-link px-3">
+            <div class="d-md-none">
+              <span class="position-relative">喜愛行程
+                <span class="position-absolute
+                translate-middle badge rounded-pill bg-danger"
+                v-if="this.favoriteNum"
+                style="top:50%; right:-60%;">
+                  {{ favoriteNum }}
+                  <span class="visually-hidden">products number in favoriteList</span>
+                </span>
+              </span>
+            </div>
+            <div class="d-none d-md-block position-relative">
+              <i class="bi bi-suit-heart fs-3"></i>
               <span class="position-absolute
               translate-middle badge rounded-pill bg-danger"
-              v-if="this.cartNum"
-              style="top:50%; left:20%;">
-                {{ cartNum }}
-                <span class="visually-hidden">products number in cart</span>
+              v-if="this.favoriteNum"
+              style="top:20%;">
+                {{ favoriteNum }}
+                <span class="visually-hidden">products number in favoriteList</span>
+              </span>
+            </div>
+          </router-link>
+          <router-link @click="toggleCollapse"
+          to="/cart/products" class="nav-link px-3">
+            <div class="d-md-none">
+              <span class="position-relative">購物車
+                <span class="position-absolute
+                translate-middle badge rounded-pill bg-danger"
+                v-if="this.cartNum"
+                style="top:50%; right:-73%;">
+                  {{ cartNum }}
+                  <span class="visually-hidden">products number in cart</span>
+                </span>
               </span>
             </div>
             <div class="d-none d-md-block position-relative">
@@ -55,10 +80,13 @@
 </template>
 
 <script>
+import favorite from '@/methods/favorite';
+
 export default {
   data() {
     return {
       cartNum: '',
+      favoriteNum: favorite.getFavorite().length,
       navbarColor: false,
     };
   },
@@ -80,12 +108,22 @@ export default {
         this.navbarColor = false;
       }
     },
+    updateFilter() {
+      localStorage.setItem('categoryItem', '我的最愛');
+      if (this.$route.path === '/products') {
+        window.location.reload();
+      }
+    },
+    getFavNum() {
+      this.favoriteNum = favorite.getFavorite().length;
+    },
   },
   created() {
     this.getCarts();
   },
   mounted() {
     this.emitter.on('update-cart', this.getCarts);
+    this.emitter.on('update-favorite', this.getFavNum);
     window.addEventListener('scroll', this.windowScroll);
   },
 };

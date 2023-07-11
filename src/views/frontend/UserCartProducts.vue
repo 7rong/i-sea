@@ -77,13 +77,13 @@
                         {{ $filters.currency(item.product.origin_price) }}
                       </span>
                     </p>
-                    <del class="text-muted mt-1 mb-0 fs-6"
+                    <del class="text-muted mb-0 fs-6 me-2"
                     v-if="item.product.price !== item.product.origin_price">
                       {{ $filters.currency(item.product.origin_price) }}元
                     </del>
                     <p class="mb-0 fs-6" v-if="item.product.price !== item.product.origin_price">
                       TWD
-                      <span class="text-danger h6">
+                      <span class="text-danger h5">
                         {{ $filters.currency(item.product.price) }}
                       </span>
                     </p>

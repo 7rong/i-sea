@@ -216,7 +216,6 @@ export default {
         this.status.loadingItemId = id;
         this.$http.post(api, { data: cart })
           .then((res) => {
-            console.log(res);
             this.status.loadingItemId = '';
             this.addCartId = id;
             this.emitter.emit('update-cart', id);
@@ -271,6 +270,7 @@ export default {
         }, '加入');
       }
       favorite.setFavorite(this.favoriteIdList);
+      this.emitter.emit('update-favorite');
     },
   },
   computed: {
