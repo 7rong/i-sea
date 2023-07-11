@@ -13,21 +13,21 @@
           bg-muted border border-3 border-primary"
           style="width: 3rem; height:3rem;">
             <i class="bi bi-cart-check fs-3 text-primary"
-            style="line-height: 3rem;"></i>
+            style="line-height: 2.7rem;"/>
           </div>
           <div class="position-absolute top-0 start-50
           translate-middle rounded-pill text-center
           bg-muted border border-2 border-muted"
           style="width: 3rem; height:3rem;">
             <i class="bi bi-pencil-square fs-3 text-muted"
-            style="line-height: 3rem;"></i>
+            style="line-height: 2.8rem;"/>
           </div>
           <div class="position-absolute top-0 start-100
           translate-middle rounded-pill text-center
           bg-muted border border-2 border-muted"
           style="width: 3rem; height:3rem;">
             <i class="bi bi-cash-coin fs-3 text-muted"
-            style="line-height: 3rem;"></i>
+            style="line-height: 3rem;"/>
           </div>
         </div>
       </div>
@@ -37,9 +37,7 @@
             <tr>
               <th style="width: 60px"></th>
               <th style="width: 150px;" class="d-md-table-cell d-none"></th>
-              <th>行程</th>
-              <th style="width: 80px">人數</th>
-              <th class="text-end">單價</th>
+              <th>選購行程</th>
             </tr>
           </thead>
           <tbody>
@@ -54,36 +52,43 @@
                 <div style="background-size: cover; background-position: center; padding: 30% 0;"
                 :style="{backgroundImage: `url(${item.product.imgUrl})`}"></div>
               </td>
-              <td class="position-relative">
-                <p class="text-secondary h6">
-                  {{ item.product.title }}
-                </p>
-                <small class="text-light">{{ item.dateChosen }}</small>
-              </td>
               <td>
-                <label for="cart_unit">
-                  <input type="number"
-                  class="form-control border-0"
-                  id="cart_unit"
-                  v-model.number="item.qty" min="1"
-                  @change="updateCart(item)"
-                  :disabled="item.id === this.state.isLoadingItem">
-                </label>
-              </td>
-              <td class="text-end">
-                <p class="mb-0 fs-6" v-if="item.product.price === item.product.origin_price">
-                  TWD <span class="text-primary h6">
-                    {{ $filters.currency(item.product.origin_price) }}
-                  </span>
-                </p>
-                <del class="text-muted mt-1 mb-0 fs-6"
-                v-if="item.product.price !== item.product.origin_price">
-                  {{ $filters.currency(item.product.origin_price) }}元
-                </del>
-                <p class="mb-0 fs-6" v-if="item.product.price !== item.product.origin_price">
-                  TWD
-                  <span class="text-danger h6">{{ $filters.currency(item.product.price) }}</span>
-                  </p>
+                <div class="row gy-2">
+                  <div class="col-12">
+                    <p class="text-secondary h6 mb-0">
+                      {{ item.product.title }}
+                    </p>
+                    <small class="text-light">{{ item.dateChosen }}</small>
+                  </div>
+                  <div class="col-lg-3 col-5">
+                    <label for="cart_unit" class="d-flex align-items-center">
+                      <small style="word-break:keep-all;" class="me-2">人數：</small>
+                      <input type="number"
+                      class="form-control border-0 p-0"
+                      id="cart_unit"
+                      v-model.number="item.qty" min="1"
+                      @change="updateCart(item)"
+                      :disabled="item.id === this.state.isLoadingItem">
+                    </label>
+                  </div>
+                  <div class="col-lg-9 col-7 d-flex align-items-center justify-content-end">
+                    <p class="mb-0 fs-6" v-if="item.product.price === item.product.origin_price">
+                      TWD <span class="text-primary h6">
+                        {{ $filters.currency(item.product.origin_price) }}
+                      </span>
+                    </p>
+                    <del class="text-muted mt-1 mb-0 fs-6"
+                    v-if="item.product.price !== item.product.origin_price">
+                      {{ $filters.currency(item.product.origin_price) }}元
+                    </del>
+                    <p class="mb-0 fs-6" v-if="item.product.price !== item.product.origin_price">
+                      TWD
+                      <span class="text-danger h6">
+                        {{ $filters.currency(item.product.price) }}
+                      </span>
+                    </p>
+                  </div>
+                </div>
               </td>
             </tr>
             <tr>

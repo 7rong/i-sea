@@ -12,14 +12,14 @@
           bg-primary border border-2 border-primary"
           style="width: 3rem; height:3rem;">
             <i class="bi bi-cart-check fs-3 text-white"
-            style="line-height: 3rem;"/>
+            style="line-height: 2.7rem;"/>
           </div>
           <div class="position-absolute top-0 start-50
           translate-middle rounded-pill text-center
           bg-muted border border-3 border-primary"
           style="width: 3rem; height:3rem;">
             <i class="bi bi-pencil-square fs-3 text-primary"
-            style="line-height: 3rem;"/>
+            style="line-height: 2.8rem;"/>
           </div>
           <div class="position-absolute top-0 start-100
           translate-middle rounded-pill text-center
@@ -93,7 +93,7 @@
             </div>
           </div>
           <div class="col-12">
-            <button type="button" class="btn btn-secondary w-100 mt-4">前往結帳</button>
+            <button type="submit" class="btn btn-secondary w-100 mt-4">前往結帳</button>
           </div>
         </v-form>
       </div>

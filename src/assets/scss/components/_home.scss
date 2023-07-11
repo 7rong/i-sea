@@ -133,3 +133,47 @@ $coupon-bg: 'https://images.unsplash.com/photo-1637904219134-9075cab500f6?ixlib=
     background-position: center;
   }
 }
+.btn-cus-hover{
+  width: 150px;
+  height: 45px;
+  text-align: center;
+  z-index: 100;
+  background-color: transparent;
+  border: 2px solid $info;
+  color: $info;
+  text-decoration: none;
+  position: relative;
+  transition: all .3s linear;
+  p{
+    line-height: 40px;
+    margin: 0;
+    font-weight: 600;
+    position: relative;
+    z-index: 1;
+  }
+  &::before{
+    content: "";
+    width: 0%;
+    height: 100%;
+    display: block;
+    background-color: $info;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .3s ease;
+  }
+  &:hover{
+    color: $primary;
+  }
+  &:hover::before{
+    width: 100%;
+  }
+}
+.navbar-color{
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background: $primary;
+  @media (min-width: 768px){
+    box-shadow: none;
+    background: transparent;
+  }
+}

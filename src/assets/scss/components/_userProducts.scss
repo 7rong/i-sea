@@ -10,7 +10,7 @@
   }
 }
 .product-img{
-  padding: 15% 50%;
+  padding: 30% 50%;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   @media (min-width:768px){
@@ -58,9 +58,7 @@
   }
 }
 .go-cart-btn{
-  @media (min-width: 768px) {
-    width: 100%;
-  }
+  width: 100%;
 }
 .link-hover-white:hover{
   color: #fff;

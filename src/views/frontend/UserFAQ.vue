@@ -4,8 +4,10 @@
   </div>
   <div class="container-fluid cus-bg-patterns py-5">
     <p class="text-center text-secondary mb-4">
-      以下是初接觸 I SEA 的常見問題，或許這裡可以解答你99%的疑問～</p>
-    <div class="col-8 mx-auto mb-3">
+      或許這裡可以解答你99%的疑問
+      <i class="bi bi-lightbulb"/>
+    </p>
+    <div class="col-11 mx-auto mb-3">
         <div class="border-bottom border-1 border-light pb-2">
           <a data-bs-toggle="collapse"
           class="link-secondary text-decoration-none h5 d-block collapse-q"

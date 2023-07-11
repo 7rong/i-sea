@@ -45,17 +45,20 @@
           </li>
         </ul>
       </div>
-      <div class="col-lg-8">
-        <div class="row row-cols-1 g-2 g-lg-3">
+      <div v-if="!productsFilter.length" class="col-lg-8">
+        <p class="text-center text-muted fw-bold pt-4">暫無行程，繼續看看吧！</p>
+      </div>
+      <div v-else class="col-lg-8">
+        <div class="row row-cols-1 g-3">
           <div class="col" v-for="item in productsFilter" :key="item.id">
             <div class="card product-card position-relative">
-              <div class="row g-0">
+              <div class="row">
                 <div class="col-md-4">
                   <div class="product-img bg-style position-relative"
                   :style="{backgroundImage: `url(${item.imgUrl})`}">
                   <i class="bi bi-search fs-2 product-search-icon
                   position-absolute text-white text-center
-                  translate-middle top-50 start-50"></i>
+                  translate-middle top-50 start-50"/>
                   </div>
                 </div>
                 <div class="col-md-8">
@@ -66,7 +69,7 @@
                       <small>
                         <i class="bi bi-geo-alt-fill"></i>
                         {{ item.location }}</small>
-                      <small class="card-text me-5 mt-2 d-block text-muted">
+                      <small class="card-text mt-2 d-block text-muted">
                         {{ item.description }}
                       </small>
                     </div>

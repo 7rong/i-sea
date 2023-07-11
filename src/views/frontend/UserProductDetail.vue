@@ -47,7 +47,7 @@
             {{ product.location }}</small>
           <div class="pb-5 mt-3">{{ product.description }}</div>
           <!-- date start -->
-          <div class="row g-0 pb-5">
+          <!-- <div class="row g-0 pb-5">
             <div class="col" v-for="date in product.date" :key="date">
               <button type="button" class="btn btn-outline-secondary h-100
               w-100 rounded-0 border-start-0 border-end-0"
@@ -56,14 +56,14 @@
                 {{ date }}
               </button>
             </div>
-          </div>
+          </div> -->
           <div style="white-space: pre-line" class="pb-5">
             {{ product.content }}</div>
           <p class="border-top border-secondary pt-3 text-primary fw-bold mb-1">取消政策</p>
-          <ul class="text-primary">
-            <li>所選日期 60 天（含）之前取消，收取手續費 0%</li>
-            <li>所選日期 30-60 天之間取消，收取手續費 50%</li>
-            <li>所選日期 0-30 天之間取消，收取手續費 100%</li>
+          <ul class="text-primary list-unstyled">
+            <li>＊ 所選日期 60 天（含）之前取消，收取手續費 0%</li>
+            <li>＊ 所選日期 30-60 天之間取消，收取手續費 50%</li>
+            <li>＊ 所選日期 0-30 天之間取消，收取手續費 100%</li>
           </ul>
         </article>
         <div class="col-md-3 position-relative">
@@ -83,37 +83,50 @@
                 TWD<span class="text-danger h4">{{ $filters.currency(product.price) }}</span>
                 元
               </h3>
-              <div class="d-flex justify-content-around align-items-center flex-md-column mt-3">
-                <label for="product_qty" class="form-label mb-0 mb-md-2 go-cart-btn">
+              <hr>
+              <div class="row g-0">
+                <div class="col-12" v-for="date in product.date" :key="date">
+                  <button type="button" class="btn btn-outline-secondary h-100
+                  w-100 rounded-0 border-0"
+                  @click="this.dateChosen = date"
+                  :class="{ active: this.dateChosen === date }">
+                    {{ date }}
+                  </button>
+                </div>
+                <div class="col-12 mt-0 mb-2">
+                  <label for="product_qty" class="form-label w-100"></label>
                   <div class="input-group my-auto">
                     <input type="number" class="form-control" min="1"
                     aria-describedby="number" id="product_qty"
                     v-model="product.qty">
                     <span class="input-group-text" id="number">/ {{ product.unit }}</span>
                   </div>
-                </label>
-                <button type="button" class="btn btn-outline-danger go-cart-btn link-hover-white"
+                </div>
+                <div class="col-12">
+                  <button type="button" class="btn btn-outline-danger w-100 link-hover-white"
                   @click.prevent="addCart(product.id, this.dateChosen, product.qty)"
                   :disabled="this.addCartId === product.id"
                   v-if="this.addCartId !== product.id &&
                   this.status.loadingItemId !== product.id">
-                  <span class="d-none pe-2 d-md-inline-block">加入購物車</span>
-                  <i class="bi bi-cart"></i>
-                </button>
-                <button type="button" class="btn btn-outline-light go-cart-btn"
-                v-else-if="this.status.loadingItemId === product.id">
-                  <div class="spinner-border spinner-border-sm text-white" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                  </div>
-                </button>
-                <button type="button" class="btn btn-outline-secondary go-cart-btn"
-                @click.prevent="goCart"
-                  v-else>
-                  <router-link to="/cart/products" class="link-primary link-hover-white">
-                    <span class="d-none pe-4 d-md-inline-block">前往購物車</span>
-                    <i class="bi bi-cart-check "></i>
-                  </router-link>
-                </button>
+                    <span class="pe-2">加入購物車</span>
+                    <i class="bi bi-cart"/>
+                  </button>
+                  <button type="button" class="btn btn-outline-light w-100"
+                  v-else-if="this.status.loadingItemId === product.id">
+                    <div class="spinner-border spinner-border-sm text-white" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </button>
+                  <button type="button" class="btn btn-outline-secondary w-100"
+                  @click.prevent="goCart"
+                    v-else>
+                    <router-link to="/cart/products"
+                    class="link-primary link-hover-white text-decoration-none">
+                      <span class="pe-4">前往購物車</span>
+                      <i class="bi bi-cart-check "/>
+                    </router-link>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

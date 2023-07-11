@@ -1,8 +1,12 @@
 <template>
   <div class="cus-bg-patterns">
-    <div class="home-banner bg-style d-flex justify-content-center text-white flex-column">
-      <h2 class="ms-4 display-5 fw-bold">出走吧，感受真正的自由</h2>
+    <div class="home-banner bg-style d-flex justify-content-center text-white
+    flex-column align-items-center">
       <p class="ms-4">You only live once！</p>
+      <h2 class="ms-4 display-5 fw-bold">出走吧，感受真正的自由</h2>
+      <router-link to="/products" class="btn-cus-hover mt-4">
+        <p>馬上出遊！</p>
+      </router-link>
     </div>
     <!-- 品牌理念 -->
     <section class="pt-5 position-relative cus-bg-color" style="height:400px">
@@ -43,8 +47,9 @@
             </div>
           </div>
         </div>
-        <a href="#/products"
-          class="btn btn-outline-info mt-3 d-block mx-auto" style="width: 120px;">帶我出去玩</a>
+        <router-link to="/products" class="btn-cus-hover d-block mt-3 mx-auto">
+          <p>帶我出去玩</p>
+        </router-link>
       </div>
       <i class="bi bi-chevron-double-down position-absolute
       translate-middle start-50 intro-icons fs-1 text-info intro-icon"></i>
@@ -52,53 +57,48 @@
     <!-- 服務項目 -->
     <section class="py-5 text-secondary container-fluid">
       <h3 class="text-center mb-4">沒事，你負責玩</h3>
-      <div class="row row-cols-md-4 row-cols-2">
-        <div class="col">
+      <div class="row justify-content-center">
+        <div class="col-10 col-md-3">
           <div class="card bg-transparent border-0">
-            <div class="card-body text-secondary text-center">
+            <div class="card-body text-secondary d-flex flex-column align-items-center">
               <i class="bi bi-calendar-check display-4"></i>
-              <h4 class="card-title h5 mt-3">妥善行程安排</h4>
-              <ul class="card-text text-start">
-                <li>充份玩樂，拒絕走馬看花</li>
-                <li>當地導潛合作，安心潛</li>
-                <li>用力玩用力吃，美食不可少</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card bg-transparent border-0">
-            <div class="card-body text-secondary text-center">
-              <i class="bi bi-person-vcard display-4"></i>
-              <h4 class="card-title h5 mt-3">領域專業教練</h4>
-              <ul class="card-text text-start">
-                <li>隨行教練皆有合格教練證</li>
-                <li>下水多年，經驗豐富</li>
-                <li>你的安全，我們顧</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card bg-transparent border-0">
-            <div class="card-body text-secondary text-center">
-              <i class="bi bi-emoji-laughing display-4"></i>
-              <h4 class="card-title h5 mt-3">志同道合的潛伴</h4>
-              <p class="card-text text-start">一個人報名不用怕，我們陪你玩！參加潛旅，外帶一拳志同道合的潛伴，太划算了吧！
+              <h4 class="card-title h5 mt-3 mb-3">妥善行程安排</h4>
+              <p class="card-text text-start">
+                充份玩樂，拒絕走馬看花！也有長期配合的當地導潛，讓你每一潛都安心～上岸也有精選美食，不怕餓肚子！這樣的行程，太完美了吧！
               </p>
             </div>
           </div>
         </div>
-        <div class="col">
+        <div class="col-10 col-md-3">
           <div class="card bg-transparent border-0">
-            <div class="card-body text-secondary text-center">
+            <div class="card-body text-secondary d-flex flex-column align-items-center">
+              <i class="bi bi-person-vcard display-4"></i>
+              <h4 class="card-title h5 mt-3 mb-3">領域專業教練</h4>
+              <p class="card-text text-start">
+                隨行教練皆有合格教練證，下水多年經驗豐富。專業教練看顧，下水安心玩！
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-10 col-md-3">
+          <div class="card bg-transparent border-0">
+            <div class="card-body text-secondary d-flex flex-column align-items-center">
+              <i class="bi bi-emoji-laughing display-4"></i>
+              <h4 class="card-title h5 mt-3 mb-3">志同道合的潛伴</h4>
+              <p class="card-text text-start">
+                一個人報名沒用怕，所有行程，我們陪你玩！還可以無痛外帶一群志同道合的潛伴，你心動了嗎？
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-10 col-md-3">
+          <div class="card bg-transparent border-0">
+            <div class="card-body text-secondary d-flex flex-column align-items-center">
               <i class="bi bi-camera2 display-4"></i>
-              <h4 class="card-title h5 mt-3">隨行攝影師</h4>
-              <ul class="card-text text-start">
-                <li>陸拍空拍不可少</li>
-                <li>專業水攝，記錄你的快樂</li>
-                <li>隨處都是形象大片</li>
-              </ul>
+              <h4 class="card-title h5 mt-3 mb-3">隨行攝影師</h4>
+              <p class="card-text text-start">
+                海陸空專業攝影，隨處出大片！照片皆為報名附贈，無需加價購買～
+              </p>
             </div>
           </div>
         </div>
