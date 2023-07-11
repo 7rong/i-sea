@@ -49,10 +49,10 @@
         <p class="text-center text-muted fw-bold pt-4">暫無行程，繼續看看吧！</p>
       </div>
       <div v-else class="col-lg-8">
-        <div class="row row-cols-1 g-3">
+        <div class="row row-cols-1 gy-3">
           <div class="col" v-for="item in productsFilter" :key="item.id">
             <div class="card product-card position-relative">
-              <div class="row">
+              <div class="row gx-0">
                 <div class="col-md-4">
                   <div class="product-img bg-style position-relative"
                   :style="{backgroundImage: `url(${item.imgUrl})`}">

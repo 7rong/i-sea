@@ -144,11 +144,11 @@
               class="bg-style rounded-top" style="height: 150px;"></div>
               <div class="card-body d-flex flex-column justify-content-between">
                 <div class="mb-3">
-                  <h5 class="card-title text-primary">{{ item.title }}</h5>
+                  <h5 class="card-title text-primary mb-1">{{ item.title }}</h5>
                   <small class="text-muted">
                   <i class="bi bi-geo-alt-fill"></i>
                     {{ item.location }}</small>
-                  <p class="card-text text-secondary">{{ item.description }}</p>
+                  <p class="card-text text-secondary mt-2">{{ item.description }}</p>
                 </div>
                 <router-link :to="`/product/${item.id}`" class="btn btn-outline-primary w-100"
                 @click="getDetail(item.id)">

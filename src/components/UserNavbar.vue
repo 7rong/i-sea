@@ -20,12 +20,12 @@
       justify-content-between" id="navbarNav" ref="navbarCollapse">
         <div class="navbar-nav fw-bold" style="text-shadow: .5px .5px 1px #00000033;">
           <router-link to="/products" class="nav-link px-3"
-          @click="toggleCollapse">所有行程</router-link>
+          @click="toggleCollapse(); updateFilter('所有行程');">所有行程</router-link>
           <router-link to="/faq" class="nav-link px-3"
           @click="toggleCollapse">常見問題</router-link>
         </div>
         <div class="navbar-nav" style="text-shadow: .5px .5px 1px #00000033;">
-          <router-link @click="toggleCollapse(); updateFilter();"
+          <router-link @click="toggleCollapse(); updateFilter('我的最愛');"
           to="/products" class="nav-link px-3">
             <div class="d-md-none">
               <span class="position-relative">喜愛行程
@@ -108,8 +108,8 @@ export default {
         this.navbarColor = false;
       }
     },
-    updateFilter() {
-      localStorage.setItem('categoryItem', '我的最愛');
+    updateFilter(category) {
+      localStorage.setItem('categoryItem', category);
       if (this.$route.path === '/products') {
         window.location.reload();
       }
