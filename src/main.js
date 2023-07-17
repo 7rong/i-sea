@@ -13,10 +13,6 @@ import { localize, setLocale } from '@vee-validate/i18n';
 // 匯入繁體中文語系檔案
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json';
 
-// // Import component
-// import Loading from 'vue3-loading-overlay';
-// // Import stylesheet
-// import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 import Loading from './components/LoadingComp.vue';
 import App from './App.vue';
 import router from './router';

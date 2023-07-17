@@ -1,7 +1,7 @@
 <template>
   <LoadingComp :active="isLoading"/>
   <p v-if="productCatch" style="line-height: 50vh;" class="text-center text-muted fw-bold">
-    商品載入錯誤，請稍後重試</p>
+    {{ productCatchMsg }}，請稍後重試</p>
   <div v-else>
     <img :src="product.imgUrl" class="d-block w-100" alt="主圖"
     v-if="!product.images" style="height: 500px; object-fit: cover;">
@@ -46,17 +46,6 @@
             <i class="bi bi-geo-alt-fill"></i>
             {{ product.location }}</small>
           <div class="pb-5 mt-3">{{ product.description }}</div>
-          <!-- date start -->
-          <!-- <div class="row g-0 pb-5">
-            <div class="col" v-for="date in product.date" :key="date">
-              <button type="button" class="btn btn-outline-secondary h-100
-              w-100 rounded-0 border-start-0 border-end-0"
-              @click="this.dateChosen = date"
-              :class="{ active: this.dateChosen === date }">
-                {{ date }}
-              </button>
-            </div>
-          </div> -->
           <div style="white-space: pre-line" class="pb-5">
             {{ product.content }}</div>
           <p class="border-top border-secondary pt-3 text-primary fw-bold mb-1">取消政策</p>
@@ -88,8 +77,8 @@
                 <div class="col-12" v-for="date in product.date" :key="date">
                   <button type="button" class="btn btn-outline-secondary h-100
                   w-100 rounded-0 border-0"
-                  @click="this.dateChosen = date"
-                  :class="{ active: this.dateChosen === date }">
+                  @click="dateChosen = date"
+                  :class="{ active: dateChosen === date }">
                     {{ date }}
                   </button>
                 </div>
@@ -104,15 +93,15 @@
                 </div>
                 <div class="col-12">
                   <button type="button" class="btn btn-outline-danger w-100 link-hover-white"
-                  @click.prevent="addCart(product.id, this.dateChosen, product.qty)"
-                  :disabled="this.addCartId === product.id"
-                  v-if="this.addCartId !== product.id &&
-                  this.status.loadingItemId !== product.id">
+                  @click.prevent="addCart(product.id, dateChosen, product.qty)"
+                  :disabled="addCartId === product.id"
+                  v-if="addCartId !== product.id &&
+                  status.loadingItemId !== product.id">
                     <span class="pe-2">加入購物車</span>
                     <i class="bi bi-cart"/>
                   </button>
                   <button type="button" class="btn btn-outline-light w-100"
-                  v-else-if="this.status.loadingItemId === product.id">
+                  v-else-if="status.loadingItemId === product.id">
                     <div class="spinner-border spinner-border-sm text-white" role="status">
                       <span class="visually-hidden">Loading...</span>
                     </div>
@@ -180,6 +169,7 @@ export default {
       },
       favoriteIdList: favorite.getFavorite() || [],
       productCatch: false,
+      productCatchMsg: '',
       productsCatch: false,
     };
   },
@@ -202,7 +192,7 @@ export default {
         .catch((err) => {
           this.isLoading = false;
           this.productCatch = true;
-          console.log(err);
+          this.productCatchMsg = err.response.data.message;
         });
     },
     addCart(id, date, qty = 1) {
@@ -246,8 +236,7 @@ export default {
           }
         })
         .catch((err) => {
-          this.productsCatch = true;
-          console.log(err);
+          this.productsCatch = !err.response.data.success;
         });
     },
     getDetail(id) {

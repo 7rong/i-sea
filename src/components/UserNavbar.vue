@@ -5,7 +5,6 @@
       <h1 class="font-cherry text-white nav-brand">
         <router-link to="/home" class="px-3 nav-link">ISEA</router-link>
       </h1>
-      <!-- 漢堡選單 -->
       <button
       class="navbar-toggler"
       type="button"
@@ -15,23 +14,22 @@
       aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <!-- 連結 -->
       <div class="collapse navbar-collapse
       justify-content-between" id="navbarNav" ref="navbarCollapse">
         <div class="navbar-nav fw-bold" style="text-shadow: .5px .5px 1px #00000033;">
           <router-link to="/products" class="nav-link px-3"
-          @click="toggleCollapse(); updateFilter('所有行程');">所有行程</router-link>
+          @click="toggleCollapse, updateFilter('所有行程');">所有行程</router-link>
           <router-link to="/faq" class="nav-link px-3"
           @click="toggleCollapse">常見問題</router-link>
         </div>
         <div class="navbar-nav" style="text-shadow: .5px .5px 1px #00000033;">
-          <router-link @click="toggleCollapse(); updateFilter('我的最愛');"
+          <router-link @click="toggleCollapse, updateFilter('我的最愛');"
           to="/products" class="nav-link px-3">
             <div class="d-md-none">
               <span class="position-relative">喜愛行程
                 <span class="position-absolute
                 translate-middle badge rounded-pill bg-danger"
-                v-if="this.favoriteNum"
+                v-if="favoriteNum"
                 style="top:50%; right:-60%;">
                   {{ favoriteNum }}
                   <span class="visually-hidden">products number in favoriteList</span>
@@ -42,7 +40,7 @@
               <i class="bi bi-suit-heart fs-3"></i>
               <span class="position-absolute
               translate-middle badge rounded-pill bg-danger"
-              v-if="this.favoriteNum"
+              v-if="favoriteNum"
               style="top:20%;">
                 {{ favoriteNum }}
                 <span class="visually-hidden">products number in favoriteList</span>
@@ -55,7 +53,7 @@
               <span class="position-relative">購物車
                 <span class="position-absolute
                 translate-middle badge rounded-pill bg-danger"
-                v-if="this.cartNum"
+                v-if="cartNum"
                 style="top:50%; right:-73%;">
                   {{ cartNum }}
                   <span class="visually-hidden">products number in cart</span>
@@ -66,7 +64,7 @@
               <i class="bi bi-cart fs-3"></i>
               <span class="position-absolute
               translate-middle badge rounded-pill bg-danger"
-              v-if="this.cartNum"
+              v-if="cartNum"
               style="top:20%;">
                 {{ cartNum }}
                 <span class="visually-hidden">products number in cart</span>

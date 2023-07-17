@@ -19,27 +19,27 @@
         <ul class="list-unstyled d-flex justify-content-around flex-lg-column">
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
-            :class="{ active: this.categoryItem === '所有行程'}"
+            :class="{ active: categoryItem === '所有行程'}"
             @click.prevent="filterProducts('所有行程')">所有<p class="d-md-inline">行程</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
-            :class="{ active: this.categoryItem === '國外潛旅'}"
+            :class="{ active: categoryItem === '國外潛旅'}"
             @click.prevent="filterProducts('國外潛旅')">國外<p class="d-md-inline">潛旅</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
-            :class="{ active: this.categoryItem === '國內潛旅'}"
+            :class="{ active: categoryItem === '國內潛旅'}"
             @click.prevent="filterProducts('國內潛旅')">國內<p class="d-md-inline">潛旅</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
-            :class="{ active: this.categoryItem === '一日玩水'}"
+            :class="{ active: categoryItem === '一日玩水'}"
             @click.prevent="filterProducts('一日玩水')">一日<p class="d-md-inline">玩水</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
-            :class="{ active: this.categoryItem === '我的最愛'}"
+            :class="{ active: categoryItem === '我的最愛'}"
             @click.prevent="filterProducts('我的最愛')">
               我的<p class="d-md-inline">最愛</p></a>
           </li>
@@ -92,7 +92,6 @@
                     <router-link :to="`/product/${item.id}`" class="stretched-link">
                       <span class="visually-hidden product-hover"
                      >查看更多</span></router-link>
-                    <!-- favorite -->
                     <button type="button"
                       class="btn btn-outline-primary rounded-circle fs-4
                       position-absolute fav-btn"
@@ -104,7 +103,9 @@
               </div>
             </div>
           </div>
-          <p v-if="this.productsCatch" class="text-center p-5 text-muted fw-bold">行程載入錯誤，請稍後重試</p>
+          <p v-if="productsCatch" class="text-center p-5 text-muted fw-bold">
+            {{ productsCatchMsg }} 請稍後重試！
+          </p>
         </div>
       </div>
     </div>
@@ -127,6 +128,7 @@ export default {
       categoryItem: localStorage.getItem('categoryItem'),
       cacheSearch: '',
       productsCatch: false,
+      productsCatchMsg: '',
     };
   },
   inject: [
@@ -149,7 +151,7 @@ export default {
         .catch((err) => {
           this.isLoading = false;
           this.productsCatch = true;
-          console.log(err);
+          this.productsCatchMsg = err.response.data.message;
         });
     },
     filterProducts(category) {

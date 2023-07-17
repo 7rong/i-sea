@@ -35,20 +35,20 @@
         <table class="table align-middle mb-0" v-if="carts.length">
           <thead class="sticky-top">
             <tr>
-              <th style="width: 60px"></th>
-              <th style="width: 150px;" class="d-md-table-cell d-none"></th>
-              <th>選購行程</th>
+              <!-- <th style="width: 60px"></th>
+              <th style="width: 150px;" class="d-md-table-cell d-none"></th> -->
+              <th colspan="5">選購行程</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="item in carts" :key="item.id">
-              <td>
+              <td style="width: 60px">
                 <button type="button" class="btn btn-outline-danger btn-sm link-hover-white"
                 @click="delCart(item)">
                   <i class="bi bi-trash3"></i>
                 </button>
               </td>
-              <td class="d-md-table-cell d-none">
+              <td class="d-md-table-cell d-none" style="width: 150px;">
                 <div style="background-size: cover; background-position: center; padding: 30% 0;"
                 :style="{backgroundImage: `url(${item.product.imgUrl})`}"></div>
               </td>
@@ -68,7 +68,7 @@
                       id="cart_unit"
                       v-model.number="item.qty" min="1"
                       @change="updateCart(item)"
-                      :disabled="item.id === this.state.isLoadingItem">
+                      :disabled="item.id === state.isLoadingItem">
                     </label>
                   </div>
                   <div class="col-lg-9 col-7 d-flex align-items-center justify-content-end">
@@ -167,8 +167,7 @@ export default {
         })
         .catch((err) => {
           this.isLoading = false;
-          this.cartCatch = true;
-          console.log(err);
+          this.cartCatch = !err.response.data.success;
         });
     },
     updateCart(item) {

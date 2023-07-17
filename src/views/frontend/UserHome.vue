@@ -9,7 +9,6 @@
         <p>馬上出遊！</p>
       </router-link>
     </div>
-    <!-- 品牌理念 -->
     <section class="pt-5 position-relative cus-bg-color" style="height:400px">
       <svg width="100%" id="svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150 position-absolute  svg-top"><path d="M 0,500 C 0,500 0,166 0,166 C 155.06666666666666,187.46666666666667 310.1333333333333,208.93333333333334 473,207 C 635.8666666666667,205.06666666666666 806.5333333333333,179.73333333333335 969,169 C 1131.4666666666667,158.26666666666665 1285.7333333333333,162.13333333333333 1440,166 C 1440,166 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#40536b" fill-opacity="0.53" class="transition-all duration-300 ease-in-out delay-150 path-0"></path><path d="M 0,500 C 0,500 0,333 0,333 C 195.7333333333333,329.5333333333333 391.4666666666666,326.06666666666666 556,315 C 720.5333333333334,303.93333333333334 853.8666666666666,285.26666666666665 996,287 C 1138.1333333333334,288.73333333333335 1289.0666666666666,310.8666666666667 1440,333 C 1440,333 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#40536b" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-1"></path></svg>
       <div class="p-1 position-absolute text-white translate-middle purpose">
@@ -23,7 +22,6 @@
       <div class="circle-s position-absolute rounded-circle"></div>
       <div class="circle-l position-absolute rounded-circle"></div>
     </section>
-    <!-- 行程介紹 -->
     <section class="position-relative" style="height:600px">
       <svg width="100%" height="100%" id="svg" viewBox="0 0 1440 490" xmlns="http://www.w3.org/2000/svg" class="transition duration-300 ease-in-out delay-150 position-absolute svg-bot"><path d="M 0,500 C 0,500 0,250 0,250 C 126.66666666666663,241.73333333333332 253.33333333333326,233.46666666666664 435,246 C 616.6666666666667,258.53333333333336 853.3333333333335,291.8666666666667 1030,296 C 1206.6666666666665,300.1333333333333 1323.3333333333333,275.06666666666666 1440,250 C 1440,250 1440,500 1440,500 Z" stroke="none" stroke-width="0" fill="#40536b" fill-opacity="1" class="transition-all duration-300 ease-in-out delay-150 path-0" transform="rotate(-180 720 250)"></path></svg>
       <div class="position-absolute between-svg top-0"></div>
@@ -59,7 +57,6 @@
       <i class="bi bi-chevron-double-down position-absolute
       translate-middle start-50 intro-icons fs-1 text-info intro-icon"></i>
     </section>
-    <!-- 服務項目 -->
     <section class="py-5 text-secondary container-fluid">
       <h3 class="text-center mb-4">沒事，你負責玩</h3>
       <div class="row justify-content-center">
@@ -109,7 +106,6 @@
         </div>
       </div>
     </section>
-    <!-- 優惠券 -->
     <section>
       <div class="coupon-bg d-flex justify-content-start align-items-center">
         <div class="text-white text-start p-5">

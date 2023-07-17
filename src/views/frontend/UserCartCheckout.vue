@@ -157,8 +157,7 @@ export default {
         })
         .catch((err) => {
           this.isLoading = false;
-          this.orderCatch = true;
-          console.log(err);
+          this.orderCatch = !err.response.data.success;
         });
     },
     payOrder() {

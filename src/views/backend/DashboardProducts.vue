@@ -102,11 +102,8 @@ export default {
     },
     updateProduct(item) {
       this.tempProduct = item;
-      // 預設為新增
       let api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`;
       let httpMethod = 'post';
-
-      // 編輯
       if (!this.isNew) {
         api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`;
         httpMethod = 'put';
@@ -129,7 +126,9 @@ export default {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`;
       const delComp = this.$refs.delModal;
       this.$http.delete(api).then((res) => {
-        console.log(res.data.message);
+        const data = res;
+        data.content = '已刪除商品';
+        this.pushMsgState(data, '刪除');
         delComp.hideModal();
         this.getProducts();
       });

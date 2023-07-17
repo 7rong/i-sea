@@ -31,47 +31,47 @@
         </div>
       </div>
       <div class="col-md-10 mx-auto border py-3 border-1 rounded-3 mt-5 bg-white">
-        <v-form v-slot="{ errors }" @submit="createOrder" class="p-3">
+        <VForm v-slot="{ errors }" @submit="createOrder" class="p-3">
           <div class="row gy-3">
             <div class="col-md-6">
               <label for="name" class="form-label">姓名*</label>
-              <v-field id="name" name="姓名" type="text" class="form-control"
+              <VField id="name" name="姓名" type="text" class="form-control"
               :class="{ 'is-invalid': errors['姓名'] }"
               placeholder="王小美" rules="required"
               v-model="form.user.name"/>
-              <error-message name="姓名" class="invalid-feedback"></error-message>
+              <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="col-md-6">
               <label for="tel" class="form-label">電話*</label>
-              <v-field id="tel" name="電話" type="tel" class="form-control"
+              <VField id="tel" name="電話" type="tel" class="form-control"
                 :class="{ 'is-invalid': errors['電話'] }"
                 placeholder="0987123456" :rules="isPhone"
                 v-model="form.user.tel"/>
-              <error-message name="電話" class="invalid-feedback"></error-message>
+              <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="col-md-6">
               <label htmlFor="email" class="form-label">Email*</label>
-              <v-field id="email"
+              <VField id="email"
               name="email"
               type="email"
               class="form-control"
               :class="{ 'is-invalid': errors['email'] }"
               placeholder="service@isea.com" rules="email|required"
               v-model="form.user.email"/>
-              <error-message name="email" class="invalid-feedback"></error-message>
+              <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="col-md-6">
               <label for="lineId" class="form-label">Line ID*</label>
                 <small class="text-info ps-2">未來創建群組使用</small>
-                <v-field id="lineId" name="LineID" type="text" class="form-control"
+                <VField id="lineId" name="LineID" type="text" class="form-control"
                 :class="{ 'is-invalid': errors['LineID'] }"
                 rules="required"
                 v-model="form.user.lineId"/>
-                <error-message name="LineID" class="invalid-feedback"></error-message>
+                <ErrorMessage name="LineID" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="col-12">
               <label for="payment" class="form-label">付款方式*</label>
-              <v-field
+              <VField
               id="payment"
               name="付款方式"
               class="form-control"
@@ -83,8 +83,8 @@
                 <option value="linePay">Line Pay</option>
                 <option value="ATM">ATM</option>
                 <option value="creditCard">信用卡/簽帳金融卡</option>
-              </v-field>
-              <error-message name="付款方式" class="invalid-feedback"></error-message>
+              </VField>
+              <ErrorMessage name="付款方式" class="invalid-feedback"></ErrorMessage>
             </div>
             <div class="col-12">
               <label for="message" class="form-label">留言</label>
@@ -95,7 +95,7 @@
           <div class="col-12">
             <button type="submit" class="btn btn-secondary w-100 mt-4">前往結帳</button>
           </div>
-        </v-form>
+        </VForm>
       </div>
     </div>
   </div>

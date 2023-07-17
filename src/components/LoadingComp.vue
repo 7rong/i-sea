@@ -10,9 +10,7 @@
 </template>
 
 <script>
-// Import component
 import Loading from 'vue3-loading-overlay';
-// Import stylesheet
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css';
 
 export default {
