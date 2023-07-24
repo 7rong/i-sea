@@ -35,8 +35,6 @@
         <table class="table align-middle mb-0" v-if="carts.length">
           <thead class="sticky-top">
             <tr>
-              <!-- <th style="width: 60px"></th>
-              <th style="width: 150px;" class="d-md-table-cell d-none"></th> -->
               <th colspan="5">選購行程</th>
             </tr>
           </thead>
