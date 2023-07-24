@@ -20,27 +20,27 @@
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: categoryItem === '所有行程'}"
-            @click.prevent="filterProducts('所有行程')">所有<p class="d-md-inline">行程</p></a>
+            @click.prevent="categoryItem = '所有行程'">所有<p class="d-md-inline">行程</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: categoryItem === '國外潛旅'}"
-            @click.prevent="filterProducts('國外潛旅')">國外<p class="d-md-inline">潛旅</p></a>
+            @click.prevent="categoryItem = '國外潛旅'">國外<p class="d-md-inline">潛旅</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: categoryItem === '國內潛旅'}"
-            @click.prevent="filterProducts('國內潛旅')">國內<p class="d-md-inline">潛旅</p></a>
+            @click.prevent="categoryItem = '國內潛旅'">國內<p class="d-md-inline">潛旅</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: categoryItem === '一日玩水'}"
-            @click.prevent="filterProducts('一日玩水')">一日<p class="d-md-inline">玩水</p></a>
+            @click.prevent="categoryItem = '一日玩水'">一日<p class="d-md-inline">玩水</p></a>
           </li>
           <li class="bg-transparent">
             <a href="#" class="category-item text-decoration-none py-2"
             :class="{ active: categoryItem === '我的最愛'}"
-            @click.prevent="filterProducts('我的最愛')">
+            @click.prevent="categoryItem = '我的最愛'">
               我的<p class="d-md-inline">最愛</p></a>
           </li>
         </ul>
@@ -120,7 +120,7 @@ export default {
     return {
       isLoading: false,
       products: [],
-      productsFilter: [],
+      // productsFilter: [],
       status: {
         loadingItemId: '',
       },
@@ -154,18 +154,6 @@ export default {
           this.productsCatchMsg = err.response.data.message;
         });
     },
-    filterProducts(category) {
-      this.categoryItem = category;
-      if (category === '所有行程') {
-        this.productsFilter = this.products;
-      } else if (category === '我的最愛') {
-        const newArr = this.products.filter((item) => this.favoriteIdList.includes(item.id));
-        this.productsFilter = newArr;
-      } else {
-        const newArr = this.products.filter((item) => item.category === category);
-        this.productsFilter = newArr;
-      }
-    },
     searchProducts() {
       this.categoryItem = '我的搜尋';
       const newArr = this.products.filter((item) => {
@@ -194,6 +182,21 @@ export default {
       }
       favorite.setFavorite(this.favoriteIdList);
       this.emitter.emit('update-favorite');
+    },
+  },
+  computed: {
+    productsFilter() {
+      let filterResult = [];
+      if (this.categoryItem === '所有行程') {
+        filterResult = this.products;
+      } else if (this.categoryItem === '我的最愛') {
+        const newArr = this.products.filter((item) => this.favoriteIdList.includes(item.id));
+        filterResult = newArr;
+      } else {
+        const newArr = this.products.filter((item) => item.category === this.categoryItem);
+        filterResult = newArr;
+      }
+      return filterResult;
     },
   },
   created() {
