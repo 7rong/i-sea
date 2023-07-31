@@ -58,7 +58,7 @@
                     </p>
                     <small class="text-light">{{ item.dateChosen }}</small>
                   </div>
-                  <div class="col-lg-3 col-5">
+                  <div class="col-lg-3 col-5 mt-auto">
                     <label for="cart_unit" class="d-flex align-items-center">
                       <small style="word-break:keep-all;" class="me-2">人數：</small>
                       <input type="number"
@@ -75,16 +75,18 @@
                         {{ $filters.currency(item.product.origin_price) }}
                       </span>
                     </p>
-                    <del class="text-muted mb-0 fs-6 me-2"
-                    v-if="item.product.price !== item.product.origin_price">
-                      {{ $filters.currency(item.product.origin_price) }}元
-                    </del>
-                    <p class="mb-0 fs-6" v-if="item.product.price !== item.product.origin_price">
-                      TWD
-                      <span class="text-danger h5">
-                        {{ $filters.currency(item.product.price) }}
-                      </span>
-                    </p>
+                    <div v-if="item.product.price !== item.product.origin_price"
+                    class="row cols-row-2 text-end">
+                      <del class="text-muted mb-0 fs-6">
+                        {{ $filters.currency(item.product.origin_price) }}元
+                      </del>
+                      <p class="mb-0 fs-6">
+                        TWD
+                        <span class="text-danger h5">
+                          {{ $filters.currency(item.product.price) }}
+                        </span>
+                      </p>
+                    </div>
                   </div>
                 </div>
               </td>

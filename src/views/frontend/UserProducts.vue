@@ -144,8 +144,6 @@ export default {
           this.isLoading = false;
           if (res.data.success) {
             this.products = res.data.products;
-            const category = this.categoryItem;
-            this.filterProducts(category);
           }
         })
         .catch((err) => {
