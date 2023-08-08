@@ -118,6 +118,7 @@ export default {
   },
   created() {
     this.getCarts();
+    this.getFavNum();
   },
   mounted() {
     this.emitter.on('update-cart', this.getCarts);
