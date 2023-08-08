@@ -121,16 +121,12 @@ $coupon-bg: '@/assets/img/coupon-bg.avif';
 .coupon-bg{
   height: 350px;
   background-image: url($coupon-bg);
-  background-attachment: fixed;
   filter:saturate(0.8);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center 100px;
-  @media (min-width: 768px){
-    background-position: center 200px;
-  }
+  background-position: center;
   @media (min-width: 992px) {
-    background-position: center;
+    background-attachment: fixed;
   }
 }
 .btn-cus-hover{

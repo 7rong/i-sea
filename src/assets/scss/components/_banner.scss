@@ -8,7 +8,9 @@ $login-banner: '@/assets/img/login-banner.avif';
   height: 750px;
   object-fit: fill;
   background-image: url($home-banner);
-  background-attachment: fixed;
+  @media (min-width: 992px) {
+    background-attachment: fixed;
+  }
 }
 .products-banner{
   height: 400px;
