@@ -84,7 +84,7 @@ export default {
   data() {
     return {
       cartNum: '',
-      favoriteNum: favorite.getFavorite().length,
+      favoriteNum: '',
       navbarColor: false,
     };
   },

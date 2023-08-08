@@ -120,7 +120,6 @@ export default {
     return {
       isLoading: false,
       products: [],
-      // productsFilter: [],
       status: {
         loadingItemId: '',
       },
@@ -168,9 +167,6 @@ export default {
           data: { success: true },
           content: `將「${item.title}」移除我的最愛`,
         }, '移除');
-        if (this.categoryItem === '我的最愛') {
-          this.filterProducts('我的最愛');
-        }
       } else {
         this.favoriteIdList.push(item.id);
         this.pushMsgState({
