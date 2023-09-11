@@ -4,6 +4,6 @@ export default {
     localStorage.setItem('favoriteList', favoriteStr);
   },
   getFavorite() {
-    return JSON.parse(localStorage.getItem('favoriteList'));
+    return JSON.parse(localStorage.getItem('favoriteList') || '[]');
   },
 };
